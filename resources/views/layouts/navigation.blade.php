@@ -2,14 +2,14 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            {{-- <div class="flex">
                 <!-- Logo -->
 
-                {{-- <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
-                </div> --}}
+                </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -17,7 +17,37 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+            </div> --}}
+
+            <div class="flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    @auth
+                        <!-- Condición para mostrar enlace solo si el usuario es administrador -->
+                        @if(auth()->user()->isAdmin())
+                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                                {{ __('Admin Dashboard') }}
+                            </x-nav-link>
+                        @endif
+
+                        <!-- Condición para mostrar enlace solo si el usuario es recolector -->
+                        @if(auth()->user()->isCollector())
+                            <x-nav-link :href="route('collector.dashboard')" :active="request()->routeIs('collector.dashboard')">
+                                {{ __('Collector Dashboard') }}
+                            </x-nav-link>
+                        @endif
+
+                        <!-- Condición para mostrar enlace solo si el usuario NO es administrador ni recolector -->
+                        @if(!auth()->user()->isAdmin() && !auth()->user()->isCollector())
+                            <x-nav-link :href="route('standard_user.dashboard')" :active="request()->routeIs('standard_user.dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
+                </div>
             </div>
+
+
+
 
 
 
