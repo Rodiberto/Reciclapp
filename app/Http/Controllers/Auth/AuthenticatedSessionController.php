@@ -28,7 +28,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Redirigir según el rol del usuario
+        return $this->authenticated($request, Auth::user());
     }
 
     /**
@@ -43,5 +44,26 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /**
+     * Redirect users after authentication.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function authenticated(Request $request, $user): RedirectResponse
+    {
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isCollector()) {
+            return redirect()->route('collector.dashboard');
+        } elseif ($user->isStandardUser()) {
+            return redirect()->route('standard_user.dashboard');
+        } else {
+            // Manejar cualquier otro caso o redirigir a una vista predeterminada
+            return redirect()->route('home')->with('error', 'No tienes permiso para acceder a esta página.');
+        }
     }
 }
