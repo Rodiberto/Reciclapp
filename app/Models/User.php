@@ -51,20 +51,23 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'rol_id');
     }
 
-    public function isAdmin()
+    // public function isAdmin()
+    // {
+    //     return $this->role->nombre === 'admin';
+    // }
+
+    public function isAdmin(): bool
     {
-        return $this->role->nombre === 'admin';
+        return $this->rol_id === 1;
     }
 
     public function isCollector(): bool
-{
-    return $this->rol_id === 2;
-}
+    {
+        return $this->rol_id === 2;
+    }
 
-public function isStandardUser(): bool
-{
-    return $this->rol_id === 3;
-}
-
-
+    public function isStandardUser(): bool
+    {
+        return $this->rol_id === 3;
+    }
 }
