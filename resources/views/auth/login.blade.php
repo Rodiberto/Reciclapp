@@ -21,6 +21,16 @@
 
     }
 
+    @media (prefers-color-scheme: dark) {
+        #div1 {
+            background-color: #111827;
+            color: #ffffff;
+        }
+    }
+
+
+
+
     h1 {
         font-family: 'Poppins', sans-serif;
     }

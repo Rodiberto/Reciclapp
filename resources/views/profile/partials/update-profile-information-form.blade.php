@@ -13,11 +13,16 @@
         @csrf
     </form>
 
-    {{-- <h1 class="text-center ">IMAGEN DEL PERFIL</h1>
 
-    <div class="flex justify-center">
-        <img src="{{ asset('img/logo.png') }}" alt="" width="100" height="100" srcset="">
-    </div> --}}
+    <div>
+        <div class="flex justify-center">
+            <img src="{{ asset('img/logo.png') }}" alt="" width="100" height="100" srcset="">
+        </div>
+
+        <p class="text-center ">Imágen del perfil</p>
+    </div>
+
+
 
 
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">

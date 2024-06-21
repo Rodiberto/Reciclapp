@@ -40,14 +40,16 @@ Route::middleware('admin')->group(function () {
     // Otras rutas para administradores
 });
 
+// Rutas protegidas por el middleware 'recolector'
+Route::middleware('collector')->group(function () {
+    Route::get('/collector/dashboard', [CollectorController::class, 'index'])->name('collector.dashboard');
+});
+
 // Rutas protegidas por el middleware 'standard_user'
 Route::middleware('standard_user')->group(function () {
     Route::get('/standard_user/dashboard', [StandarUserController::class, 'index'])->name('standard_user.dashboard');
 });
 
-// Rutas protegidas por el middleware 'recolector'
-Route::middleware('collector')->group(function () {
-    Route::get('/collector/dashboard', [CollectorController::class, 'index'])->name('collector.dashboard');
-});
+
 
 require __DIR__.'/auth.php';
