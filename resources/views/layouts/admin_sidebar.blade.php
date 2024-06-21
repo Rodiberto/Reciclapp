@@ -5,11 +5,11 @@
     </div> --}}
 
     <a href="{{ route('admin.dashboard') }}" class="py-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-        <div class="">
+
             <img src="{{ asset('favicon.png') }}" width="40px" height="40px" alt="Favicon">
-        </div>
-        <div class="ml-3 font-bold italic text-lg text-white">
-            RECICLAPP
+
+        <div class="font-bold italic  text-white">
+            <strong>RECICLAPP</strong>
         </div>
     </a>
     
