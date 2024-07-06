@@ -39,7 +39,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     // Otras rutas para administradores
 });
-
+ ///
 // Rutas protegidas por el middleware 'recolector'
 Route::middleware('collector')->group(function () {
     Route::get('/collector/dashboard', [CollectorController::class, 'index'])->name('collector.dashboard');
