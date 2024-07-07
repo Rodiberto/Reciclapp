@@ -8,15 +8,15 @@ use App\Http\Controllers\StandarUser\StandarUserController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 // Rutas para el dashboard
 
-Route::middleware(['auth', 'verified'])->group(function () {
+/*Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
+});*/
 
 
 

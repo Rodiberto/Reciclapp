@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
-
     public function create(): View
     {
         return view('auth.register');
@@ -29,28 +29,27 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'profile_photo_path' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
+
+        $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
+        
+        $profilePhotoUrl = '/storage/' . str_replace('public/', '', $profilePhotoPath);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'rol_id' => 3,
+            'profile_photo_path' => $profilePhotoUrl,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
-        // if ($user->isAdmin()) {
-        //     return redirect()->route('admin.dashboard');
-        // } elseif ($user->isUser()) {
-        //     return redirect()->route('user.dashboard');
-        // } elseif ($user->isCollector()) {
-        //     return redirect()->route('collector.dashboard');
-        // }
+        return redirect()->route('standard_user.dashboard');
     }
 }

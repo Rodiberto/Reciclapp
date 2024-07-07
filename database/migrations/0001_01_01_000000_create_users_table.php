@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile_photo_path')->nullable();
             $table->unsignedBigInteger('rol_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('rol_id')->references('id')->on('roles');
-
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -46,8 +46,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['rol_id']);
+        });
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
+    
 };
+

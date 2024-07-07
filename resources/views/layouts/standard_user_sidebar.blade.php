@@ -12,7 +12,7 @@
     <div class="mt-auto">
         <div class="p-2 flex items-center bg-gray-100 rounded-lg">
             <div class="h-10 w-10 rounded-full overflow-hidden border border-gray-300">
-                <img src="{{ asset('img/profiles.png') }}" alt="Imagen de perfil" width="40px" height="40px">
+                <img src="{{ asset('') }}" alt="Imagen de perfil" width="40px" height="40px">
             </div>
             <div class="ml-2 px-2 text-black">
                 {{ Auth::user()->name }}

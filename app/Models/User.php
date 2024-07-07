@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'rol_id',
+        'profile_photo_path',
     ];
 
     /**
@@ -50,11 +51,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'rol_id');
     }
-
-    // public function isAdmin()
-    // {
-    //     return $this->role->nombre === 'admin';
-    // }
 
     public function isAdmin(): bool
     {

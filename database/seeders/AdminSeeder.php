@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
             'email' => 'rodibertocm@gmail.com',
             'password' => bcrypt('12345678'),
             'rol_id' => $adminRole,
+            'profile_photo_path' => 'default/profile.png',
         ]);
     }
 }

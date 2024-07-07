@@ -1,6 +1,6 @@
 <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"> --}}
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
@@ -27,16 +27,9 @@
             color: #ffffff;
         }
     }
-
-
-
-
-    h1 {
-        font-family: 'Poppins', sans-serif;
-    }
 </style>
 
-<body>
+<body style="font-family: 'Nunito', sans-serif;">
 
     <div class="container mx-auto mt-6 p-4">
 
@@ -45,7 +38,7 @@
 
 
             <div class="w-1/2">
-                <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" class="mx-auto my-auto">
+                <img src="{{ asset('/img/logo2.png') }}" alt="Logo Reciclapp" class="mx-auto my-auto" width="500px" height="500px">
             </div>
 
 
@@ -74,7 +67,7 @@
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
 
-
+                        
                         <x-primary-button>
                             {{ __('Iniciar sesión') }}
                         </x-primary-button>
@@ -82,7 +75,7 @@
 
                         <div class="flex items-center justify-between">
 
-                            <div class="mb-4">
+                            <div class="mb-4 py-2">
                                 <label for="remember_me" class="inline-flex items-center">
                                     <input id="remember_me" type="checkbox"
                                         class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
