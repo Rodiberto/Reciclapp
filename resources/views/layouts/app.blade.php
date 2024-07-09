@@ -15,7 +15,6 @@
     <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bg_custom.css') }}">
 
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
@@ -33,7 +32,6 @@
             @endif
         @endif
 
-        <!-- Main Content -->
         <div class="flex-1">
             @if (isset($header))
                 <header class="bg-white dark:bg-gray-800 shadow">
@@ -44,9 +42,15 @@
             @endif
 
             <!-- Page Content -->
-            <main class="p-8">
+
+            {{-- <main class="p-8">
                 {{ $slot }}
+            </main> --}}
+
+            <main class="p-8">
+                @yield('content')
             </main>
+            
 
         </div>
     </div>

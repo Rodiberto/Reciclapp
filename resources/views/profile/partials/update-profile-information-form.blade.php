@@ -1,4 +1,7 @@
 <section>
+
+        
+
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Información de perfil') }}
@@ -27,11 +30,19 @@
             @endif
         </div>
         
-        <div>
+        <div class="mt-4">
             <x-input-label for="profile_photo_path" :value="__('Foto de perfil')" />
-            <input type="file" id="profile_photo_path" name="profile_photo_path" class="mt-1 block w-full">
-            <x-input-error class="mt-2" :messages="$errors->get('profile_photo_path')" required autofocus autocomplete="profile_photo_path" />
+            <input type="file" id="profile_photo_path" name="profile_photo_path" class="hidden">
+        
+            <label for="profile_photo_path" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
+                <span class="truncate py-4">Seleccionar archivo</span>
+            </label>
+        
+            <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
         </div>
+        <span id="file-name"></span>
+        
+
     
         <div>
             <x-input-label for="name" :value="__('Nombre')" />
@@ -71,4 +82,7 @@
             @endif
         </div>
     </form>
+
+    <script src="{{ asset('js/filename.js') }}"></script>
+    
 </section>

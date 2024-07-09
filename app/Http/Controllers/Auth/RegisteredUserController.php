@@ -31,12 +31,18 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'profile_photo_path' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+            'profile_photo_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
 
-        $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
-        
-        $profilePhotoUrl = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+        $profilePhotoUrl = null;
+
+        if ($request->hasFile('profile_photo_path')) {
+            $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
+            $profilePhotoUrl = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+        } else {
+            
+            $profilePhotoUrl = '/default/profile.png';
+        }
 
         $user = User::create([
             'name' => $request->name,

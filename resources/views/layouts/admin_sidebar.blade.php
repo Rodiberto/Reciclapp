@@ -12,7 +12,7 @@
 
     <!-- Nav items -->
     <nav class="mt-6 flex-1">
-        <a href="#"
+        <a href="{{ route('users.index') }}"
             class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
             <div class="p-2 rounded-full bg-gray-100">
                 <i class="text-black fas fa-users"></i>
