@@ -12,13 +12,6 @@
         </div>
     @endif
 
-
-    {{-- <x-slot name="header">
-<p>hola</p>
-    </x-slot> --}}
-
-
-
     <div class="py-4 flex h-screen">
         <div class="flex-1 bg-gray-100 dark:bg-gray-900 p-8" id="contenido">
 
