@@ -1,0 +1,52 @@
+
+#sidebar {
+    transition: width 0.3s;
+    width: 175px;
+}
+
+#sidebar.collapsed {
+    width: 60px;
+}
+
+#sidebar.collapsed .text {
+    display: none;
+
+}
+
+#sidebar.collapsed .menu {
+    display: none;
+}
+
+#sidebar.collapsed .username {
+    display: none;
+}
+
+#sidebar.collapsed .reciclapp {
+    display: none;
+}
+
+#sidebar.collapsed .profile-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+}
+
+#sidebar.collapsed .prof {
+    padding: 0PX;
+
+}
+
+
+#sidebar.collapsed .logout-icon {
+    display: block;
+
+}
+
+#sidebar.collapsed .salir {
+    display: none;
+}
+
+

@@ -10,11 +10,23 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+
+        $role = $request->get('role');
+        $view = $request->get('view', 'grid');
+
+        if ($role) {
+            $users = User::whereHas('role', function ($query) use ($role) {
+                $query->where('nombre', $role);
+            })->get();
+        } else {
+            $users = User::all();
+        }
+
+        return view('users.index', compact('users', 'view'));
     }
+
 
     public function create()
     {
@@ -31,23 +43,21 @@ class UserController extends Controller
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'rol_id' => 'required|exists:roles,id',
         ]);
-    
+
         $userData = $request->only(['name', 'email', 'password', 'rol_id']);
         $userData['password'] = Hash::make($userData['password']);
-    
+
         if ($request->hasFile('profile_photo_path')) {
             $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
             $userData['profile_photo_path'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
         } else {
             $userData['profile_photo_path'] = '/default/profile.png';
         }
-    
+
         User::create($userData);
-    
+
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
-    
-    
 
     public function edit(User $user)
     {
@@ -63,12 +73,12 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         $userData = $request->only(['name', 'email']);
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->password);
         }
-    
+
         if ($request->hasFile('profile_photo_path')) {
             if ($user->profile_photo_path) {
                 Storage::disk('public')->delete($user->profile_photo_path);
@@ -78,12 +88,11 @@ class UserController extends Controller
         } elseif (!$request->hasFile('profile_photo_path') && !$user->profile_photo_path) {
             $userData['profile_photo_path'] = '/default/profile.png';
         }
-    
+
         $user->update($userData);
-    
+
         return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente.');
     }
-    
 
     public function destroy(User $user)
     {

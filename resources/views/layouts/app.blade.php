@@ -14,6 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bg_custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebar_custom.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -21,7 +22,6 @@
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
 
-        <!-- Sidebar según el rol del usuario -->
         @if (auth()->check())
             @if (auth()->user()->isAdmin())
                 @include('layouts.admin_sidebar')
@@ -41,16 +41,9 @@
                 </header>
             @endif
 
-            <!-- Page Content -->
-
-            {{-- <main class="p-8">
-                {{ $slot }}
-            </main> --}}
-
             <main class="p-8">
-                @yield('content')
+                {{ $slot }}
             </main>
-            
 
         </div>
     </div>

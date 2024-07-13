@@ -1,42 +1,40 @@
 <x-app-layout>
 
     <style>
-        #div{
-            margin: 0px 5px 0px 5px;
-            text-align: justify;
+        #contenido {
+            padding: 5px 30px 0px 30px;
         }
     </style>
 
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Perfil') }}
-        </h2>
-    </x-slot> --}}
+    <div class="py-4 flex h-screen">
+        <div class="flex-1 bg-gray-100 dark:bg-gray-900 p-8" id="contenido">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-4 mb-6">
+                
 
-    <div class="py-12">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6">
-
-            <div class="flex">
-
-                <div id="div" class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg flex flex-col">
+                    <div class="p-6 text-gray-900 dark:text-gray-100 flex-1">
                         @include('profile.partials.update-profile-information-form')
                     </div>
                 </div>
-
-                <div id="div" class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
-                        @include('profile.partials.update-password-form')
+                
+                <div class="flex flex-col space-y-6">
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg h-70">
+                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                            @include('profile.partials.update-password-form')
+                        </div>
                     </div>
-                </div>
-
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+    
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg h-30">
+                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                            @include('profile.partials.delete-user-form')
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    
+    
+
 </x-app-layout>

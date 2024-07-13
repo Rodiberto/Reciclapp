@@ -22,7 +22,7 @@
     
         <div class="mt-4 flex justify-center items-center bg-gray-200 relative">
             @if ($user->profile_photo_path)
-                <img src="{{ asset($user->profile_photo_path) }}" alt="Foto de Perfil" class="rounded-full h-20 w-20 object-cover">
+                <img src="{{ asset($user->profile_photo_path) }}" alt="Foto de Perfil" class="rounded-full h-40 w-40 object-cover">
             @else
                 <span class="rounded-full h-20 w-20 bg-gray-300 flex items-center justify-center text-gray-600 dark:bg-gray-700 dark:text-gray-300">
                     {{ __('Sin foto') }}

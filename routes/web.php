@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Collector\CollectorController;
 use App\Http\Controllers\StandarUser\StandarUserController;
 use App\Http\Controllers\UserController;
-
-
+use App\Http\Controllers\MaterialCategoryController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\CollectionPointController;
+use App\Http\Controllers\ReportController;
 
 
 
@@ -25,7 +27,15 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
     Route::resource('users', UserController::class)->middleware('auth');
+    Route::resource('material_categories', MaterialCategoryController::class);
+    Route::resource('materials', MaterialController::class);
+    Route::resource('collection_points', CollectionPointController::class);
+    Route::resource('reports', ReportController::class);
+
+
+
 });
 
 
