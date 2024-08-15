@@ -62,7 +62,8 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->isStandardUser()) {
             return redirect()->route('standard_user.dashboard');
         } else {
-            return redirect()->route('home')->with('error', 'No tienes permiso para acceder a esta página.');
+            return redirect('/');
+            
         }
     }
 }

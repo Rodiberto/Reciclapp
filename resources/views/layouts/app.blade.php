@@ -41,7 +41,7 @@
                 </header>
             @endif
 
-            <main class="p-8">
+            <main class="">
                 {{ $slot }}
             </main>
 

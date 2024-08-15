@@ -8,8 +8,8 @@ use App\Http\Controllers\StandarUser\StandarUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialCategoryController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\CollectionPointController;
-use App\Http\Controllers\ReportController;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\StandardUserMaterialController;
 
 
 
@@ -31,8 +31,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('users', UserController::class)->middleware('auth');
     Route::resource('material_categories', MaterialCategoryController::class);
     Route::resource('materials', MaterialController::class);
-    Route::resource('collection_points', CollectionPointController::class);
-    Route::resource('reports', ReportController::class);
+    Route::get('/generate-report', [PdfController::class, 'generateReport'])->name('generate.report');
 
 
 
@@ -46,6 +45,7 @@ Route::middleware('collector')->group(function () {
 Route::middleware('standard_user')->group(function () {
     Route::get('/standard_user/dashboard', [StandarUserController::class, 'index'])->name('standard_user.dashboard');
 });
+
 
 
 

@@ -1,5 +1,8 @@
 <section>
 
+            <head>
+                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+            </head>
         
 
     <header>
@@ -20,9 +23,9 @@
         @csrf
         @method('patch')
     
-        <div class="mt-4 flex justify-center items-center bg-gray-200 relative">
+        <div class="mt-4 flex justify-center items-cente relative">
             @if ($user->profile_photo_path)
-                <img src="{{ asset($user->profile_photo_path) }}" alt="Foto de Perfil" class="rounded-full h-40 w-40 object-cover">
+                <img src="{{ asset($user->profile_photo_path) }}" alt="Foto de Perfil" class="rounded-full h-20 w-20 object-cover">
             @else
                 <span class="rounded-full h-20 w-20 bg-gray-300 flex items-center justify-center text-gray-600 dark:bg-gray-700 dark:text-gray-300">
                     {{ __('Sin foto') }}
@@ -48,6 +51,12 @@
             <x-input-label for="name" :value="__('Nombre')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Teléfono')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
     
         <div>
@@ -75,7 +84,13 @@
         </div>
     
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Guardar') }}</x-primary-button>
+            {{-- <x-primary-button>{{ __('Guardar') }}</x-primary-button> --}}
+            <button type="submit"
+            class="inline-flex bg-green-800 dark:bg-green-200 text-white dark:text-white 
+            font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none 
+            focus:ring-2 focus:bg-green-700 dark:focus:bg-white">
+            Guardar
+        </button>
     
             @if (session('status') === 'profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600 dark:text-gray-400">{{ __('Guardado.') }}</p>

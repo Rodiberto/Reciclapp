@@ -26,20 +26,6 @@
 
         </a>
 
-
-        <a href="#" 
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-home"></i>
-            </div>
-
-            <div class="ml-3 text-white text">
-                Home
-            </div>
-
-        </a>
-
         <a href="{{ route('admin.dashboard') }}"
             class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
 
@@ -66,58 +52,6 @@
 
         </a>
 
-        <a href="#"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-truck"></i>
-            </div>
-
-            <div class="ml-3 text-white text">
-                Recolectores
-            </div>
-
-        </a>
-
-        <a href="{{ route('reports.index') }}"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-chart-bar"></i>
-            </div>
-
-            <div class="ml-3 text-white text">
-                Reportes
-            </div>
-
-        </a>
-
-        <a href="#"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-chart-line"></i>
-            </div>
-
-            <div class="ml-3 text-white text">
-                Gráficas
-            </div>
-
-        </a>
-
-        <a href="#"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-money-bill-wave"></i>
-            </div>
-
-            <div class="ml-3 text-white text">
-                Precios
-            </div>
-
-        </a>
-
         <a href="{{ route('materials.index') }}"
             class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
 
@@ -140,19 +74,6 @@
 
             <div class="ml-3 text-white text">
                 Categorías
-            </div>
-
-        </a>
-
-        <a href="{{ route('collection_points.index') }}"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-map-marker-alt"></i>
-            </div>
-
-            <div class="ml-3 text-white text">
-                Puntos de recolección
             </div>
 
         </a>

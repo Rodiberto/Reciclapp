@@ -6,21 +6,18 @@
             <div class="flex">
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @auth
-                        <!-- Condición para mostrar enlace solo si el usuario es administrador -->
                         @if (auth()->user()->isAdmin())
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
                         @endif
 
-                        <!-- Condición para mostrar enlace solo si el usuario es recolector -->
                         @if (auth()->user()->isCollector())
                             <x-nav-link :href="route('collector.dashboard')" :active="request()->routeIs('collector.dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
                         @endif
 
-                        <!-- Condición para mostrar enlace solo si el usuario NO es administrador ni recolector -->
                         @if (!auth()->user()->isAdmin() && !auth()->user()->isCollector())
                             <x-nav-link :href="route('standard_user.dashboard')" :active="request()->routeIs('standard_user.dashboard')">
                                 {{ __('Dashboard') }}

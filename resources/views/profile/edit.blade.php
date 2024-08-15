@@ -6,7 +6,7 @@
         }
     </style>
 
-    <div class="py-4 flex h-screen">
+    <div class=" flex h-screen">
         <div class="flex-1 bg-gray-100 dark:bg-gray-900 p-8" id="contenido">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-4 mb-6">
                 

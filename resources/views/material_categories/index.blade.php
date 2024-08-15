@@ -1,13 +1,20 @@
 <x-app-layout>
+
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+
+
     <style>
         #contenido {
             padding: 0px 10px 0px 10px;
         }
     </style>
 
-    @if (session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4" role="alert">
-            <span class="block sm:inline">{{ session('success') }}</span>
+    @if (session()->has('success'))
+        <div id="message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('success') }}</span>
         </div>
     @endif
 
@@ -19,23 +26,38 @@
 
     <div class="py-4">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between mb-4">
-                <a href="{{ route('material_categories.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Agregar</a>
-            </div>
+
+            {{-- <div class="flex justify-between mb-4">
+                <a href="{{ route('material_categories.create') }}"
+                    class=" text-black dark:bg-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600"><i
+                        class="px-2 fas fa-plus-circle"></i><span
+                        class="hover:bg-gray-100 dark:hover:bg-gray-600">Nuevo</span></a>
+            </div> --}}
+
+            <button id="openModal" class="text-black dark:bg-gray-800 dark:text-white p-2">
+                <i class="px-1 fas fa-plus-circle"></i>
+                <span>Nuevo</span>
+            </button>
 
             <div id="categoryContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 @foreach ($categories as $category)
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg rounded-lg p-6 text-gray-900 dark:text-gray-100">
+                    <div
+                        class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg rounded-lg p-6 text-gray-900 dark:text-gray-100">
                         <p class="font-bold text-center">{{ $category->name }}</p>
                         <p class="text-center">{{ $category->description }}</p>
-                        <div class="mt-4 flex justify-center space-x-2">
-                            <a href="{{ route('material_categories.edit', $category->id) }}" class="text-yellow-500 hover:text-yellow-600">
+                        <div class="mt-4 space-x-2">
+                            {{-- <a href="{{ route('material_categories.edit', $category->id) }}" class="">
+                                <i class="fas fa-edit"></i>
+                            </a> --}}
+                            <a href="#" class=" mr-2 open-edit-modal" data-id="{{ $category->id }}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('material_categories.destroy', $category->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta categoría?');">
+                            <form action="{{ route('material_categories.destroy', $category->id) }}" method="POST"
+                                style="display: inline-block;"
+                                onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta categoría?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:text-red-600">
+                                <button type="submit" class="">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
@@ -45,4 +67,114 @@
             </div>
         </div>
     </div>
+
+
+
+    <div id="modal"
+        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden overflow-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-2xl">
+            <div class="p-4 flex justify-between items-center">
+                <button id="closeModal"
+                    class="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Nueva categoría</h1>
+            </div>
+
+            <div id="modalContent"
+                class="flex justify-center items-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg relative">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal"
+        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden overflow-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-2xl">
+            <div class="p-4 flex justify-between items-center">
+                <button id="closeEditModal"
+                    class="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Editar categoría</h1>
+            </div>
+
+            <div id="editModalContent"
+                class="flex justify-center items-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg relative">
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const successMessage = document.getElementById('message');
+            if (successMessage) {
+                setTimeout(() => {
+                    successMessage.classList.add('fade-out');
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 1000);
+                }, 2000);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.getElementById('openModal').addEventListener('click', function() {
+                fetch('{{ route('material_categories.create') }}')
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('modalContent').innerHTML = html;
+                        document.getElementById('modal').classList.remove('hidden');
+                    })
+                    .catch(error => console.error('Error loading modal content:', error));
+            });
+
+            document.getElementById('closeModal').addEventListener('click', function() {
+                document.getElementById('modal').classList.add('hidden');
+            });
+
+            document.getElementById('modal').addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+
+
+            document.querySelectorAll('.open-edit-modal').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const CategoryId = this.getAttribute('data-id');
+
+                    fetch(`{{ url('/material_categories') }}/${CategoryId}/edit`)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('editModalContent').innerHTML = html;
+                            document.getElementById('editModal').classList.remove('hidden');
+                        })
+                        .catch(error => console.error('Error loading modal content:', error));
+                });
+            });
+
+            document.getElementById('closeEditModal').addEventListener('click', function() {
+                document.getElementById('editModal').classList.add('hidden');
+            });
+
+            document.getElementById('editModal').addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+        });
+        
+    </script>
+
 </x-app-layout>

@@ -32,10 +32,17 @@
                         @csrf
 
                         <div>
-                            <x-input-label for="name" :value="__('Nombre')" />
+                            <x-input-label for="name" :value="__('Nombre completo')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
                                 :value="old('name')" required autofocus autocomplete="name" />
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
+                            <x-input-label for="phone" :value="__('Teléfono')" />
+                            <x-text-input id="phone" class="block mt-1 w-full" type="number" name="phone"
+                                :value="old('phone')" required autofocus autocomplete="phone" />
+                            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">

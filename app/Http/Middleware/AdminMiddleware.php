@@ -19,7 +19,8 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect()->route('home')->with('error', 'No tienes permiso para acceder a esta página.');
+        auth()->logout();
+        return redirect()->route('home')->with('error', 'Tu sesión ha sido cerrada porque no tienes permiso para acceder a esta página.');
     }
 
 }

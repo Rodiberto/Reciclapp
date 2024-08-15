@@ -38,13 +38,14 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => ['required', 'numeric'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'rol_id' => 'required|exists:roles,id',
         ]);
 
-        $userData = $request->only(['name', 'email', 'password', 'rol_id']);
+        $userData = $request->only(['name', 'phone', 'email', 'password', 'rol_id']);
         $userData['password'] = Hash::make($userData['password']);
 
         if ($request->hasFile('profile_photo_path')) {
@@ -69,6 +70,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => ['required', 'numeric'],
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
