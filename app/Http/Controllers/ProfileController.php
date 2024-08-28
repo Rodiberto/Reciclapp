@@ -30,14 +30,14 @@ class ProfileController extends Controller
             $user->email_verified_at = null;
         }
     
-        if ($request->hasFile('profile_photo_path')) {
-            if ($user->profile_photo_path) {
-                Storage::disk('public')->delete($user->profile_photo_path);
+        if ($request->hasFile('photo')) {
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
             }
 
-            $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
+            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
  
-            $user->profile_photo_path = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+            $user->photo = '/storage/' . str_replace('public/', '', $profilePhotoPath);
         }
 
         $user->save();

@@ -1,5 +1,5 @@
 function updateFileName() {
-    const input = document.getElementById('profile_photo_path');
+    const input = document.getElementById('photo');
     const fileNameSpan = document.getElementById('file-name-users');
     
     if (input.files.length > 0) {

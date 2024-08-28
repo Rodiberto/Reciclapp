@@ -28,17 +28,19 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'phone' => ['required', 'numeric'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'profile_photo_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
 
         $profilePhotoUrl = null;
 
-        if ($request->hasFile('profile_photo_path')) {
-            $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
+        if ($request->hasFile('photo')) {
+            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
             $profilePhotoUrl = '/storage/' . str_replace('public/', '', $profilePhotoPath);
         } else {
             
@@ -51,7 +53,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'rol_id' => 3,
-            'profile_photo_path' => $profilePhotoUrl,
+            'photo' => $profilePhotoUrl,
         ]);
 
         event(new Registered($user));

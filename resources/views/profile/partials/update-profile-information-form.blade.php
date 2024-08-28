@@ -24,8 +24,8 @@
         @method('patch')
     
         <div class="mt-4 flex justify-center items-cente relative">
-            @if ($user->profile_photo_path)
-                <img src="{{ asset($user->profile_photo_path) }}" alt="Foto de Perfil" class="rounded-full h-20 w-20 object-cover">
+            @if ($user->photo)
+                <img src="{{ asset($user->photo) }}" alt="Foto de Perfil" class="rounded-full h-20 w-20 object-cover">
             @else
                 <span class="rounded-full h-20 w-20 bg-gray-300 flex items-center justify-center text-gray-600 dark:bg-gray-700 dark:text-gray-300">
                     {{ __('Sin foto') }}
@@ -34,14 +34,14 @@
         </div>
         
         <div class="mt-4">
-            <x-input-label for="profile_photo_path" :value="__('Foto de perfil')" />
-            <input type="file" id="profile_photo_path" name="profile_photo_path" class="hidden">
+            <x-input-label for="photo" :value="__('Foto de perfil')" />
+            <input type="file" id="photo" name="photo" class="hidden">
         
-            <label for="profile_photo_path" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
+            <label for="photo" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
                 <span class="truncate py-4">Seleccionar archivo</span>
             </label>
         
-            <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
         </div>
         <span id="file-name"></span>
         

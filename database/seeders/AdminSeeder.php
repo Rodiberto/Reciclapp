@@ -12,7 +12,7 @@ class AdminSeeder extends Seeder
 
     public function run(): void
     {
-        $adminRole = Role::where('nombre', 'admin')->firstOrFail()->id;
+        $adminRole = Role::where('name', 'admin')->firstOrFail()->id;
 
         User::create([
             'name' => 'Rodiber Cruz Morales',
@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'email' => 'rodibertocm@gmail.com',
             'password' => bcrypt('12345678'),
             'rol_id' => $adminRole,
-            'profile_photo_path' => 'default/profile.png',
+            'photo' => 'default/profile.png',
         ]);
     }
 }

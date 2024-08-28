@@ -66,7 +66,7 @@
                 <option value="">Selecciona rol</option>
                 @foreach ($roles as $role)
                     <option value="{{ $role->id }}" {{ old('rol_id') == $role->id ? 'selected' : '' }}>
-                        {{ $role->nombre }}</option>
+                        {{ $role->name }}</option>
                 @endforeach
             </select>
             @error('rol_id')
@@ -75,16 +75,16 @@
         </div>
 
         <div class="col-span-1">
-            <label for="profile_photo_path" class="block text-gray-700 dark:text-gray-300 font-medium">Imagen</label>
-            <input type="file" id="profile_photo_path" name="profile_photo_path" class="hidden"
+            <label for="photo" class="block text-gray-700 dark:text-gray-300 font-medium">Imagen</label>
+            <input type="file" id="photo" name="photo" class="hidden"
                 onchange="updateFileName()">
 
-            <label for="profile_photo_path"
+            <label for="photo"
                 class="block cursor-pointer p-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
                 <span class="truncate py-4">Seleccionar archivo</span>
             </label>
 
-            <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
             <span id="file-name-users"></span>
         </div>
 

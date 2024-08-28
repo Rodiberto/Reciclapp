@@ -74,7 +74,7 @@
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg user-item">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <div class="flex justify-center mb-4">
-                                <img src="{{ $user->profile_photo_path }}" alt="Foto de perfil"
+                                <img src="{{ $user->photo }}" alt="Foto de perfil"
                                     class="w-20 h-20 rounded-full">
                             </div>
                             <p class="flex justify-center"><strong class="px-2">Nombre:</strong>{{ $user->name }}
@@ -82,7 +82,7 @@
                             <p class="flex justify-center"><strong class="px-2">Teléfono:</strong> {{ $user->phone }}
                             </p>
                             <p class="flex justify-center"><strong class="px-2">Rol:</strong>
-                                {{ $user->role->nombre }}</p>
+                                {{ $user->role->name }}</p>
                             <p class="flex justify-center"><strong class="px-2">Correo:</strong> {{ $user->email }}
                             </p>
 
@@ -126,10 +126,10 @@
                             <tr>
                                 <td class="border px-4 py-2">{{ $user->name }}</td>
                                 <td class="border px-4 py-2">
-                                    <img src="{{ $user->profile_photo_path }}" alt="Foto de perfil" class="w-10 h-10">
+                                    <img src="{{ $user->photo }}" alt="Foto de perfil" class="w-10 h-10">
                                 </td>
                                 <td class="border px-4 py-2">{{ $user->phone }}</td>
-                                <td class="border px-4 py-2">{{ $user->role->nombre }}</td>
+                                <td class="border px-4 py-2">{{ $user->role->name }}</td>
                                 <td class="border px-4 py-2">{{ $user->email }}</td>
                                 <td class="border px-4 py-2">
                                     <a href="#" class=" mr-2 open-edit-modal"

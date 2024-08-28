@@ -11,11 +11,11 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('image')->nullable();
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('material_category_id')->constrained('material_categories')->onDelete('cascade');
-            $table->string('weight');
-            $table->string('value');
+            $table->decimal('weight', 10, 2);
+            $table->decimal('value', 10, 2);
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\StandardUserMaterialController;
 
-
+use App\Http\Controllers\Admin\BagController;
 
 Route::get('/', function () {
     return view('home');
@@ -32,9 +32,6 @@ Route::middleware('admin')->group(function () {
     Route::resource('material_categories', MaterialCategoryController::class);
     Route::resource('materials', MaterialController::class);
     Route::get('/generate-report', [PdfController::class, 'generateReport'])->name('generate.report');
-
-
-
 });
 
 
@@ -50,6 +47,9 @@ Route::middleware('standard_user')->group(function () {
 
 
 
+route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('bags', BagController::class);
+});
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

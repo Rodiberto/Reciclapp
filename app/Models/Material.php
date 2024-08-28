@@ -15,4 +15,9 @@ class Material extends Model
     {
         return $this->belongsTo(MaterialCategory::class, 'material_category_id');
     }
+
+    public function elements()
+    {
+        return $this->belongsToMany(Element::class, 'materials_has_element');
+    }
 }

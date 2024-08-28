@@ -11,7 +11,7 @@
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Nombre</label>
                 <input id="name" type="text" placeholder=""
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('name') border-red-500 @enderror"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}"
                     name="name" value="{{ old('name') }}" required>
                 @error('name')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -33,7 +33,7 @@
             <div class="mb-4">
                 <label for="material_category_id" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Categoría</label>
                 <select id="material_category_id"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('material_category_id') border-red-500 @enderror"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm {{ $errors->has('material_category_id') ? 'border-red-500' : 'border-gray-300' }}"
                     name="material_category_id" required>
                     <option value="">Seleccione una categoría</option>
                     @foreach ($categories as $category)
@@ -52,7 +52,7 @@
             <div class="mb-4">
                 <label for="description" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Descripción</label>
                 <textarea id="description" placeholder=""
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('description') border-red-500 @enderror"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}"
                     name="description">{{ old('description') }}</textarea>
                 @error('description')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -62,7 +62,7 @@
             <div class="mb-4">
                 <label for="weight" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Peso</label>
                 <input id="weight" type="text" placeholder=""
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('weight') border-red-500 @enderror"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm {{ $errors->has('weight') ? 'border-red-500' : 'border-gray-300' }}"
                     name="weight" value="{{ old('weight') }}" required>
                 @error('weight')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -72,7 +72,7 @@
             <div class="mb-4">
                 <label for="value" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Valor</label>
                 <input id="value" type="text" placeholder=""
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('value') border-red-500 @enderror"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm {{ $errors->has('value') ? 'border-red-500' : 'border-gray-300' }}"
                     name="value" value="{{ old('value') }}" required>
                 @error('value')
                     <span class="text-red-500 text-sm">{{ $message }}</span>

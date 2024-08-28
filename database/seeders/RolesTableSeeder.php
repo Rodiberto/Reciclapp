@@ -15,18 +15,18 @@ class RolesTableSeeder extends Seeder
     {
 
         Role::create([
-            'nombre' => 'admin',
-            'descripcion' => 'Administrador del sistema',
+            'name' => 'admin',
+            'description' => 'Administrador del sistema',
         ]);
 
         Role::create([
-            'nombre' => 'collector',
-            'descripcion' => 'Recolector de materiales reciclables',
+            'name' => 'collector',
+            'description' => 'Recolector de materiales reciclables',
         ]);
 
         Role::create([
-            'nombre' => 'standard_user',
-            'descripcion' => 'Usuario estándar',
+            'name' => 'standard_user',
+            'description' => 'Usuario estándar',
         ]);
     }
 }

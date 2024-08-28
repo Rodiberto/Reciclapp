@@ -11,18 +11,18 @@
 
                 <div>
                     <div class="mb-4 flex items-center justify-center">
-                        <img src="{{ asset($user->profile_photo_path) }}" alt="Foto de Perfil Actual" class="mt-2 w-30 h-20 object-cover">
+                        <img src="{{ asset($user->photo) }}" alt="Foto de Perfil Actual" class="mt-2 w-30 h-20 object-cover">
                     </div>
 
                     <div class="mb-4">
-                        <x-input-label for="profile_photo_path" :value="__('Foto de perfil')" />
-                        <input type="file" id="profile_photo_path" name="profile_photo_path" class="hidden" onchange="updateFileName()">
+                        <x-input-label for="photo" :value="__('Foto de perfil')" />
+                        <input type="file" id="photo" name="photo" class="hidden" onchange="updateFileName()">
                     
-                        <label for="profile_photo_path" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
+                        <label for="photo" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
                             <span class="truncate py-4">Seleccionar archivo</span>
                         </label>
                     
-                        <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('photo')" class="mt-2" />
                             <span id="file-name-users"></span>
                     </div>
                     
@@ -76,7 +76,7 @@
                         <select id="rol_id" class="block w-full text-gray-700 border rounded-lg py-2 px-4 leading-tight @error('rol_id') border-red-500 @enderror" name="rol_id" required>
                             <option value="">Seleccionar Rol</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" {{ $user->rol_id == $role->id ? 'selected' : '' }}>{{ $role->nombre }}</option>
+                                <option value="{{ $role->id }}" {{ $user->rol_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
 

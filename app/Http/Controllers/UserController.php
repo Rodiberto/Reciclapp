@@ -37,22 +37,24 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            // 'name' => 'required|string|max:255',
+            // 'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'phone' => ['required', 'numeric'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'rol_id' => 'required|exists:roles,id',
         ]);
 
         $userData = $request->only(['name', 'phone', 'email', 'password', 'rol_id']);
         $userData['password'] = Hash::make($userData['password']);
 
-        if ($request->hasFile('profile_photo_path')) {
-            $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
-            $userData['profile_photo_path'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+        if ($request->hasFile('photo')) {
+            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
+            $userData['photo'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
         } else {
-            $userData['profile_photo_path'] = '/default/profile.png';
+            $userData['photo'] = '/default/profile.png';
         }
 
         User::create($userData);
@@ -73,7 +75,7 @@ class UserController extends Controller
             'phone' => ['required', 'numeric'],
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
-            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $userData = $request->only(['name', 'email']);
@@ -81,14 +83,14 @@ class UserController extends Controller
             $userData['password'] = Hash::make($request->password);
         }
 
-        if ($request->hasFile('profile_photo_path')) {
-            if ($user->profile_photo_path) {
-                Storage::disk('public')->delete($user->profile_photo_path);
+        if ($request->hasFile('photo')) {
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
             }
-            $profilePhotoPath = $request->file('profile_photo_path')->store('public/profile_photos');
-            $userData['profile_photo_path'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
-        } elseif (!$request->hasFile('profile_photo_path') && !$user->profile_photo_path) {
-            $userData['profile_photo_path'] = '/default/profile.png';
+            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
+            $userData['photo'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+        } elseif (!$request->hasFile('photo') && !$user->photo) {
+            $userData['photo'] = '/default/profile.png';
         }
 
         $user->update($userData);
@@ -98,8 +100,8 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->profile_photo_path) {
-            Storage::disk('public')->delete($user->profile_photo_path);
+        if ($user->photo) {
+            Storage::disk('public')->delete($user->photo);
         }
 
         $user->delete();

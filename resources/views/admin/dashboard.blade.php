@@ -21,7 +21,7 @@
                                 <a href="{{ route('users.index', $user->id) }}"class="flex flex-col items-center bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <div class="flex flex-col items-center dark:bg-gray-700 rounded-lg p-4">
                                         <div class="flex justify-center mb-4">
-                                            <img src="{{ $user->profile_photo_path }}" alt="Foto de perfil"
+                                            <img src="{{ $user->photo }}" alt="Foto de perfil"
                                                 class="w-20 h-20 rounded-full">
                                         </div>
                                         <div class="text-center">

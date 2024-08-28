@@ -78,18 +78,32 @@
 
         </a>
 
+
+        <a href="{{ route('admin.bags.index') }}"
+        class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
+
+        <div class="p-2 rounded-full bg-gray-100">
+            <i class="text-black fas fa-shopping-bag"></i> 
+        </div>
+
+        <div class="ml-3 text-white text">
+            Bolsas
+        </div>
+
+    </a>
+
     </nav>
 
     <div class="mt-auto">
 
         <a href="{{ route('profile.edit') }}" class="p-1 flex items-center bg-gray-100 rounded-lg prof">
 
-            <div class="h-10 w-10 rounded-full overflow-hidden border border-gray-300 ">
-                <img src="{{ asset(Auth::user()->profile_photo_path) }}" alt="Foto de perfil" width="40px"
-                    height="40px" class="profile-pic">
+            <div class="flex justify-center items-center h-10 w-10 overflow-hidden ">
+                <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" width="40px"
+                    height="40px" class="rounded-full">
             </div>
 
-            <div class="ml-2 px-2 text-black username">
+            <div class="ml-2 px-2 text-black username text-sm">
                 {{ Auth::user()->name }}
             </div>
 

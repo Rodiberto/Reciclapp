@@ -1,4 +1,4 @@
-const input = document.getElementById('profile_photo_path');
+const input = document.getElementById('photo');
 const fileNameDisplay = document.getElementById('file-name');
 
 input.addEventListener('change', function() {

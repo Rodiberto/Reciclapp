@@ -18,11 +18,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'photo',
         'phone',
         'email',
         'password',
         'rol_id',
-        'profile_photo_path',
     ];
 
     /**
@@ -66,5 +66,16 @@ class User extends Authenticatable
     public function isStandardUser(): bool
     {
         return $this->rol_id === 3;
+    }
+
+
+    public function requests()
+    {
+        return $this->hasMany(Requests::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
