@@ -12,6 +12,10 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\StandardUserMaterialController;
 
 use App\Http\Controllers\Admin\BagController;
+use App\Http\Controllers\StandarUser\ContainerController;
+
+use App\Http\Controllers\StandarUser\ChartController;
+use App\Http\Controllers\Admin\ChartsController;
 
 Route::get('/', function () {
     return view('home');
@@ -41,6 +45,7 @@ Route::middleware('collector')->group(function () {
 
 Route::middleware('standard_user')->group(function () {
     Route::get('/standard_user/dashboard', [StandarUserController::class, 'index'])->name('standard_user.dashboard');
+    Route::resource('container', ContainerController::class);
 });
 
 
@@ -51,5 +56,8 @@ route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('bags', BagController::class);
 });
 
+Route::get('/chart', [ChartController::class, 'index'])->name('standard_user.chart');
+
+Route::get('/admin/chart', [ChartsController::class, 'index'])->name('admin.chart');
 
 require __DIR__ . '/auth.php';

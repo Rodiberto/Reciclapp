@@ -90,7 +90,21 @@
             Bolsas
         </div>
 
-    </a>
+        </a>
+
+        
+        <a href="{{ route('admin.chart') }}"
+        class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
+
+        <div class="p-2 rounded-full bg-gray-100">
+            <i class="text-black fas fa-shopping-bag"></i> 
+        </div>
+
+        <div class="ml-3 text-white text">
+            Gráfica
+        </div>
+
+        </a>
 
     </nav>
 

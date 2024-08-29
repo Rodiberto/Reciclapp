@@ -61,7 +61,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-
+                        
                     </div>
                 </div>
 

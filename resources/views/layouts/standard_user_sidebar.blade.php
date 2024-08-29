@@ -39,6 +39,30 @@
 
         </a>
 
+        <a href="{{ route('container.index') }}"
+            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
+
+            <div class="p-2 rounded-full bg-gray-100">
+                <i class="text-black fas fa-tachometer-alt"></i>
+            </div>
+
+            <div class="ml-3 text-white text">
+                Contenedores
+            </div>
+
+        </a>
+
+        <a href="{{ route('standard_user.chart') }}"
+        class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
+
+        <div class="p-2 rounded-full bg-gray-100">
+            <i class="text-black fas fa-tachometer-alt"></i>
+        </div>
+
+        <div class="ml-3 text-white text">
+            Gráficas
+        </div>
+
     </a>
 
     </nav>
@@ -48,8 +72,8 @@
         <a href="{{ route('profile.edit') }}" class="p-1 flex items-center bg-gray-100 rounded-lg prof">
 
             <div class="flex justify-center items-center h-10 w-10 overflow-hidden ">
-                <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" width="40px"
-                    height="40px" class="rounded-full">
+                <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" width="40px" height="40px"
+                    class="rounded-full">
             </div>
 
             <div class="ml-2 px-2 text-black username text-sm">
@@ -62,7 +86,8 @@
 
             @csrf
 
-            <button type="submit" class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
+            <button type="submit"
+                class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-sign-out-alt"></i>
