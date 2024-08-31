@@ -21,20 +21,20 @@
         <div class="mb-4">
             <label for="name" class="block text-gray-700 font-semibold mb-2">Nombre de la Categoría</label>
             <input type="text" name="name" id="name" 
-                class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700"
                 value="{{ old('name') }}" required>
         </div>
 
         <div class="mb-4">
             <label for="description" class="block text-gray-700 font-semibold mb-2">Descripción</label>
             <textarea name="description" id="description"
-                class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description') }}</textarea>
+                class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700">{{ old('description') }}</textarea>
         </div>
 
         <button type="submit"
-            class="w-full bg-green-800 dark:bg-green-200 text-white dark:text-white 
+            class="w-full bg-green-800 text-white
             font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none 
-            focus:ring-2 focus:bg-green-700 dark:focus:bg-white">
+            focus:ring-2 focus:bg-green-700">
             Guardar
         </button>
 

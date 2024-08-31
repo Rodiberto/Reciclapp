@@ -10,22 +10,22 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900">
+<body class="bg-gray-100">
 
     <div class="flex items-center justify-center h-screen">
 
-        <div id="custom-bg" class="p-6 flex flex-col max-w-3xl w-full dark:bg-gray-900 rounded-lg shadow-lg">
+        <div id="custom-bg" class="p-6 flex flex-col max-w-3xl w-full rounded-lg shadow-lg">
 
             <div class="grid grid-cols-1 md:grid-cols-2 mb-1">
 
-                <div class="bg-custom dark:bg-gray-800 overflow-hidden flex justify-center items-center">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="bg-custom overflow-hidden flex justify-center items-center">
+                    <div class="p-6 text-gray-900">
                         <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" class="mx-auto" width="150px"
                             height="150px">
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 overflow-hidden p-4">
+                <div class="bg-white overflow-hidden p-4">
                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -67,21 +67,21 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="profile_photo_path" :value="__('Foto de perfil')" />
+                            <x-input-label for="photo" :value="__('Foto de perfil')" />
                             <div class="mt-1 flex items-center">
-                                <label for="profile_photo_path"
-                                    class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
+                                <label for="photo"
+                                    class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 w-full sm:text-sm">
                                     <span class="block truncate">Seleccionar archivo (opcional)</span>
-                                    <input id="profile_photo_path" type="file" name="profile_photo_path"
+                                    <input id="photo" type="file" name="photo"
                                         class="hidden">
                                 </label>
                             </div>
-                            <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
                         </div>
                         <span id="file-name"></span>
 
                         <div class="flex items-center justify-end mt-4">
-                            <a class="px-2 flex-start text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                            <a class="px-2 flex-start text-sm text-gray-600 hover:text-gray-900"
                                 href="{{ route('login') }}">
                                 {{ __('¿Ya estás registrado?') }}
                             </a>

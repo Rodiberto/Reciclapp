@@ -21,19 +21,19 @@
         
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">Nombre de la categoría</label>
-            <input type="text" id="name" name="name" class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            <input type="text" id="name" name="name" class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700"
                 value="{{ old('name', $material_category->name) }}" required>
         </div>
 
         <div class="mb-4">
             <label for="description" class="block text-gray-700 text-sm font-semibold mb-2">Descripción</label>
-            <textarea id="description" name="description" class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description', $material_category->description) }}</textarea>
+            <textarea id="description" name="description" class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700">{{ old('description', $material_category->description) }}</textarea>
         </div>
 
         <button type="submit"
-            class="w-full bg-green-800 dark:bg-green-200 text-white dark:text-white 
+            class="w-full bg-green-800 text-white 
             font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none 
-            focus:ring-2 focus:bg-green-700 dark:focus:bg-white">
+            focus:ring-2 focus:bg-green-700">
             Actualizar
         </button>
     </form>

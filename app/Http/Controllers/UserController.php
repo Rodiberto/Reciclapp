@@ -18,7 +18,7 @@ class UserController extends Controller
 
         if ($role) {
             $users = User::whereHas('role', function ($query) use ($role) {
-                $query->where('nombre', $role);
+                $query->where('name', $role);
             })->get();
         } else {
             $users = User::all();
@@ -37,10 +37,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'name' => 'required|string|max:255',
-            // 'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
-            'phone' => ['required', 'numeric'],
+            'phone' => ['required', 'regex:/^[0-9]{10}$/'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -71,8 +69,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => ['required', 'numeric'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'phone' => ['required', 'regex:/^[0-9]{10}$/'],
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

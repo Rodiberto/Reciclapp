@@ -5,6 +5,13 @@
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
+        <h1 class="text-center text-2xl font-bold text-gray-800 mt-4 mb-4">RECICLAPP</h1>
+        <div class="p-6 text-gray-900">
+    
+            <img src="{{ asset('/img/logo2.png') }}" alt="Logo Reciclapp" class="mx-auto" width="100px" height="100px">
+    
+        </div>
+
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -32,7 +39,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('Reset Password') }}
+                {{ __('Restablecer contraseña') }}
             </x-primary-button>
         </div>
     </form>

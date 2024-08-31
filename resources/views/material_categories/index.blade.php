@@ -4,13 +4,6 @@
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     </head>
 
-
-    <style>
-        #contenido {
-            padding: 0px 10px 0px 10px;
-        }
-    </style>
-
     @if (session()->has('success'))
         <div id="message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4"
             role="alert">
@@ -24,17 +17,10 @@
         </div>
     @endif
 
-    <div class="py-4">
-        <div class="container mx-auto px-4">
+    <div class="p-2">
+        <div class="container mx-auto">
 
-            {{-- <div class="flex justify-between mb-4">
-                <a href="{{ route('material_categories.create') }}"
-                    class=" text-black dark:bg-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600"><i
-                        class="px-2 fas fa-plus-circle"></i><span
-                        class="hover:bg-gray-100 dark:hover:bg-gray-600">Nuevo</span></a>
-            </div> --}}
-
-            <button id="openModal" class="text-black dark:bg-gray-800 dark:text-white p-2">
+            <button id="openModal" class="text-black p-2">
                 <i class="px-1 fas fa-plus-circle"></i>
                 <span>Nuevo</span>
             </button>
@@ -42,13 +28,10 @@
             <div id="categoryContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 @foreach ($categories as $category)
                     <div
-                        class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg rounded-lg p-6 text-gray-900 dark:text-gray-100">
+                        class="bg-white overflow-hidden shadow-lg rounded-lg p-6 text-gray-900">
                         <p class="font-bold text-center">{{ $category->name }}</p>
                         <p class="text-center">{{ $category->description }}</p>
                         <div class="mt-4 space-x-2">
-                            {{-- <a href="{{ route('material_categories.edit', $category->id) }}" class="">
-                                <i class="fas fa-edit"></i>
-                            </a> --}}
                             <a href="#" class=" mr-2 open-edit-modal" data-id="{{ $category->id }}">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -72,20 +55,20 @@
 
     <div id="modal"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden overflow-auto">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-2xl">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl">
             <div class="p-4 flex justify-between items-center">
                 <button id="closeModal"
-                    class="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+                    class="text-gray-600 hover:text-gray-800">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <div class="flex items-center justify-center">
-                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Nueva categoría</h1>
+                <h1 class="text-2xl font-semibold text-gray-800">Nueva categoría</h1>
             </div>
 
             <div id="modalContent"
-                class="flex justify-center items-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg relative">
+                class="flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
 
             </div>
         </div>
@@ -93,20 +76,20 @@
 
     <div id="editModal"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden overflow-auto">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-2xl">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl">
             <div class="p-4 flex justify-between items-center">
                 <button id="closeEditModal"
-                    class="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+                    class="text-gray-600 hover:text-gray-800">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <div class="flex items-center justify-center">
-                <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Editar categoría</h1>
+                <h1 class="text-2xl font-semibold text-gray-800">Editar categoría</h1>
             </div>
 
             <div id="editModalContent"
-                class="flex justify-center items-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg relative">
+                class="flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
 
             </div>
 

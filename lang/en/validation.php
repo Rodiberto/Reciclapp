@@ -184,6 +184,25 @@ return [
         'name' => [
             'regex' => 'El campo nombre solo puede contener letras y espacios.',
         ],
+
+        'phone' => [
+            'regex' => 'El campo Teléfono no puede tener mas de 10 digitos.',
+        ],
+
+        'description' => [
+            'regex' => 'La descripción solo puede contener texto y ciertos caracteres especiales.',
+        ],
+        'weight' => [
+            'required' => 'El campo peso es obligatorio.',
+            'numeric' => 'El campo peso debe ser un número.',
+            'regex' => 'El campo peso debe ser un número decimal válido con hasta 2 decimales.',
+        ],
+        'value' => [
+            'required' => 'El campo valor es obligatorio.',
+            'numeric' => 'El campo valor debe ser un número.',
+            'regex' => 'El campo valor debe ser un número decimal válido con hasta 2 decimales.',
+        ],
+
     ],
 
     /*

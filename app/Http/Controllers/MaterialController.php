@@ -36,14 +36,16 @@ class MaterialController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'nullable|string',
-            'material_category_id' => 'required|exists:material_categories,id',
-            'weight' => 'required|string|max:255',
-            'value' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'material_category_id' => ['required', 'exists:material_categories,id'], 
+            'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'], 
+            'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
         ]);
+        
 
         $data = $request->all();
 
@@ -67,13 +69,14 @@ class MaterialController extends Controller
 
     public function update(Request $request, Material $material)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'nullable|string',
-            'material_category_id' => 'required|exists:material_categories,id',
-            'weight' => 'required|string|max:255',
-            'value' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+            'description' => ['required', 'string', 'max:10000', 'regex:/^[\p{L}\s\d\p{P}]+$/u'],
+            'material_category_id' => ['required', 'exists:material_categories,id'], 
+            'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'], 
+            'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
         ]);
     
         $data = $request->all();

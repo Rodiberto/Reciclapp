@@ -2,7 +2,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg h-auto max-h-screen overflow-auto">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg h-auto max-h-screen overflow-auto">
         <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -18,7 +18,7 @@
                         <x-input-label for="photo" :value="__('Foto de perfil')" />
                         <input type="file" id="photo" name="photo" class="hidden" onchange="updateFileName()">
                     
-                        <label for="photo" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm">
+                        <label for="photo" class="block cursor-pointer bg-white py-2  px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 w-full sm:text-sm">
                             <span class="truncate py-4">Seleccionar archivo</span>
                         </label>
                     
@@ -89,9 +89,9 @@
 
             <div class="col-span-2">
                 <button type="submit"
-                class="w-full bg-green-800 dark:bg-green-200 text-white dark:text-white 
+                class="w-full bg-green-800 text-white 
                 font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none 
-                focus:ring-2 focus:bg-green-700 dark:focus:bg-white">
+                focus:ring-2 focus:bg-green-700">
                 Actualizar
             </button>
             </div>            
