@@ -22,8 +22,8 @@ class MaterialCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'description' => ['required','string','max:255','regex:/^[\p{L}\s]+$/u',],
         ]);
 
         MaterialCategory::create($request->all());
@@ -39,8 +39,8 @@ class MaterialCategoryController extends Controller
     public function update(Request $request, MaterialCategory $material_category)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'description' => ['required','string','max:255','regex:/^[\p{L}\s]+$/u',],
         ]);
 
         $material_category->update($request->all());

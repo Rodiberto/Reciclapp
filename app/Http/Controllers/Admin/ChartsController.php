@@ -13,7 +13,6 @@ class ChartsController extends Controller
 
     public function index()
     {
-        // Obtener el total de usuarios por rol
         $rolesData = User::selectRaw('roles.name as role_name, COUNT(users.id) as total')
             ->join('roles', 'users.rol_id', '=', 'roles.id')
             ->groupBy('roles.name')
@@ -27,7 +26,7 @@ class ChartsController extends Controller
                     $item->role_name = 'Recolector';
                     break;
                 case 'standard_user':
-                    $item->role_name = 'Usuario Normal';
+                    $item->role_name = 'Usuario normal';
                     break;
             }
             return $item;
@@ -35,24 +34,6 @@ class ChartsController extends Controller
 
         return view('admin.chart.index', compact('rolesData'));
     }
-
-
-    // public function index()
-    // {
-    //     // Obtener el total de usuarios por rol
-    //     $rolesData = User::selectRaw('roles.name as role_name, COUNT(users.id) as total')
-    //         ->join('roles', 'users.rol_id', '=', 'roles.id')
-    //         ->groupBy('roles.name')
-    //         ->get();
-
-    //     // Pasar los datos a la vista
-    //     return view('admin.chart.index', compact('rolesData'));
-    // }
-
-
-
-
-
 
     public function create()
     {

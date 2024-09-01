@@ -29,10 +29,9 @@
                         <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
                     </a>
 
-                    <button id="openModal" class="text-black">
-                        <i class="fas fa-user-plus"></i>
-                        {{-- <span>Nuevo</span> --}}
-                    </button>
+                    <a href="{{ route('users.create') }}" class="text-black  inline-flex items-center px-2 py-1">
+                        <i class="fas fa-plus-circle"></i>
+                    </a>
 
                 </div>
 
@@ -81,8 +80,7 @@
 
                             <div class="mt-4">
 
-                                <a href="#" class=" mr-2 open-edit-modal"
-                                    data-id="{{ $user->id }}">
+                                <a href="{{ route('users.edit', $user->id) }}" class="mr-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
@@ -125,10 +123,11 @@
                                 <td class="border px-4 py-2">{{ $user->role->name }}</td>
                                 <td class="border px-4 py-2">{{ $user->email }}</td>
                                 <td class="border px-4 py-2">
-                                    <a href="#" class=" mr-2 open-edit-modal"
-                                        data-id="{{ $user->id }}">
+
+                                    <a href="{{ route('users.edit', $user->id) }}" class="mr-2">
                                         <i class="fas fa-edit"></i>
                                     </a>
+
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('¿Estás seguro de que deseas eliminar a este usuario?');">
@@ -143,48 +142,6 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal"
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden overflow-auto">
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl">
-            <div class="p-4 flex justify-between items-center">
-                <button id="closeModal"
-                    class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="flex items-center justify-center">
-                <h1 class="text-2xl font-semibold text-gray-800">Nuevo usuario</h1>
-            </div>
-
-            <div id="modalContent"
-                class="flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
-
-            </div>
-        </div>
-    </div>
-
-    <div id="editModal"
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden overflow-auto">
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl">
-            <div class="p-4 flex justify-between items-center">
-                <button id="closeEditModal"
-                    class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="flex items-center justify-center">
-                <h1 class="text-2xl font-semibold text-gray-800">Editar usuario</h1>
-            </div>
-
-            <div id="editModalContent"
-                class=" flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
-
             </div>
         </div>
     </div>
@@ -214,56 +171,6 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-
-
-            document.getElementById('openModal').addEventListener('click', function() {
-                fetch('{{ route('users.create') }}')
-                    .then(response => response.text())
-                    .then(html => {
-                        document.getElementById('modalContent').innerHTML = html;
-                        document.getElementById('modal').classList.remove('hidden');
-                    })
-                    .catch(error => console.error('Error loading modal content:', error));
-            });
-
-            document.getElementById('closeModal').addEventListener('click', function() {
-                document.getElementById('modal').classList.add('hidden');
-            });
-
-            document.getElementById('modal').addEventListener('click', function(event) {
-                if (event.target === this) {
-                    this.classList.add('hidden');
-                }
-            });
-
-            document.querySelectorAll('.open-edit-modal').forEach(button => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const userId = this.getAttribute('data-id');
-
-                    fetch(`{{ url('/users') }}/${userId}/edit`)
-                        .then(response => response.text())
-                        .then(html => {
-                            document.getElementById('editModalContent').innerHTML = html;
-                            document.getElementById('editModal').classList.remove('hidden');
-                        })
-                        .catch(error => console.error('Error loading modal content:', error));
-                });
-            });
-
-            document.getElementById('closeEditModal').addEventListener('click', function() {
-                document.getElementById('editModal').classList.add('hidden');
-            });
-
-            document.getElementById('editModal').addEventListener('click', function(event) {
-                if (event.target === this) {
-                    this.classList.add('hidden');
-                }
-            });
-        });
-
-
-        document.addEventListener('DOMContentLoaded', function() {
             const successMessage = document.getElementById('message');
             if (successMessage) {
                 setTimeout(() => {
@@ -274,8 +181,7 @@
                 }, 2000);
             }
         });
-    </script>
 
-    <script src="{{ asset('js/filename_users.js') }}"></script>
+    </script>
 
 </x-app-layout>

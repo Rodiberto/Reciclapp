@@ -14,7 +14,6 @@ return [
     |
     */
 
-    // 'name.regex' => 'El nombre solo puede contener letras y espacios.',
 
 
 
@@ -190,7 +189,7 @@ return [
         ],
 
         'description' => [
-            'regex' => 'La descripción solo puede contener texto y ciertos caracteres especiales.',
+            'regex' => 'El campo descripción solo puede contener letras y espacios.',
         ],
         'weight' => [
             'required' => 'El campo peso es obligatorio.',

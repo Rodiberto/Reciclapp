@@ -6,6 +6,8 @@ use App\Models\Material;
 use App\Models\MaterialCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+// use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Validator;
 
 
 class MaterialController extends Controller
@@ -32,7 +34,7 @@ class MaterialController extends Controller
         $categories = MaterialCategory::all();
         return view('materials.create', compact('categories'));
     }
-    
+
 
     public function store(Request $request)
     {
@@ -40,12 +42,12 @@ class MaterialController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
-            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
-            'material_category_id' => ['required', 'exists:material_categories,id'], 
-            'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'], 
+            'description' => ['required','string','max:255','regex:/^[\p{L}\s]+$/u',],
+            'material_category_id' => ['required', 'exists:material_categories,id'],
+            'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
         ]);
-        
+
 
         $data = $request->all();
 
@@ -60,41 +62,39 @@ class MaterialController extends Controller
     }
 
 
+
     public function edit(Material $material)
     {
         $categories = MaterialCategory::all();
         return view('materials.edit', compact('material', 'categories'));
     }
 
-
     public function update(Request $request, Material $material)
     {
-
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\-\']+$/u'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
-            'description' => ['required', 'string', 'max:10000', 'regex:/^[\p{L}\s\d\p{P}]+$/u'],
-            'material_category_id' => ['required', 'exists:material_categories,id'], 
-            'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'], 
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+            'description' => ['required','string','max:255','regex:/^[\p{L}\s]+$/u',],
+            'material_category_id' => ['required', 'exists:material_categories,id'],
+            'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
         ]);
-    
+
         $data = $request->all();
-    
+
         if ($request->hasFile('image')) {
             if ($material->image) {
                 Storage::delete(str_replace('/storage/', 'public/', $material->image));
             }
-    
+
             $imageMaterial = $request->file('image')->store('public/material_image');
             $data['image'] = '/storage/' . str_replace('public/', '', $imageMaterial);
         }
-    
+
         $material->update($data);
-    
+
         return redirect()->route('materials.index')->with('success', 'Material actualizado exitosamente.');
     }
-    
 
 
     public function destroy(Material $material)
