@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Element extends Model
 {
     use HasFactory;
+    protected $table = 'element';
     protected $fillable = ['materials_name','amount', 'unit', 'material_type', 'bag_id'];
 
     public function bag()

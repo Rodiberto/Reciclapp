@@ -12,10 +12,13 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\StandardUserMaterialController;
 
 use App\Http\Controllers\Admin\BagController;
-use App\Http\Controllers\StandarUser\ContainerController;
+use App\Http\Controllers\Admin\ChartsController;
+
 
 use App\Http\Controllers\StandarUser\ChartController;
-use App\Http\Controllers\Admin\ChartsController;
+
+use App\Http\Controllers\StandarUser\HistoryController;
+use App\Http\Controllers\StandarUser\RequestController;
 
 Route::get('/', function () {
     return view('home');
@@ -45,7 +48,11 @@ Route::middleware('collector')->group(function () {
 
 Route::middleware('standard_user')->group(function () {
     Route::get('/standard_user/dashboard', [StandarUserController::class, 'index'])->name('standard_user.dashboard');
-    Route::resource('container', ContainerController::class);
+
+
+    Route::get('/requests', [RequestController::class, 'index'])->name('requests_user.index');
+
+    Route::get('/history', [HistoryController::class, 'index'])->name('history_user.index');
 });
 
 

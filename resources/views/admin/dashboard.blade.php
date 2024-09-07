@@ -11,7 +11,8 @@
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Usuarios recolectores</p>
+                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Usuarios
+                            recolectores</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @foreach ($users as $user)
                                 <a
@@ -33,23 +34,32 @@
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales reciclables</p>
+                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales
+                            reciclables</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @foreach ($materials as $material)
-                                <a
-                                    href="{{ route('materials.index', $material->id) }}"class="flex flex-col items-center bg-gray-50 rounded-lg p-4 hover:bg-gray-100">
+                            @if ($materials->isEmpty())
+                                <div class="flex items-center justify-center col-span-3 text-center">
+                                    <p class="text-sm font-semibold text-gray-800">No hay ningún material registrado.
+                                    </p>
+                                </div>
+                            @else
+                                @foreach ($materials as $material)
+                                    <a
+                                        href="{{ route('materials.index', $material->id) }}"class="flex flex-col items-center bg-gray-50 rounded-lg p-4 hover:bg-gray-100">
 
-                                    <div class="flex flex-col items-center rounded-lg p-4">
-                                        <div class="flex justify-center mb-4">
-                                            <img src="{{ $material->image }}" alt="Imagen del material"
-                                                class="w-20 h-20 rounded-full">
+                                        <div class="flex flex-col items-center rounded-lg p-4">
+                                            <div class="flex justify-center mb-4">
+                                                <img src="{{ $material->image }}" alt="Imagen del material"
+                                                    class="w-20 h-20 rounded-full">
+                                            </div>
+                                            <div class="text-center text-sm">
+                                                <p class="font-bold">{{ $material->name }}</p>
+                                            </div>
                                         </div>
-                                        <div class="text-center text-sm">
-                                            <p class="font-bold">{{ $material->name }}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforeach
+                                    </a>
+                                @endforeach
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -128,8 +138,8 @@
                         legend: {
                             position: 'bottom',
                             labels: {
-                            boxWidth: 20, 
-                        }
+                                boxWidth: 20,
+                            }
                         },
                     }
                 },

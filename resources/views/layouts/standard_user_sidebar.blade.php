@@ -1,4 +1,3 @@
-
 <head>
 
     <style>
@@ -72,15 +71,30 @@
             </a>
 
 
-            <a href="{{ route('container.index') }}"
+
+            <a href="{{ route('requests_user.index') }}"
                 class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
 
                 <div class="p-2 rounded-full bg-gray-100">
-                    <i class="text-black fas fa-tachometer-alt"></i>
+                    <i class="text-black fas fa-file-alt"></i>
                 </div>
 
                 <div class="ml-3 text-white text">
-                    Contenedores
+                    Solicitudes
+                </div>
+
+            </a>
+
+
+            <a href="{{ route('history_user.index') }}"
+                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+
+                <div class="p-2 rounded-full bg-gray-100">
+                    <i class="text-black fas fa-history"></i>
+                </div>
+
+                <div class="ml-3 text-white text">
+                    Historial
                 </div>
 
             </a>
@@ -90,7 +104,7 @@
                 class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
 
                 <div class="p-2 rounded-full bg-gray-100">
-                    <i class="text-black fas fa-tachometer-alt"></i>
+                    <i class="text-black fas fa-chart-bar"></i>
                 </div>
 
                 <div class="ml-3 text-white text">
@@ -137,13 +151,3 @@
 </aside>
 
 <script src="{{ asset('js/sidebar.js') }}"></script>
-
-
-
-
-
-
-
-
-
-
