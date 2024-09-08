@@ -49,8 +49,9 @@ class UserController extends Controller
         $userData['password'] = Hash::make($userData['password']);
 
         if ($request->hasFile('photo')) {
-            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
-            $userData['photo'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+            $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path('profile_photos'), $fileName);
+            $userData['photo'] = '/profile_photos/' . $fileName;
         } else {
             $userData['photo'] = '/default/profile.png';
         }
@@ -76,17 +77,22 @@ class UserController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $userData = $request->only(['name', 'email']);
+        $userData = $request->only(['name', 'email', 'phone']);
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->password);
         }
 
         if ($request->hasFile('photo')) {
-            if ($user->photo) {
-                Storage::disk('public')->delete($user->photo);
+            if ($user->photo && $user->photo !== '/default/profile.png') {
+                $existingPhotoPath = public_path('profile_photos/' . basename($user->photo));
+                if (file_exists($existingPhotoPath)) {
+                    unlink($existingPhotoPath);
+                }
             }
-            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
-            $userData['photo'] = '/storage/' . str_replace('public/', '', $profilePhotoPath);
+
+            $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->move(public_path('profile_photos'), $fileName);
+            $userData['photo'] = '/profile_photos/' . $fileName;
         } elseif (!$request->hasFile('photo') && !$user->photo) {
             $userData['photo'] = '/default/profile.png';
         }
@@ -98,11 +104,16 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->photo) {
-            Storage::disk('public')->delete($user->photo);
-        }
+        if ($user->photo !== '/default/profile.png') {
 
+            $photoPath = public_path('profile_photos/' . basename($user->photo));
+            
+            if (file_exists($photoPath)) {
+                unlink($photoPath);
+            }
+        }
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }
+    
 }

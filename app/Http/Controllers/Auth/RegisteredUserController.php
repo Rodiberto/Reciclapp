@@ -35,15 +35,23 @@ class RegisteredUserController extends Controller
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
 
+
         $profilePhotoUrl = null;
 
         if ($request->hasFile('photo')) {
-            $profilePhotoPath = $request->file('photo')->store('public/profile_photos');
-            $profilePhotoUrl = '/storage/' . str_replace('public/', '', $profilePhotoPath);
-        } else {
             
+            $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
+            
+            $profilePhotoPath = $request->file('photo')->move(public_path('profile_photos'), $fileName);
+            
+            $profilePhotoUrl = '/profile_photos/' . $fileName;
+        } else {
+
             $profilePhotoUrl = '/default/profile.png';
         }
+        
+
+
 
         $user = User::create([
             'name' => $request->name,

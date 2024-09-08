@@ -52,8 +52,10 @@ class MaterialController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $imageMaterial = $request->file('image')->store('public/material_image');
-            $data['image'] = '/storage/' . str_replace('public/', '', $imageMaterial);
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); 
+            $image->move(public_path('material_image'), $imageName);
+            $data['image'] = '/material_image/' . $imageName;
         }
 
         Material::create($data);
@@ -84,11 +86,20 @@ class MaterialController extends Controller
 
         if ($request->hasFile('image')) {
             if ($material->image) {
-                Storage::delete(str_replace('/storage/', 'public/', $material->image));
+                $oldImagePath = public_path('material_image/' . basename($material->image));
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
             }
-
-            $imageMaterial = $request->file('image')->store('public/material_image');
-            $data['image'] = '/storage/' . str_replace('public/', '', $imageMaterial);
+    
+           
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); 
+            $image->move(public_path('material_image'), $imageName); 
+    
+            $data['image'] = '/material_image/' . $imageName;
+        } else {
+            $data['image'] = $material->image;
         }
 
         $material->update($data);
@@ -99,6 +110,13 @@ class MaterialController extends Controller
 
     public function destroy(Material $material)
     {
+        if ($material->image) {
+            $imagePath = public_path('material_image/' . basename($material->image));
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+        
         $material->delete();
         return redirect()->route('materials.index')->with('success', 'Material eliminado exitosamente.');
     }
