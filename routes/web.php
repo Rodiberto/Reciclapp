@@ -20,6 +20,9 @@ use App\Http\Controllers\StandarUser\ChartController;
 use App\Http\Controllers\StandarUser\HistoryController;
 use App\Http\Controllers\StandarUser\RequestController;
 
+use App\Http\Controllers\Collector\RequestsController;
+use App\Http\Controllers\Collector\HistoriController;
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -44,7 +47,13 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('collector')->group(function () {
     Route::get('/collector/dashboard', [CollectorController::class, 'index'])->name('collector.dashboard');
+
+    Route::get('/request', [RequestsController::class, 'index'])->name('requests_collector.index');
+    Route::get('/requests/{id}', [RequestsController::class, 'show'])->name('requests_collector.show');
+
+    Route::get('/collector/history', [HistoriController::class, 'index'])->name('history_controller.index');
 });
+
 
 Route::middleware('standard_user')->group(function () {
     Route::get('/standard_user/dashboard', [StandarUserController::class, 'index'])->name('standard_user.dashboard');

@@ -1,54 +1,141 @@
-<aside class="w-48 px-4 bg-custom text-white flex flex-col justify-between">
+<head>
 
-    <a href="{{ route('admin.dashboard') }}"
-        class="py-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
+    <style>
+        .flex-1.overflow-y-auto.mt-6 {
+            scrollbar-width: none;
+            /* Para Firefox */
+        }
 
-        <img src="{{ asset('favicon.png') }}" width="40px" height="40px" alt="Favicon">
+        .flex-1.overflow-y-auto.mt-6::-webkit-scrollbar {
+            display: none;
+            /* Para Chrome, Safari y otros basados en WebKit */
+        }
+    </style>
 
-        <div class="font-bold italic text-white">
-            <strong>RECICLAPP</strong>
-        </div>
-    </a>
+</head>
 
-    <nav class="mt-6 flex-1">
 
-        <a href="#"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-chart-line"></i>
+<aside id="sidebar"
+    class="px-2 max-w-xs md:max-w-md lg:max-w-lg bg-custom text-white flex flex-col justify-between h-screen">
+
+
+
+    <!--Encabezado -->
+    <div>
+        <a href="{{ route('collector.dashboard') }}"
+            class="py-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+
+            <img src="{{ asset('favicon.png') }}" width="40px" height="40px" alt="Favicon">
+
+            <div class="font-bold italic text-white reciclapp">
+                <strong>reciclapp</strong>
             </div>
-            <div class="ml-3 text-white">
-                Grafica
-            </div>
+
         </a>
+    </div>
 
-        <a href="#"
-            class="p-2 flex items-center hover:bg-gray-700 rounded transition duration-200 cursor-pointer">
-            <div class="p-2 rounded-full bg-gray-100">
-                <i class="text-black fas fa-box-open"></i>
-            </div>
-            <div class="ml-3 text-white">
-                Materiales
-            </div>
-        </a>
-    </nav>
 
+
+
+
+
+    <!--Contenido con overflow -->
+    <div class="flex-1 overflow-y-auto mt-6">
+        <nav>
+
+            <a id="collapse-btn" href="#"
+                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+
+                <div class="p-2 rounded-full bg-gray-100">
+                    <i class="text-black fas fa-bars fa-sm"></i>
+                </div>
+
+                <div class="ml-3 text-white menu">
+                    Menú
+                </div>
+
+            </a>
+
+
+            <a href="{{ route('collector.dashboard') }}"
+                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+
+                <div class="p-2 rounded-full bg-gray-100">
+                    <i class="text-black fas fa-tachometer-alt"></i>
+                </div>
+
+                <div class="ml-3 text-white text">
+                    Dashboard
+                </div>
+
+            </a>
+
+
+
+            <a href="{{ route('requests_collector.index') }}"
+                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+
+                <div class="p-2 rounded-full bg-gray-100">
+                    <i class="text-black fas fa-file-alt"></i>
+                </div>
+
+                <div class="ml-3 text-white text">
+                    Solicitudes
+                </div>
+
+            </a>
+
+
+            <a href="{{ route ('history_controller.index') }}"
+                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+
+                <div class="p-2 rounded-full bg-gray-100">
+                    <i class="text-black fas fa-history"></i>
+                </div>
+
+                <div class="ml-3 text-white text">
+                    Historial
+                </div>
+
+            </a>
+
+
+
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+    <!--Contenido Perfil y Log Out -->
     <div class="mt-auto">
-        <a href="{{ route('profile.edit') }}" class="p-2 flex items-center bg-gray-100 rounded-lg">
-            <div class="h-10 w-10 rounded-full overflow-hidden border border-gray-300">
-                <img src="{{ asset(Auth::user()->profile_photo_path) }}" alt="Foto de perfil" width="40px" height="40px">
+        <a href="{{ route('profile.edit') }}" class="p-1 flex items-center bg-gray-100 rounded-lg prof">
+            <div class="flex justify-center items-center h-10 w-10 overflow-hidden">
+                <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" width="40px" height="40px"
+                    class="rounded-full">
             </div>
-            <div class="ml-2 px-2 text-black">
+            <div class="ml-2 px-2 text-black username text-sm">
                 {{ Auth::user()->name }}
             </div>
         </a>
-
-        <form method="POST" action="{{ route('logout') }}" class="mt-3 space-y-1">
+        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
             @csrf
-            <button type="submit" class="block w-full text-left py-4 px-4 rounded transition duration-200 hover:bg-gray-700">
-                Cerrar sesión
+            <button type="submit"
+                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                <div class="p-2 rounded-full bg-gray-100">
+                    <i class="text-black fas fa-sign-out-alt"></i>
+                </div>
+                <span class="ml-3 text-white salir">Cerrar sesión</span>
             </button>
         </form>
     </div>
 
+
+
 </aside>
+
+<script src="{{ asset('js/sidebar.js') }}"></script>

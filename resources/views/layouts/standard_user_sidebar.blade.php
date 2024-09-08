@@ -100,7 +100,7 @@
             </a>
 
 
-            <a href="{{ route('standard_user.chart') }}"
+          {{--  <a href="{{ route('standard_user.chart') }}"
                 class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
 
                 <div class="p-2 rounded-full bg-gray-100">
@@ -111,7 +111,7 @@
                     Gráficas
                 </div>
 
-            </a>
+            </a>--}}
 
         </nav>
     </div>

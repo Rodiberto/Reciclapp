@@ -56,50 +56,44 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6 mb-6">
 
-
-                {{-- <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
-                    <div class="p-6 text-gray-900"></div>
-
-                    <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales reciclados</p>
-                    <div class="chart-container">
-                        <canvas id="myChart" width="200" height="150"></canvas>
-                    </div>
-
-                </div> --}}
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales
                             reciclados</p>
 
                         <form id="intervalForm">
-                            <label for="interval">Selecciona el intervalo:</label>
-                            <select id="interval" name="interval">
-                                <option value="week" {{ $interval === 'week' ? 'selected' : '' }}>Semana</option>
-                                <option value="month" {{ $interval === 'month' ? 'selected' : '' }}>Mes</option>
-                            </select>
-                            <button type="submit">Actualizar</button>
+                            
+
+                            <div class="flex justify-center items-center">
+                                <label for="interval" class="space-x-2 flex text-sm font-semibold text-gray-800">Selecciona el intervalo:</label>
+                                <select id="interval" name="interval" class="px-2 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
+                                    <option value="week" {{ $interval === 'week' ? 'selected' : '' }}>Semana</option>
+                                    <option value="month" {{ $interval === 'month' ? 'selected' : '' }}>Mes</option>
+                                </select>
+                                <button type="submit" class="space-x-2 p-2 bg-gray-50 hover:text-white text-green-700 font-semibold rounded-lg border border-transparent shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                                    <i class="fas fa-sync-alt"></i> 
+                                </button>
+                                
+                            </div>
+
                         </form>
 
                         <div>
-                            <canvas id="myChart" width="200" height="200"></canvas>
+                            <canvas id="myChart" width="200" height="80"></canvas>
                         </div>
 
 
                     </div>
                 </div>
-
-                <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
-                    <div class="p-6 text-gray-900"></div>
-                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-4 mb-6">
 
 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-4 mb-6 py-2">
 
-                <!-- Sección de Solicitudes -->
+
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Solicitudes</p>
@@ -125,7 +119,6 @@
                     </div>
                 </div>
 
-                <!-- Sección de Historial -->
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Historial</p>
@@ -151,8 +144,6 @@
             </div>
 
         </div>
-
-
 
     </div>
 
@@ -180,8 +171,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <script>
@@ -597,31 +586,30 @@
 
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{{-- <script>
-    // Datos estáticos para probar
-    var materials = ['Plástico', 'Cartón', 'Vidrio', 'Aluminio', 'Papel']; // Etiquetas (materiales reciclados)
-    var quantities = [120, 80, 45, 60, 90]; // Cantidades recicladas en kg
+<script>
+    var materials = ['Plástico', 'Cartón', 'Vidrio', 'Aluminio', 'Papel']; 
+    var quantities = [120, 80, 45, 60, 90];
 
-    // Obtener el contexto del canvas donde se dibujará la gráfica
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar', // Tipo de gráfica: bar, line, pie, etc.
+        type: 'bar', // bar, line.
         data: {
-            labels: materials, // Etiquetas para cada barra (Materiales reciclados)
+            labels: materials, 
             datasets: [{
-                label: 'Cantidad reciclada (kg)', // Etiqueta para el gráfico
-                data: quantities, // Cantidades recicladas para cada material
+                label: 'Cantidad reciclada (kg)',
+                data: quantities, 
                 backgroundColor: [
-                    'rgba(75, 192, 192, 1)', // Color sólido
+                    'rgba(75, 192, 192, 1)', 
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 99, 132, 1)',
                 ],
                 borderColor: [
-                    'rgba(75, 192, 192, 1)', // Color del borde
+                    'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -633,38 +621,39 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true // Comenzar el eje Y en 0
+                    beginAtZero: true 
                 }
             }
         }
     });
-</script> --}}
-<script>
+</script>
+
+
+{{-- <script>
     document.getElementById('intervalForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
+        event.preventDefault();
         var interval = document.getElementById('interval').value;
         var url = `{{ route('standard_user.dashboard') }}?interval=${interval}`;
         window.location.href = url;
     });
 
-    // Asegúrate de que los datos se inyecten correctamente en el gráfico
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar', // Tipo de gráfica: bar, line, pie, etc.
+        type: 'bar', // bar, line.
         data: {
             labels: {!! json_encode($materials) !!}, // Etiquetas para cada barra (Materiales reciclados)
             datasets: [{
                 label: 'Cantidad reciclada (kg)', // Etiqueta para el gráfico
                 data: {!! json_encode($quantities) !!}, // Cantidades recicladas para cada material
                 backgroundColor: [
-                    'rgba(75, 192, 192, 1)', // Color de fondo sólido para cada barra
+                    'rgba(75, 192, 192, 1)', 
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 99, 132, 1)',
                 ],
                 borderColor: [
-                    'rgba(75, 192, 192, 1)', // Color del borde sólido para cada barra
+                    'rgba(75, 192, 192, 1)', 
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -676,9 +665,9 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true // Comenzar el eje Y en 0
+                    beginAtZero: true
                 }
             }
         }
     });
-</script>
+</script> --}}
