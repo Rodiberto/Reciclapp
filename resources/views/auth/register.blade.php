@@ -5,6 +5,8 @@
 
     <title>{{ config('app.name', 'Reciclapp') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="{{ asset('css/bg_custom.css') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -43,18 +45,32 @@
                                 :value="old('email')" required autocomplete="username" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
-                        <div class="mt-4">
+
+                        <div class="mt-4 relative">
                             <x-input-label for="password" :value="__('Contraseña')" />
-                            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
+                            <x-text-input id="password" class="block mt-1 w-full pr-10" type="password" name="password"
                                 required autocomplete="new-password" />
+                            <button type="button" id="toggle-password"
+                                class="absolute mt-4 inset-y-0 right-0 pr-3 flex items-center text-green-800">
+                                <i class="fa fa-eye" id="eye-icon-password"></i>
+                                <i class="fa fa-eye-slash hidden" id="eye-slash-icon-password"></i>
+                            </button>
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
-                        <div class="mt-4">
+
+                        <div class="mt-4 relative">
                             <x-input-label for="password_confirmation" :value="__('Confirmar contraseña')" />
-                            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                            <x-text-input id="password_confirmation" class="block mt-1 w-full pr-10" type="password"
                                 name="password_confirmation" required autocomplete="new-password" />
+                            <button type="button" id="toggle-password-confirmation"
+                                class="absolute mt-4 inset-y-0 right-0 pr-3 flex items-center text-green-800">
+                                <i class="fa fa-eye" id="eye-icon-confirmation"></i>
+                                <i class="fa fa-eye-slash hidden" id="eye-slash-icon-confirmation"></i>
+                            </button>
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
+
+
                         {{-- <div class="mt-4">
                             <x-input-label for="photo" :value="__('Foto de perfil')" />
                             <div class="mt-1 flex items-center">
@@ -83,5 +99,9 @@
     </div>
 
     <script src="{{ asset('js/filename.js') }}"></script>
+    <script src="{{ asset('js/password-register.js') }}"></script>
 
 </body>
+
+
+

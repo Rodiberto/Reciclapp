@@ -2,9 +2,11 @@
 
     <head>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
     <div class="flex h-screen">
+
         <div class="p-2 flex-1 bg-gray-100">
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-4 mb-6">
@@ -66,25 +68,10 @@
 
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
 
-                <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
-                        {{-- <h2 class="flex justify-center items-center text-xl font-semibold text-gray-800">Usuarios</h2>
-                        <div class="chart-container">
-                            <canvas id="userRolesChart" width="200" height="200"></canvas>
-                        </div> --}}
-                    </div>
-                </div>
-
-                <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
-                    <div class="p-6 text-gray-900 text-justify">
-
-                    </div>
-                </div>
-            </div>
 
             <div class="py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Usuarios</p>
@@ -96,22 +83,40 @@
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-
+                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales
+                            reciclados</p>
+                        <div class="chart-container">
+                            <canvas id="totalMaterialsChart" width="200" height="200"></canvas>
+                        </div>
                     </div>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
 
+                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales por
+                            recolector</p>
+                        <select id="userSelect"
+                            class=" w-full border border-transparent rounded focus:ring-green-700 focus:border-green-700">
+                            @foreach ($userMaterialsData->groupBy('user_name') as $userName => $userData)
+                                <option value="{{ $userData->first()->user_id }}">{{ $userName }}</option>
+                            @endforeach
+                        </select>
+                        <div class="chart-container">
+                            <canvas id="userMaterialsChart" width="200" height="200"></canvas>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('userRolesChart').getContext('2d');
@@ -148,4 +153,172 @@
             const userRolesChart = new Chart(ctx, config);
         });
     </script>
+
+
+
+    {{-- <script>
+        var totalMaterialsCtx = document.getElementById('totalMaterialsChart').getContext('2d');
+        var totalMaterialsChart = new Chart(totalMaterialsCtx, {
+            type: 'bar',
+            data: {
+                labels: @json($totalMaterialsData->pluck('material_type')),
+                datasets: [{
+                    label: 'Cantidad total reciclada (kg)',
+                    data: @json($totalMaterialsData->pluck('total_amount')),
+                    backgroundColor: [
+                        '#33FF57',
+                        '#FF5733',
+                        '#3357FF',
+                        '#F1C40F',
+                        '#E74C3C',
+
+                        '#FF5733',
+                        '#33FF57',
+                        '#3357FF'
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+        document.getElementById('userSelect').addEventListener('change', function() {
+            var userId = this.value;
+            var userMaterialsData = @json($userMaterialsData->groupBy('user_id'));
+
+            var selectedUserData = userMaterialsData[userId] || [];
+            var ctx = document.getElementById('userMaterialsChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: selectedUserData.map(item => 'Bolsa ' + item.bag_id),
+                    datasets: [{
+                        label: 'Cantidad recolectada (kg)',
+                        data: selectedUserData.map(item => item.total_amount),
+                        backgroundColor: [ 
+                            '#33FF57', 
+                            '#FF5733',
+                            '#3357FF',
+                            '#F1C40F',
+                            '#E74C3C',
+
+                            '#FF5733', 
+                            '#33FF57', 
+                            '#3357FF'
+
+
+                        ].slice(0, selectedUserData
+                        .length), 
+                        borderColor: '#000000', 
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+        document.getElementById('userSelect').dispatchEvent(new Event('change'));
+    </script> --}}
+
+    <script>
+        var totalMaterialsCtx = document.getElementById('totalMaterialsChart').getContext('2d');
+        var totalMaterialsChart = new Chart(totalMaterialsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Plástico', 'Cartón', 'Vidrio', 'Metal', 'Papel'], // Datos estáticos para probar
+                datasets: [{
+                    label: 'Cantidad total reciclada (kg)',
+                    data: [120, 150, 90, 60, 180], // Datos estáticos de cantidad reciclada
+                    backgroundColor: [
+                        '#33FF57', 
+                        '#FF5733',
+                        '#3357FF', 
+                        '#F1C40F',
+                        '#E74C3C', 
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+        document.getElementById('userSelect').addEventListener('change', function() {
+            var ctx = document.getElementById('userMaterialsChart').getContext('2d');
+
+            var selectedUserData = [{
+                    bag_id: 1,
+                    total_amount: 30
+                },
+                {
+                    bag_id: 2,
+                    total_amount: 45
+                },
+                {
+                    bag_id: 3,
+                    total_amount: 25
+                },
+                {
+                    bag_id: 4,
+                    total_amount: 60
+                }
+            ];
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: selectedUserData.map(item => 'Bolsa ' + item.bag_id),
+                    datasets: [{
+                        label: 'Cantidad recolectada (kg)',
+                        data: selectedUserData.map(item => item.total_amount),
+                        backgroundColor: [
+                            '#33FF57',
+                            '#FF5733',
+                            '#3357FF',
+                            '#F1C40F',
+                            '#E74C3C',
+                        ],
+                        borderColor: '#000000',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        document.getElementById('userSelect').dispatchEvent(new Event('change'));
+    </script>
+
+
 </x-app-layout>

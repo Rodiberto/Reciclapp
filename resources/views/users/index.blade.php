@@ -58,25 +58,35 @@
             </div>
 
 
-
-
-
-            <div id="userContainer" class="py-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="userContainer" class="py-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($users as $user)
                     <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg user-item">
                         <div class="p-6 text-gray-900">
+
                             <div class="flex justify-center mb-4">
-                                <img src="{{ $user->photo }}" alt="Foto de perfil"
-                                    class="w-20 h-20 rounded-full">
+                                <img src="{{ $user->photo }}" alt="Foto de perfil" class="w-20 h-20 rounded-full">
                             </div>
-                            <p class="flex justify-center"><strong class="px-2">Nombre:</strong>{{ $user->name }}
+
+                            <p class="flex justify-center"><strong class="px-2">Nombre:</strong></p>
+                            <p class="flex justify-center">
+                                {{ $user->name }}
                             </p>
-                            <p class="flex justify-center"><strong class="px-2">Teléfono:</strong> {{ $user->phone }}
+
+                            <p class="flex justify-center"><strong class="px-2">Teléfono:</strong></p>
+                            <p class="flex justify-center">
+                                {{ $user->phone }}
                             </p>
-                            <p class="flex justify-center"><strong class="px-2">Rol:</strong>
-                                {{ $user->role->name }}</p>
-                            <p class="flex justify-center"><strong class="px-2">Correo:</strong> {{ $user->email }}
+
+                            <p class="flex justify-center"><strong class="px-2">Rol:</strong></p>
+                            <p class="flex justify-center">
+                                {{ $user->role->name }}
                             </p>
+
+                            <p class="flex justify-center"><strong class="px-2">Correo:</strong></p>
+                            <p class="flex justify-center">
+                                {{ $user->email }}
+                            </p>
+
 
                             <div class="mt-4">
 
@@ -181,7 +191,6 @@
                 }, 2000);
             }
         });
-
     </script>
 
 </x-app-layout>

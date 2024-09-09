@@ -75,9 +75,10 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'rol_id' => 'required|exists:roles,id',
         ]);
 
-        $userData = $request->only(['name', 'email', 'phone']);
+        $userData = $request->only(['name', 'phone', 'email', 'password', 'rol_id']);
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->password);
         }
