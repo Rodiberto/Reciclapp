@@ -78,7 +78,7 @@ class UserController extends Controller
             'rol_id' => 'required|exists:roles,id',
         ]);
 
-        $userData = $request->only(['name', 'phone', 'email', 'password', 'rol_id']);
+        $userData = $request->only(['name', 'phone', 'email', 'rol_id']);
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->password);
         }
