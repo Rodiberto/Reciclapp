@@ -50,12 +50,13 @@ class UserController extends Controller
 
         if ($request->hasFile('photo')) {
             $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
-            $request->file('photo')->move(public_path('profile_photos'), $fileName);
+
+            $request->file('photo')->move(base_path('../profile_photos'), $fileName);
+
             $userData['photo'] = '/profile_photos/' . $fileName;
         } else {
             $userData['photo'] = '/default/profile.png';
         }
-
         User::create($userData);
 
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
@@ -85,14 +86,15 @@ class UserController extends Controller
 
         if ($request->hasFile('photo')) {
             if ($user->photo && $user->photo !== '/default/profile.png') {
-                $existingPhotoPath = public_path('profile_photos/' . basename($user->photo));
+                $existingPhotoPath = base_path('../profile_photos/' . basename($user->photo));
                 if (file_exists($existingPhotoPath)) {
                     unlink($existingPhotoPath);
                 }
             }
 
             $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
-            $request->file('photo')->move(public_path('profile_photos'), $fileName);
+            $request->file('photo')->move(base_path('../profile_photos'), $fileName);
+
             $userData['photo'] = '/profile_photos/' . $fileName;
         } elseif (!$request->hasFile('photo') && !$user->photo) {
             $userData['photo'] = '/default/profile.png';
@@ -108,7 +110,7 @@ class UserController extends Controller
         if ($user->photo !== '/default/profile.png') {
 
             $photoPath = public_path('profile_photos/' . basename($user->photo));
-            
+
             if (file_exists($photoPath)) {
                 unlink($photoPath);
             }
@@ -116,5 +118,4 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }
-    
 }
