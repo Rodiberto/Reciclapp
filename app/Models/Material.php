@@ -18,6 +18,6 @@ class Material extends Model
 
     public function elements()
     {
-        return $this->belongsToMany(Element::class, 'materials_has_element');
+        return $this->belongsToMany(Element::class, 'materials_has_element', 'material_id', 'element_id');
     }
 }
