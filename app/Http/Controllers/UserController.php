@@ -15,14 +15,15 @@ class UserController extends Controller
 
         $role = $request->get('role');
         $view = $request->get('view', 'grid');
+        $query = User::whereIn('rol_id', [2, 3]);
 
         if ($role) {
-            $users = User::whereHas('role', function ($query) use ($role) {
+            $query->whereHas('role', function ($query) use ($role) {
                 $query->where('name', $role);
-            })->get();
-        } else {
-            $users = User::all();
+            });
         }
+    
+        $users = $query->get();
 
         return view('users.index', compact('users', 'view'));
     }
@@ -30,7 +31,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::whereIn('id', [2, 3])->get();
         return view('users.create', compact('roles'));
     }
 
@@ -64,7 +65,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $roles = Role::all();
+        $roles = Role::whereIn('id', [2, 3])->get();
         return view('users.edit', compact('user', 'roles'));
     }
 
@@ -107,14 +108,21 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+
+        if ($user->rol_id === 1) {
+            return redirect()->route('users.index')->with('error', 'No se puede eliminar el administrador.');
+        }
+
+
         if ($user->photo !== '/default/profile.png') {
-
-            $photoPath = public_path('profile_photos/' . basename($user->photo));
-
+            
+            $photoPath = base_path('../profile_photos/' . basename($user->photo));
             if (file_exists($photoPath)) {
                 unlink($photoPath);
             }
         }
+
+    
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }

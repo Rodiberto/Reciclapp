@@ -11,9 +11,17 @@
         </div>
     @endif
 
-    @if (session('error'))
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
-            <span class="block sm:inline">{{ session('error') }}</span>
+    @if (session()->has('error'))
+        <div id="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('error') }}</span>
+        </div>
+    @endif
+
+    @if (session()->has('status'))
+        <div id="message" class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('status') }}</span>
         </div>
     @endif
 
@@ -53,7 +61,7 @@
 
 
     <script>
-         document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const successMessage = document.getElementById('message');
             if (successMessage) {
                 setTimeout(() => {
@@ -63,7 +71,7 @@
                     }, 1000);
                 }, 2000);
             }
-        }); 
+        });
     </script>
 
 </x-app-layout>

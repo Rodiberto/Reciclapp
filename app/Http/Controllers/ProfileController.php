@@ -22,55 +22,62 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-
+    
         $user->fill($request->validated());
-
-        // Si el email se ha modificado, se debe forzar la verificación
+    
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-
+    
         if ($request->hasFile('photo')) {
             if ($user->photo && $user->photo !== '/profile_photos/default_profile.png') {
-                $previousPhotoPath = public_path('profile_photos/' . basename($user->photo));
-
+                $previousPhotoPath = base_path('../profile_photos/' . basename($user->photo));
+    
                 if (File::exists($previousPhotoPath)) {
                     File::delete($previousPhotoPath);
                 }
             }
-
-            $profilePhotoPath = $request->file('photo')->move(public_path('profile_photos'), $request->file('photo')->getClientOriginalName());
-            $user->photo = '/profile_photos/' . basename($profilePhotoPath);
+    
+            $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
+            $profilePhotoPath = $request->file('photo')->move(base_path('../profile_photos'), $fileName);
+    
+            $user->photo = '/profile_photos/' . $fileName;
         }
-
+    
         $user->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    
+        return Redirect::route('profile.edit')->with('status', 'Perfil actualizado');
     }
+    
 
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
-
+    
         $user = $request->user();
 
+        if ($user->rol_id === 1) {
+            return Redirect::back()->with('error', 'No se puede eliminar la cuenta del administrador.');
+        }
+    
         if ($user->photo && $user->photo !== '/profile_photos/default_profile.png') {
-            $photoPath = public_path('profile_photos/' . basename($user->photo));
-
+            $photoPath = base_path('../profile_photos/' . basename($user->photo));
+    
             if (File::exists($photoPath)) {
                 File::delete($photoPath);
             }
         }
-
+    
         Auth::logout();
-
+    
         $user->delete();
-
+    
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+    
+        return Redirect::to('/')->with('status', 'Cuenta eliminada.');
     }
+    
 }

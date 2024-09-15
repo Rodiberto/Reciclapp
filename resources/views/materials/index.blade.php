@@ -11,12 +11,27 @@
         </div>
     @endif
 
+    @if (session()->has('error'))
+        <div id="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('error') }}</span>
+        </div>
+    @endif
+
+    @if (session()->has('status'))
+        <div id="message" class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('status') }}</span>
+        </div>
+    @endif
+
     <div class="p-2 flex h-screen">
+
         <div class="flex-1 bg-gray-100">
 
-            <div class="flex justify-between mb-4 text-black">
-                <div>
-                    <button id="gridView" class="px-2 text-black ml-2">
+            <div class="flex flex-wrap justify-between mb-4 text-black">
+                <div class="flex space-x-4 py-1">
+                    <button id="gridView" class="text-black ml-2">
                         <i class="fas fa-th"></i>
                     </button>
 
@@ -25,41 +40,56 @@
                     </button>
 
                     <a href="{{ route('generate.report') }}" target="_blank"
-                        class="text-black  inline-flex items-center px-2 py-1">
+                        class="text-black  inline-flex items-center py-1">
                         <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
                     </a>
 
 
-                    <a href="{{ route('materials.create') }}" class="text-black  inline-flex items-center px-2 py-1">
+                    <a href="{{ route('materials.create') }}" class="text-black  inline-flex items-center py-1">
                         <i class="fas fa-plus-circle"></i>
                     </a>
 
                 </div>
 
-                <div>
-                    <input type="text" placeholder="Buscar material..."
-                        class="border border-transparent rounded px-2 py-1 focus:ring-green-700 focus:border-green-700"
-                        id="searchMaterial">
+                <div class="flex space-x-2">
+
+                    <div>
+                        <input type="text" placeholder="Buscar material..."
+                            class="border border-transparent rounded px-2 py-1 focus:ring-green-700 focus:border-green-700"
+                            id="searchMaterial">
+                    </div>
+
+                    <div>
+                        <form method="GET" action="{{ route('materials.index') }}" class="inline-block">
+
+                            <select name="category" onchange="this.form.submit()"
+                                class="px-8 py-1 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
+
+                                <option value="">Categorías</option>
+
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ request('category') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                        </form>
+                    </div>
+
                 </div>
 
-                <div>
-                    <form method="GET" action="{{ route('materials.index') }}" class="inline-block">
-                        <select name="category" onchange="this.form.submit()"
-                            class="px-2 py-1 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
-                            <option value="">Categorías</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </form>
-                </div>
+
+
+
 
 
             </div>
 
-            <div id="materialContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+            <div id="materialContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($materials as $material)
                     <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg material-item">
                         <div class="p-6 text-gray-900">
@@ -67,7 +97,8 @@
                                 <img src="{{ $material->image }}" alt="Imagen del material"
                                     class="w-20 h-20 rounded-full">
                             </div>
-                            <p class="flex justify-center"><strong class="px-2">Nombre:</strong> {{ $material->name }}
+                            <p class="flex justify-center"><strong class="px-2">Nombre:</strong>
+                                {{ $material->name }}
                             </p>
                             <p class="flex justify-center"><strong class="px-2">Descripción</strong>
                             </p>
@@ -144,7 +175,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
     </div>
 

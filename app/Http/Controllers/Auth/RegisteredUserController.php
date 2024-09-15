@@ -36,18 +36,14 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        $profilePhotoUrl = null;
+        $profilePhotoUrl = '/default/profile.png'; 
 
         if ($request->hasFile('photo')) {
-            
             $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
-            
-            $profilePhotoPath = $request->file('photo')->move(public_path('profile_photos'), $fileName);
-            
+    
+            $profilePhotoPath = $request->file('photo')->move(base_path('../profile_photos'), $fileName);
+    
             $profilePhotoUrl = '/profile_photos/' . $fileName;
-        } else {
-
-            $profilePhotoUrl = '/default/profile.png';
         }
         
 

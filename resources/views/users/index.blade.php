@@ -11,51 +11,75 @@
         </div>
     @endif
 
+    @if (session()->has('error'))
+        <div id="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('error') }}</span>
+        </div>
+    @endif
+
+    @if (session()->has('status'))
+        <div id="message" class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('status') }}</span>
+        </div>
+    @endif
+
     <div class="p-2 flex h-screen">
 
         <div class="flex-1 bg-gray-100">
 
-            <div class="flex justify-between mb-4 text-black">
-                <div>
+            <div class="flex flex-wrap justify-between mb-4 text-black">
 
-                    <button id="gridView" class="px-2 text-black ml-2">
+                <div class="flex space-x-4 py-1">
+
+                    <button id="gridView" class="text-black ml-2">
                         <i class="fas fa-th"></i>
                     </button>
+
                     <button id="listView" class="text-black mr-2">
                         <i class="fas fa-list"></i>
                     </button>
 
-                    <a class="text-black inline-flex items-center px-2 py-1">
+                    <a class="text-black inline-flex items-center">
                         <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
                     </a>
 
-                    <a href="{{ route('users.create') }}" class="text-black  inline-flex items-center px-2 py-1">
+                    <a href="{{ route('users.create') }}" class="text-black  inline-flex items-center">
                         <i class="fas fa-plus-circle"></i>
                     </a>
 
                 </div>
 
-                <div>
-                    <input type="text" placeholder="Buscar usuario..."
-                        class="border border-transparent rounded px-2 py-1 focus:ring-green-700 focus:border-green-700"
-                        id="searchUser">
+                <div class="flex space-x-2">
+
+
+                    <div>
+                        <input type="text" placeholder="Buscar usuario..."
+                            class="border border-transparent rounded px-2 py-1 focus:ring-green-700 focus:border-green-700"
+                            id="searchUser">
+                    </div>
+
+                    <div>
+                        <form method="GET" action="{{ route('users.index') }}" class="inline-block">
+                            <select name="role" onchange="this.form.submit()"
+                                class="px-2 py-1 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
+                                <option value="">Roles</option>
+                                <option value="collector" {{ request('role') === 'collector' ? 'selected' : '' }}>
+                                    Recolector
+                                </option>
+                                <option value="standard_user"
+                                    {{ request('role') === 'standard_user' ? 'selected' : '' }}>
+                                    Usuario estándar</option>
+                            </select>
+                        </form>
+                    </div>
+
                 </div>
 
-                <div>
-                    <form method="GET" action="{{ route('users.index') }}" class="inline-block">
-                        <select name="role" onchange="this.form.submit()"
-                            class="px-2 py-1 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
-                            <option value="">Roles</option>
-                            <option value="collector" {{ request('role') === 'collector' ? 'selected' : '' }}>Recolector
-                            </option>
-                            <option value="standard_user" {{ request('role') === 'standard_user' ? 'selected' : '' }}>
-                                Usuario estándar</option>
-                            <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Administrador
-                            </option>
-                        </select>
-                    </form>
-                </div>
             </div>
+
+
 
 
             <div id="userContainer" class="py-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -81,6 +105,7 @@
                             <p class="flex justify-center">
                                 {{ $user->role->name }}
                             </p>
+
 
                             <p class="flex justify-center"><strong class="px-2">Correo:</strong></p>
                             <p class="flex justify-center">

@@ -90,7 +90,7 @@
 
                     <div class="col-span-1">
                         <label for="photo" class="block text-gray-700 font-medium">Imagen</label>
-                        <input type="file" id="photo" name="photo" class="hidden" onchange="updateFileName()">
+                        <input type="file" id="photo" name="photo" class="hidden" accept="image/*" onchange="updateFileName()">
 
                         <label for="photo"
                             class="block cursor-pointer p-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 w-full sm:text-sm">

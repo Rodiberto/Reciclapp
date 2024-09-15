@@ -18,9 +18,9 @@ class AdminSeeder extends Seeder
             'name' => 'Rodiber Cruz Morales',
             'phone' => '9191465451',
             'email' => 'rodibertocm@gmail.com',
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt('20242024'),
             'rol_id' => $adminRole,
-            'photo' => 'default/profile.png',
+            'photo' => '/default/profile.png',
         ]);
     }
 }

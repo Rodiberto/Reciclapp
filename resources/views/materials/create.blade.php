@@ -37,7 +37,7 @@
 
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 font-medium mb-2">Imagen</label>
-                            <input type="file" id="image" name="image" class="hidden"
+                            <input type="file" id="image" name="image" class="hidden" accept="image/*"
                                 onchange="updateFileName()" >
 
                             <label for="image"

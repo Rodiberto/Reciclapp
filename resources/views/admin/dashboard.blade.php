@@ -76,20 +76,23 @@
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Usuarios</p>
                         <div class="chart-container">
-                            <canvas id="userRolesChart" width="200" height="200"></canvas>
+                            <canvas id="userRolesChart"></canvas>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
+
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales
                             reciclados</p>
-                        <div class="chart-container">
-                            <canvas id="totalMaterialsChart" width="200" height="200"></canvas>
+                        <div class="chart-container flex justify-center items-center w-full">
+                            <canvas id="totalMaterialsChart" height="300px"></canvas>
                         </div>
                     </div>
+
                 </div>
+
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
@@ -97,13 +100,13 @@
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales por
                             recolector</p>
                         <select id="userSelect"
-                            class=" w-full border border-transparent rounded focus:ring-green-700 focus:border-green-700">
+                            class="w-full md:w-full border border-transparent rounded focus:ring-green-700 focus:border-green-700">
                             @foreach ($userMaterialsData->groupBy('user_name') as $userName => $userData)
                                 <option value="{{ $userData->first()->user_id }}">{{ $userName }}</option>
                             @endforeach
                         </select>
-                        <div class="chart-container">
-                            <canvas id="userMaterialsChart" width="200" height="200"></canvas>
+                        <div class="chart-container flex justify-center items-center w-full">
+                            <canvas id="userMaterialsChart" height="300px"></canvas>
                         </div>
                     </div>
                 </div>
@@ -241,10 +244,10 @@
         var totalMaterialsChart = new Chart(totalMaterialsCtx, {
             type: 'bar',
             data: {
-                labels: ['Plástico', 'Cartón', 'Vidrio', 'Metal', 'Papel'], // Datos estáticos para probar
+                labels: ['Plástico', 'Cartón', 'Vidrio', 'Metal', 'Papel'], 
                 datasets: [{
                     label: 'Cantidad total reciclada (kg)',
-                    data: [120, 150, 90, 60, 180], // Datos estáticos de cantidad reciclada
+                    data: [40, 50, 20, 30, 15], 
                     backgroundColor: [
                         '#33FF57', 
                         '#FF5733',

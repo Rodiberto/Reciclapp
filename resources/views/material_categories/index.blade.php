@@ -11,9 +11,17 @@
         </div>
     @endif
 
-    @if (session('error'))
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
-            <span class="block sm:inline">{{ session('error') }}</span>
+    @if (session()->has('error'))
+        <div id="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('error') }}</span>
+        </div>
+    @endif
+
+    @if (session()->has('status'))
+        <div id="message" class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4"
+            role="alert">
+            <span class="block sm:inline">{{ session()->get('status') }}</span>
         </div>
     @endif
 
@@ -26,12 +34,11 @@
 
             <div id="categoryContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 @foreach ($categories as $category)
-                    <div
-                        class="bg-white overflow-hidden shadow-lg rounded-lg p-6 text-gray-900">
+                    <div class="bg-white overflow-hidden shadow-lg rounded-lg p-6 text-gray-900">
                         <p class="font-bold text-center">{{ $category->name }}</p>
                         <p class="text-center">{{ $category->description }}</p>
                         <div class="mt-4 space-x-2">
-                            
+
                             <a href="{{ route('material_categories.edit', $category->id) }}" class="mr-2">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -63,7 +70,7 @@
                     }, 1000);
                 }, 2000);
             }
-        });        
+        });
     </script>
 
 </x-app-layout>

@@ -33,7 +33,7 @@
 
                             <div class="mb-4">
                                 <x-input-label for="photo" :value="__('Foto de perfil')" />
-                                <input type="file" id="photo" name="photo" class="hidden"
+                                <input type="file" id="photo" name="photo" class="hidden" accept="image/*"
                                     onchange="updateFileName()">
 
                                 <label for="photo"
