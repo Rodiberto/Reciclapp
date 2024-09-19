@@ -8,7 +8,7 @@
         <div class="p-8 bg-white rounded-lg shadow-lg w-full max-w-2xl">
 
             <div class="py-4 flex justify-between items-center">
-                <a href="{{ route('admin.bags.index') }}" class="text-gray-600 hover:text-gray-800">
+                <a href="{{ route('bags.index') }}" class="text-gray-600 hover:text-gray-800">
                     <i class="fas fa-times"></i>
                 </a>
             </div>
@@ -19,7 +19,7 @@
 
             <div class="flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
 
-                <form action="{{ route('admin.bags.update', $bag->id) }}" method="POST">
+                <form action="{{ route('bags.update', $bag->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     

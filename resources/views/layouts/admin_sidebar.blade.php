@@ -114,7 +114,7 @@
             </a>
 
 
-            <a href="{{ route('admin.bags.index') }}"
+            <a href="{{ route('bags.index') }}"
                 class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
 
                 <div class="p-2 rounded-full bg-gray-100">

@@ -11,13 +11,24 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
+@if (session()->has('message'))
+    <div id="message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4"
+        role="alert">
+        <span class="block sm:inline">{{ session()->get('message') }}</span>
+    </div>
+@endif
+
+
+
 <body class="bg-gray-100">
 
     <div class="flex items-center justify-center h-screen">
 
+
         <div id="custom-bg" class="p-6 flex flex-col max-w-3xl w-full rounded-lg shadow-lg">
 
             <div class="grid grid-cols-1 md:grid-cols-2 mb-1">
+
 
                 <div class="bg-custom overflow-hidden flex justify-center items-center">
 

@@ -28,7 +28,7 @@ class BagController extends Controller
 
         Bag::create(['name' => $request->name]);
 
-        return redirect()->route('admin.bags.index')->with('success', 'Bolsa creada exitosamente.');
+        return redirect()->route('bags.index')->with('success', 'Bolsa creada exitosamente.');
     }
 
     public function edit(Bag $bag)
@@ -44,13 +44,13 @@ class BagController extends Controller
 
         $bag->update(['name' => $request->name]);
 
-        return redirect()->route('admin.bags.index')->with('success', 'Bolsa actualizada exitosamente.');
+        return redirect()->route('bags.index')->with('success', 'Bolsa actualizada exitosamente.');
     }
 
     public function destroy(Bag $bag)
     {
         $bag->delete();
 
-        return redirect()->route('admin.bags.index')->with('success', 'Bolsa eliminada exitosamente.');
+        return redirect()->route('bags.index')->with('success', 'Bolsa eliminada exitosamente.');
     }
 }

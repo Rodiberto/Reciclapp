@@ -5,120 +5,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Reciclapp') }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/bg_custom.css') }}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Tu CSS -->
+ <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-
-
 <body>
-    <div>
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+                        <div style="display: flex; align-items: center;">
+                            <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" height="30" width="30">
+                            <h1 style="margin-left: 10px; color: white;">Reciclapp</h1>
+                        </div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
-            <div class="container">
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
 
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" height="30" width="30">
-                    <span>Reciclapp</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Quiénes Somos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
-                        </li>
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
 
-                    </ul>
-                    <ul class="navbar-nav ml-4">
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Inicio</a></li>
+                                    <li><a href="{{route ('servicios')}}">Servicios</a></li>
+                                    <li><a href="{{route ('contactanos')}}">Contáctanos</a></li>
+                                    <li><a href="/login">Iniciar Sesión</a></li>
+                                    <li><a href="/register">Registrarse</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-post-slides owl-carousel">
+            <div class="single-hero-post bg-overlay">
+                <div class="slide-img bg-img" style="background-image: url(img/bg-img/fondo.jpg);"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h2>¡Reciclar transforma desechos en vida para el planeta. ¡Únete al cambio!</h2>
+                                <p>El reciclaje transforma residuos en recursos, cuidando el medio ambiente y promoviendo un futuro sostenible. ¡Haz tu parte, recicla hoy!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <li class="nav-item">
 
-                            <a class="nav-link text-white" href="{{ route('login') }}">Iniciar
-                                sesión</a>
 
-                        </li>
+
+
+
+
+
+
+
+
+
+<section>
+<div class="flex flex-col items-center justify-center w-full">
+ 
+<div class="py-6">
+<h1 class="text-3xl font-bold">Quiénes Somos</h1>
+</div>
+ <div class="grid grid-cols-3 px-6 w-full gap-4">
+              <!-- Acerca de Nosotros -->
+              <div class="col-span-1">
+                 <h3 class="text-2xl font-bold mb-4 text-center">Acerca de Nosotros</h3>
+                 <p class="text-lg  text-justify">
+                     En Just Code, somos un equipo comprometido con el desarrollo de soluciones tecnológicas innovadoras que responden a las necesidades actuales del mercado. Nuestro enfoque se basa en la creación de herramientas digitales que generan un impacto positivo en la sociedad y el medio ambiente.
+                 </p>
+             </div>
+             <!-- Misión -->
+             <div class="col-span-1">
+                 <h3 class="text-2xl font-bold mb-4 text-center">Misión</h3>
+                 <p class="text-lg  text-justify">
+                     Facilitar la vida de las personas a través del uso de la tecnología aportando valor y generando un impacto positivo en la vida cotidiana de la sociedad, desarrollamos soluciones innovadoras con enfoque especial en la calidad.
+                 </p>
+             </div>
+             <!-- Visión -->
+             <div class="col-span-1">
+                 <h3 class="text-2xl font-bold mb-4 text-center">Visión</h3>
+                 <p class="text-lg text-justify">
+                     En JUSTCODE, buscamos para 2025 ser una empresa líder en el desarrollo de software, marcando la pauta hacia un futuro sustentable, así como diseñar y desarrollar servicios y soluciones de software diferenciales.
+                 </p>
+             </div>
+
+ </div>
+
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ##### Fin de la sección Quienes Somos ##### -->
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area" style="background-color: #4CAF50; color: white; padding: 40px 0;">
+    <!-- Main Footer Area -->
+    <div class="container">
+        <div class="row">
+            <!-- Logo y descripción -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-footer-widget">
+                    <div class="footer-logo mb-30">
+                        <a href="#"><img src="img/logo.png" alt="Reciclapp Logo" class="footer-logo-img"></a>
+                    </div>
+
+                    <p style="color: white;">Somos una organización dedicada al reciclaje y sostenibilidad, ayudando a reducir el impacto ambiental y promover prácticas responsables.</p>
+                    <div class="social-info">
+                    <a href="https://www.facebook.com/tu-pagina-facebook" target="_blank" style="color: white; font-size: 24px; margin-right: 15px;">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/tu-cuenta-instagram" target="_blank" style="color: white; font-size: 24px; margin-right: 15px;">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nuestros Servicios -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-footer-widget">
+                    <h4 style="color: white;">Nuestros Servicios</h4>
+                    <ul>
+                        <li><a href="#" style="color: white;">Escaneo de Residuos</a></li>
+                        <li><a href="#" style="color: white;">Ubicaciones de Depósitos</a></li>
+                        <li><a href="#" style="color: white;">Programación de Recolección</a></li>
+                        <li><a href="#" style="color: white;">Recordatorio y Notificaciones</a></li>
                     </ul>
                 </div>
             </div>
-        </nav>
 
-        @if (session('error'))
-            <div id="message"  class="alert alert-danger px-4 py-3 rounded relative mt-4">
-                {{ session('error') }}
+            <!-- Contacto -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-footer-widget">
+                    <h4 style="color: white;">Contáctanos</h4>
+                    <ul>
+                        <li style="color: white;">Teléfono: +52 919 147 22 15</li>
+                        <li style="color: white;">Email: info.reciclapp@gmail.com</li>
+                        <li style="color: white;">Dirección: C.P. 29950, Ocosingo, Chis.</li>
+                    </ul>
+                </div>
             </div>
-        @endif
 
-        @if (session()->has('success'))
-        <div id="message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4"
-            role="alert">
-            <span class="block sm:inline">{{ session()->get('success') }}</span>
+            <!-- Información adicional -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-footer-widget">
+                    <h4 style="color: white;">Información Adicional</h4>
+                    <ul>
+                        <li><a href="#" style="color: white;">Política de Privacidad</a></li>
+                        <li><a href="#" style="color: white;">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    @endif
-
-
-
-        <main class="container my-5">
-            <div class="text-center">
-                <h1 class="display-4 text-dark mb-4">Bienvenido a Reciclapp</h1>
-                <p class="lead text-dark mb-4">Somos una plataforma dedicada al reciclaje y cuidado del medio ambiente.
-                </p>
-                <p class="lead text-dark mb-4">Descubre cómo puedes contribuir, qué materiales reciclamos y dónde
-                    estamos ubicados.</p>
-            </div>
-        </main>
-
-        <footer class="fixed bottom-0 w-full bg-custom text-white p-2 z-10">
-            <div class="container text-center">                
-                <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#" class="text-light">Inicio</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-light">Quiénes Somos</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-light">Contacto</a></li>
-                </ul>
-                <p class="mt-3 mb-0">&copy; {{ date('Y') }} Reciclapp. Todos los derechos reservados.</p>
-            </div>
-        </footer>
-        
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXlR0CQYAJvhWITQFfAz7S6oVO3MGMIwtcO/8swLZIjE8dDkNr6pQAO6ZQ5s" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTJSYLfbsnZIj2tU5S5KsG4f5xc13Vmnb1HMSYv+U8zUspO6N2" crossorigin="anonymous">
-    </script>
+    <!-- Copyright -->
+    <div class="container text-center pt-4">
+        <p style="color: white;">&copy; 2024 Reciclapp. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const successMessage = document.getElementById('message');
-            if (successMessage) {
-                setTimeout(() => {
-                    successMessage.classList.add('fade-out');
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 1000);
-                }, 2000);
-            }
-        });
-    </script>
+    <!-- ##### Footer Area End ##### -->
+
+    <script src="{{asset('js/jquery/jquery-2.2.4.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap/popper.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/plugins/plugins.js')}}"></script>
+    <script src="{{asset('js/active.js')}}"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </body>
 
 </html>

@@ -23,7 +23,13 @@ class UserController extends Controller
             });
         }
     
-        $users = $query->get();
+        // $users = $query->get();
+        
+        if ($view == 'grid') {
+            $users = $query->paginate(8);
+        } else {
+            $users = $query->paginate(15); 
+        }
 
         return view('users.index', compact('users', 'view'));
     }

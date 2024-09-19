@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\CollectorMiddleware;
 use App\Http\Middleware\StandardUserMiddleware;
+use App\Http\Middleware\CheckSessionActivity;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => AdminMiddleware::class,
             'collector' => CollectorMiddleware::class,
             'standard_user' => StandardUserMiddleware::class,
+            'check.activity' => CheckSessionActivity::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

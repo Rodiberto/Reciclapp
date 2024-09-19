@@ -134,6 +134,10 @@
                 @endforeach
             </div>
 
+            <div class="mt-4">
+                {{ $users->links() }}
+            </div>
+
 
             <div id="userTable" class="hidden">
                 <table class="table-auto w-full mt-4 bg-white text-gray-900">

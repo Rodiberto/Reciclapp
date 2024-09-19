@@ -29,7 +29,7 @@
     <div class="p-2">
         <div class="container mx-auto">
 
-            <a href="{{ route('admin.bags.create') }}" class="text-black  inline-flex items-center px-2 py-2">
+            <a href="{{ route('bags.create') }}" class="text-black  inline-flex items-center px-2 py-2">
                 <i class="fas fa-plus-circle"></i>
             </a>
 
@@ -39,11 +39,11 @@
                         <p class="font-bold text-center">{{ $bag->name }}</p>
                         <div class="mt-4 space-x-2 text-center">
 
-                            <a href="{{ route('admin.bags.edit', $bag->id) }}" class="mr-2">
+                            <a href="{{ route('bags.edit', $bag->id) }}" class="mr-2">
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <form action="{{ route('admin.bags.destroy', $bag->id) }}" method="POST"
+                            <form action="{{ route('bags.destroy', $bag->id) }}" method="POST"
                                 style="display: inline-block;"
                                 onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta bolsa?');">
                                 @csrf
