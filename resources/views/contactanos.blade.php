@@ -119,21 +119,22 @@
                         <h2>ENVIANOS UN MENSAJE</h2>
                         <p>Te responderemos lo antes posible.</p>
                     </div>
-                    <form action="#" method="post">
+                    <form action="{{ route('contact.send') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-name" placeholder="Tu Nombre">
+                                    <input type="text"name="name" class="form-control" id="contact-name" placeholder="Tu Nombre">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="contact-email" placeholder="Tu Correo Electrónico">
+                                    <input type="email" name="email" class="form-control" id="contact-email" placeholder="Tu Correo Electrónico">
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="contact-subject" placeholder="Asunto">
+                                    <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Asunto">
                                 </div>
                             </div>
                             <div class="col-12 mb-3">

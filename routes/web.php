@@ -20,8 +20,12 @@ use App\Http\Controllers\StandarUser\ChartController;
 use App\Http\Controllers\StandarUser\HistoryController;
 use App\Http\Controllers\StandarUser\RequestController;
 
+
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\AvisoPrivacidadController;
+use App\Http\Controllers\DonateController;
+use App\Http\Controllers\TerminosCondicionesController;
 
 Route::get('/', function () {
     return view('home');
@@ -42,6 +46,7 @@ Route::middleware('admin', 'check.activity')->group(function () {
     Route::resource('material_categories', MaterialCategoryController::class);
     Route::resource('bags', BagController::class);
     Route::get('/generate-report', [PdfController::class, 'generateReport'])->name('generate.report');
+    Route::get('/generate-report-users', [PdfController::class, 'UserReport'])->name('report.users');
     Route::get('/admin/chart', [ChartsController::class, 'index'])->name('admin.chart');
 });
 
@@ -59,6 +64,7 @@ Route::middleware('standard_user', 'check.activity')->group(function () {
     Route::get('/requests', [RequestController::class, 'index'])->name('requests_user.index');
     Route::get('/history', [HistoryController::class, 'index'])->name('history_user.index');
     Route::get('/chart', [ChartController::class, 'index'])->name('standard_user.chart');
+    Route::get('/generate-report-request', [PdfController::class, 'standardUser'])->name('report.request');
 });
 
 
@@ -67,6 +73,10 @@ Route::post('/contact/send', [ContactController::class, 'sendContactEmail'])->na
 
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios');
 Route::get('/contactanos', [ContactanosController::class, 'index'])->name('contactanos');
+Route::get('/aviso_privacidad', [AvisoPrivacidadController::class, 'index'])->name('aviso_privacidad');
+Route::get('/terminos_condiciones', [TerminosCondicionesController::class, 'index'])->name('terminos_condiciones');
+
+Route::get('/donate', [DonateController::class, 'index'])->name('donate');
 
 
 require __DIR__ . '/auth.php';

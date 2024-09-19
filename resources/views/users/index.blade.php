@@ -41,7 +41,8 @@
                         <i class="fas fa-list"></i>
                     </button>
 
-                    <a class="text-black inline-flex items-center">
+                    <a href="{{ route('report.users') }}" target="_blank"
+                    class="text-black inline-flex items-center">
                         <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
                     </a>
 

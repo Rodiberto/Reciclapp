@@ -39,10 +39,10 @@
                         <i class="fas fa-list"></i>
                     </button>
 
-                    <a href="{{ route('generate.report') }}" target="_blank"
+                    {{-- <a href="{{ route('generate.report') }}" target="_blank"
                         class="text-black  inline-flex items-center py-1">
                         <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
-                    </a>
+                    </a> --}}
 
 
                     <a href="{{ route('materials.create') }}" class="text-black  inline-flex items-center py-1">

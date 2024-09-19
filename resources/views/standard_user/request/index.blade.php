@@ -5,7 +5,14 @@
     </head>
 
 
+
     <div class="container mx-auto px-2 shadow-lg">
+
+        <div class="flex py-1">
+            <a href="{{ route('report.request') }}" target="_blank" class="text-black inline-flex items-center">
+                <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
+            </a>
+        </div>
 
         <table class="table-auto w-full mt-4 bg-white text-gray-900 border border-gray-200 rounded-lg shadow-md">
             <thead>
@@ -33,9 +40,9 @@
                         <td class="border px-4 py-2">{{ $request->updated_at }}</td>
                     </tr>
                 @empty
-                <tr>
-                    <td colspan="8" class="px-4 py-2 text-center">No hay solicitudes disponibles.</td>
-                </tr>
+                    <tr>
+                        <td colspan="8" class="px-4 py-2 text-center">No hay solicitudes disponibles.</td>
+                    </tr>
                 @endforelse
             </tbody>
 

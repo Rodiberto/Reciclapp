@@ -1,218 +1,225 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Reciclapp') }}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bg_custom.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Tu CSS -->
- <link rel="stylesheet" href="css/style.css"> 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <div class="alazea-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
-                        <div style="display: flex; align-items: center;">
-                            <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" height="30" width="30">
-                            <h1 style="margin-left: 10px; color: white;">Reciclapp</h1>
-                        </div>
 
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
 
-                        <div class="classy-menu">
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
+<header class="fixed top-0 left-0 w-full transition-colors duration-300 ease-in-out z-50" id="header">
+    <nav
+        class="container mx-auto flex items-center justify-between p-4 bg-gray-800 bg-opacity-0 transition-colors duration-300 ease-in-out">
+        <div class="flex items-center space-x-4">
+            <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" class="h-8 w-8">
+            <h1 class="text-xl font-semibold text-gray-500">Reciclapp</h1>
+        </div>
 
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="/">Inicio</a></li>
-                                    <li><a href="{{route ('servicios')}}">Servicios</a></li>
-                                    <li><a href="{{route ('contactanos')}}">Contáctanos</a></li>
-                                    <li><a href="/login">Iniciar Sesión</a></li>
-                                    <li><a href="/register">Registrarse</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+        <button class="lg:hidden flex items-center text-gray-500 focus:outline-none" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="hidden lg:flex flex-grow justify-center space-x-4">
+            <a href="/" class="text-gray-500 hover:text-green-800 transition">Inicio</a>
+            <a href="{{ route('servicios') }}" class="text-gray-500 hover:text-green-800 transition">Servicios</a>
+            <a href="{{ route('contactanos') }}" class="text-gray-500 hover:text-green-800 transition">Contáctanos</a>
+            <a href="{{ route('donate') }}" class="text-gray-500">Donar</a>
+            <a href="/login" target="_Blank" class="text-gray-500 hover:text-green-800 transition">Iniciar Sesión</a>
+            <a href="/register" class="text-gray-500 hover:text-green-800 transition">Registrarse</a>
+        </div>
+
+
+        <div class="lg:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-50 hidden" id="mobile-menu">
+            <div class="flex flex-col items-center justify-center h-full">
+                <a href="/" class="text-gray-500 py-2 text-lg">Inicio</a>
+                <a href="{{ route('servicios') }}" class="text-gray-500 py-2 text-lg">Servicios</a>
+                <a href="{{ route('contactanos') }}" class="text-gray-500 py-2 text-lg">Contáctanos</a>
+                <a href="{{ route('donate') }}" class="text-gray-500 py-2 text-lg">Donar</a>
+                <a href="/login" class="text-gray-500 py-2 text-lg">Iniciar Sesión</a>
+                <a href="/register" class="text-gray-500 py-2 text-lg">Registrarse</a>
             </div>
         </div>
-    </header>
-    <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-post-slides owl-carousel">
-            <div class="single-hero-post bg-overlay">
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/fondo.jpg);"></div>
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h2>¡Reciclar transforma desechos en vida para el planeta. ¡Únete al cambio!</h2>
-                                <p>El reciclaje transforma residuos en recursos, cuidando el medio ambiente y promoviendo un futuro sostenible. ¡Haz tu parte, recicla hoy!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    </nav>
+</header>
+
+
+
+<div class="flex max-w-full">
+    <section class="hero-area relative w-full h-screen bg-cover bg-center"
+        style="background-image: url('{{ asset('img/bg-img/fondo.jpg') }}');">
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="text-center text-white px-4">
+                <h2 class="text-4xl font-bold mb-4">¡Reciclar transforma desechos en vida para el planeta. ¡Únete al
+                    cambio!
+                </h2>
+                <p class="text-lg">El reciclaje transforma residuos en recursos, cuidando el medio ambiente y
+                    promoviendo un
+                    futuro sostenible. ¡Haz tu parte, recicla hoy!</p>
             </div>
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
+</div>
 
 
 <section>
-<div class="flex flex-col items-center justify-center w-full">
- 
-<div class="py-6">
-<h1 class="text-3xl font-bold">Quiénes Somos</h1>
-</div>
- <div class="grid grid-cols-3 px-6 w-full gap-4">
-              <!-- Acerca de Nosotros -->
-              <div class="col-span-1">
-                 <h3 class="text-2xl font-bold mb-4 text-center">Acerca de Nosotros</h3>
-                 <p class="text-lg  text-justify">
-                     En Just Code, somos un equipo comprometido con el desarrollo de soluciones tecnológicas innovadoras que responden a las necesidades actuales del mercado. Nuestro enfoque se basa en la creación de herramientas digitales que generan un impacto positivo en la sociedad y el medio ambiente.
-                 </p>
-             </div>
-             <!-- Misión -->
-             <div class="col-span-1">
-                 <h3 class="text-2xl font-bold mb-4 text-center">Misión</h3>
-                 <p class="text-lg  text-justify">
-                     Facilitar la vida de las personas a través del uso de la tecnología aportando valor y generando un impacto positivo en la vida cotidiana de la sociedad, desarrollamos soluciones innovadoras con enfoque especial en la calidad.
-                 </p>
-             </div>
-             <!-- Visión -->
-             <div class="col-span-1">
-                 <h3 class="text-2xl font-bold mb-4 text-center">Visión</h3>
-                 <p class="text-lg text-justify">
-                     En JUSTCODE, buscamos para 2025 ser una empresa líder en el desarrollo de software, marcando la pauta hacia un futuro sustentable, así como diseñar y desarrollar servicios y soluciones de software diferenciales.
-                 </p>
-             </div>
+    <div class="flex flex-col items-center justify-center w-full">
 
- </div>
 
-</div>
-</section>
+        <div class="py-6">
+            <h1 class="text-3xl font-bold">Quiénes Somos</h1>
+        </div>
+        <div class="grid grid-cols-3 px-6 w-full gap-4">
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- ##### Fin de la sección Quienes Somos ##### -->
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area" style="background-color: #4CAF50; color: white; padding: 40px 0;">
-    <!-- Main Footer Area -->
-    <div class="container">
-        <div class="row">
-            <!-- Logo y descripción -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-footer-widget">
-                    <div class="footer-logo mb-30">
-                        <a href="#"><img src="img/logo.png" alt="Reciclapp Logo" class="footer-logo-img"></a>
-                    </div>
-
-                    <p style="color: white;">Somos una organización dedicada al reciclaje y sostenibilidad, ayudando a reducir el impacto ambiental y promover prácticas responsables.</p>
-                    <div class="social-info">
-                    <a href="https://www.facebook.com/tu-pagina-facebook" target="_blank" style="color: white; font-size: 24px; margin-right: 15px;">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.instagram.com/tu-cuenta-instagram" target="_blank" style="color: white; font-size: 24px; margin-right: 15px;">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                    </a>
-
-                    </div>
-                </div>
+            <div class="col-span-1 ">
+                <h3 class="text-2xl font-bold mb-4 text-center">Acerca de Nosotros</h3>
+                <p class="text-lg text-justify">
+                    En Just Code, somos un equipo comprometido con el desarrollo de soluciones tecnológicas innovadoras
+                    que responden a las necesidades actuales del mercado. Nuestro enfoque se basa en la creación de
+                    herramientas digitales que generan un impacto positivo en la sociedad y el medio ambiente.
+                </p>
             </div>
 
-            <!-- Nuestros Servicios -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-footer-widget">
-                    <h4 style="color: white;">Nuestros Servicios</h4>
-                    <ul>
-                        <li><a href="#" style="color: white;">Escaneo de Residuos</a></li>
-                        <li><a href="#" style="color: white;">Ubicaciones de Depósitos</a></li>
-                        <li><a href="#" style="color: white;">Programación de Recolección</a></li>
-                        <li><a href="#" style="color: white;">Recordatorio y Notificaciones</a></li>
-                    </ul>
-                </div>
+            <!-- Misión -->
+            <div class="col-span-1">
+                <h3 class="text-2xl font-bold mb-4 text-center">Misión</h3>
+                <p class="text-lg text-justify">
+                    Facilitar la vida de las personas a través del uso de la tecnología aportando valor y generando un
+                    impacto positivo en la vida cotidiana de la sociedad, desarrollamos soluciones innovadoras con
+                    enfoque especial en la calidad.
+                </p>
             </div>
-
-            <!-- Contacto -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-footer-widget">
-                    <h4 style="color: white;">Contáctanos</h4>
-                    <ul>
-                        <li style="color: white;">Teléfono: +52 919 147 22 15</li>
-                        <li style="color: white;">Email: info.reciclapp@gmail.com</li>
-                        <li style="color: white;">Dirección: C.P. 29950, Ocosingo, Chis.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Información adicional -->
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="single-footer-widget">
-                    <h4 style="color: white;">Información Adicional</h4>
-                    <ul>
-                        <li><a href="#" style="color: white;">Política de Privacidad</a></li>
-                        <li><a href="#" style="color: white;">Términos y Condiciones</a></li>
-                    </ul>
-                </div>
+            <!-- Visión -->
+            <div class="col-span-1">
+                <h3 class="text-2xl font-bold mb-4 text-center">Visión</h3>
+                <p class="text-lg text-justify">
+                    En JUSTCODE, buscamos para 2025 ser una empresa líder en el desarrollo de software, marcando la
+                    pauta hacia un futuro sustentable, así como diseñar y desarrollar servicios y soluciones de software
+                    diferenciales.
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- Copyright -->
-    <div class="container text-center pt-4">
-        <p style="color: white;">&copy; 2024 Reciclapp. Todos los derechos reservados.</p>
+
+    <div class="flex items-center justify-center py-6">
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-lg p-8 bg-white border border-gray-300 rounded-lg shadow-md">
+
+            <!-- Div superior con mensaje llamativo y logo de PayPal -->
+            <div class="col-span-2 text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Logo PayPal"
+                    class="mx-auto mb-4 h-12">
+                <h2 class="text-2xl font-bold text-gray-700 mb-2">¡Apoya nuestra App de Reciclaje!</h2>
+                <p class="text-gray-600">Tu donación nos ayuda a seguir promoviendo la recolección de materiales
+                    reciclables y cuidar el medio ambiente. Gracias por tu apoyo.</p>
+            </div>
+
+            <!-- Primer div con botón Donar -->
+            <div class="flex justify-center items-center">
+                <a href="#"
+                    class="px-6 py-3 bg-yellow-400 text-blue-700 font-semibold rounded-md hover:bg-yellow-500 transition flex items-center space-x-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" alt="PayPal"
+                        class="h-5">
+                    <span>Donar con PayPal</span>
+                </a>
+            </div>
+
+            <!-- Segundo div con imagen -->
+            <div class="flex justify-center items-center">
+                <img src="{{ asset('/img/donate.png') }}" alt="Donar" class="max-w-full h-auto">
+            </div>
+
+        </div>
     </div>
-</footer>
 
-    <!-- ##### Footer Area End ##### -->
+    <footer class="bg-green-600 text-white py-12">
+        <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+            <div class="text-center lg:text-left">
+                <div class="mb-4">
+                    <img src="img/logo.png" alt="Reciclapp Logo" class="h-12 mx-auto lg:mx-0">
+                </div>
+                <p class="mb-4">Somos una organización dedicada al reciclaje y sostenibilidad, ayudando a reducir el
+                    impacto ambiental y promover prácticas responsables.</p>
+                <div class="flex justify-center lg:justify-start space-x-4">
+                    <a href="https://www.facebook.com/tu-pagina-facebook" target="_blank"
+                        class="text-white text-2xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/tu-cuenta-instagram" target="_blank"
+                        class="text-white text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
 
-    <script src="{{asset('js/jquery/jquery-2.2.4.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap/popper.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/plugins/plugins.js')}}"></script>
-    <script src="{{asset('js/active.js')}}"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+            <div class="text-center lg:text-left">
+                <h4 class="text-xl font-semibold mb-4">Nuestros Servicios</h4>
+                <ul>
+                    <li><a href="#" class="hover:text-gray-300">Escaneo de Residuos</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Ubicaciones de Depósitos</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Programación de Recolección</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Recordatorio y Notificaciones</a></li>
+                </ul>
+            </div>
 
-</body>
+            <div class="text-center lg:text-left">
+                <h4 class="text-xl font-semibold mb-4">Contáctanos</h4>
+                <ul>
+                    <li>Teléfono: +52 919 147 22 15</li>
+                    <li>Email: info.reciclapp@gmail.com</li>
+                    <li>Dirección: C.P. 29950, Ocosingo, Chis.</li>
+                </ul>
+            </div>
 
-</html>
+            <div class="text-center lg:text-left">
+                <h4 class="text-xl font-semibold mb-4">Información Adicional</h4>
+                <ul>
+                    <li><a href="{{ route('aviso_privacidad') }}" class="hover:text-gray-300">Aviso de Privacidad</a>
+                    </li>
+                    <li><a href="{{ route('terminos_condiciones') }}" class="hover:text-gray-300">Términos y
+                            Condiciones</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-green-600 text-center py-4 mt-8">
+            <p>&copy; 2024 Reciclapp. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const header = document.getElementById('header');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuToggle = document.getElementById('menu-toggle');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.style.backgroundColor = '#000000';
+                header.classList.add('bg-opacity-90', 'text-white');
+            } else {
+                header.style.backgroundColor = '';
+                header.classList.remove('bg-opacity-90', 'text-white');
+            }
+        });
+
+    });
+</script>
