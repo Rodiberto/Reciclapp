@@ -60,15 +60,16 @@
 
                             <div class="mb-4">
                                 <label for="phone" class="block text-gray-700">Teléfono</label>
-                                <input id="phone" type="number"
+                                <input id="phone" type="text"
                                     class="block w-full text-gray-700 border rounded-lg py-2 px-4 leading-tight @error('phone') border-red-500 @enderror"
-                                    name="phone" value="{{ old('phone', $user->phone) }}" required
-                                    autocomplete="phone" autofocus>
-
+                                    pattern="^\d{10}$" inputmode="numeric" title="Por favor, ingrese exactamente 10 dígitos (solo números)."
+                                    name="phone" value="{{ old('phone', $user->phone) }}" required autocomplete="phone" autofocus maxlength="10">
+                            
                                 @error('phone')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
+                            
 
                         </div>
 

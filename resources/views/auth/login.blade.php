@@ -27,6 +27,12 @@
 
         <div id="custom-bg" class="p-6 flex flex-col max-w-3xl w-full rounded-lg shadow-lg">
 
+            <div class=" p-4 flex items-center">
+                <a href="javascript:history.back()" class="text-white mr-2">
+                    <i class="fas fa-arrow-left"></i> 
+                </a>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 mb-1">
 
 
@@ -42,6 +48,7 @@
                 </div>
 
                 <div class="bg-white overflow-hidden">
+
 
                     <h1 class="text-center text-2xl font-bold text-gray-800 mt-4 mb-4">BIENVENIDO</h1>
 

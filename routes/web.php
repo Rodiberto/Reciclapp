@@ -56,6 +56,7 @@ Route::middleware('collector', 'check.activity')->group(function () {
     Route::get('/request', [RequestsController::class, 'index'])->name('requests_collector.index');
     Route::get('/requests/{id}', [RequestsController::class, 'show'])->name('requests_collector.show');
     Route::get('/collector/history', [HistoriController::class, 'index'])->name('history_controller.index');
+    Route::get('/report-request', [PdfController::class, 'collectorUser'])->name('report.collector');
 });
 
 

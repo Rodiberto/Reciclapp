@@ -1,30 +1,35 @@
-<head>
+<!DOCTYPE html>
+<html lang="en">
 
-    <meta property="og:site_name" content="" />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="description"
+        content="Pavo is a mobile app Tailwind CSS HTML template created to help you present benefits, features and information about mobile apps in order to convince visitors to download them" />
+    <meta name="author" content="Your name" />
+
+    <meta property="og:site_name" content="" /> 
     <meta property="og:site" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:title" content="" /> 
+    <meta property="og:description" content="" /> 
+    <meta property="og:image" content="" /> 
     <meta property="og:url" content="" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Reciclapp') }}</title>
+    <meta name="twitter:card" content="summary_large_image" /> 
+
+    <title>Reciclapp</title>
+
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="css/fontawesome-all.css" rel="stylesheet" />
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}">
-    <link href="{{ asset('css/swiper.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="css/swiper.css" rel="stylesheet" />
+    <link href="css/magnific-popup.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
 
 
+    <link rel="icon" href="images/favicon.png" />
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -33,10 +38,10 @@
         <div class="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
             <a class="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline"
                 href="index.html">
-                <img src="{{ asset('img/logo2.png') }}" alt="alternative" class="h-8" />
+                <img src="images/logo.png" alt="alternative" class="h-8" />
             </a>
             <a class="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll"
-                href="{{ route('home') }}">Reciclapp</a>
+                href="index.html">Reciclapp</a>
 
             <button
                 class="background-transparent rounded text-xl leading-none hover:no-underline focus:no-underline lg:hidden lg:text-gray-400"
@@ -48,7 +53,7 @@
                 id="navbarsExampleDefault">
                 <ul class="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
                     <li>
-                        <a class="nav-link page-scroll" href="{{ route('home') }}">Inicio <span
+                        <a class="nav-link page-scroll active" href="{{ route('home') }}">Inicio <span
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li>
@@ -60,9 +65,11 @@
                     <li>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </nav>
+            </div> 
+        </div> 
+    </nav> 
+
+
 
 
 
@@ -71,28 +78,29 @@
 
 
     <header id="header" class="header py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32">
-
-        @if (session()->has('error'))
-            <div id="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
-                role="alert">
-                <span class="block sm:inline">{{ session()->get('error') }}</span>
-            </div>
-        @endif
-        
         <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
             <div class="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
                 <h1 class="h1-large mb-5">Aplicación móvil de Reciclapp</h1>
                 <p class="p-large mb-8">¡Únete al cambio! Comienza a reciclar de forma fácil y rápida con Reciclapp.
                     Encuentra puntos de recolección cercanos, organiza tus materiales y contribuye a un mundo más verde.
                 </p>
-
+                
                 <a class="btn-solid-lg secondary" href="#your-link"><i class="fab fa-google-play"></i>Descargar</a>
             </div>
             <div class="xl:text-right">
-                <img class="inline" src="{{ asset('img/reciclapp.png ') }}" alt="alternative" />
+                <img class="inline" src="images/header-smartphone.png" alt="alternative" />
             </div>
         </div>
     </header>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,21 +114,20 @@
         <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
             <div class="lg:col-span-5">
                 <div class="mb-16 lg:mb-0 xl:mt-16">
-                    <h2 class="mb-6 text-4xl font-bold text-gray-800">Acerca de nosotros</h2>
-
-                    <p class="p-large mb-8">En Just Code, somos un equipo comprometido con el desarrollo de soluciones
+                    <h2 class="mb-6">Acerca de nosotros</h2>
+                    <p class="mb-4">En Just Code, somos un equipo comprometido con el desarrollo de soluciones
                         tecnológicas innovadoras
                         que responden a las necesidades actuales del mercado.</p>
-                    <p class="p-large mb-8"> Nuestro enfoque se basa en la creación de
+                    <p class="mb-4"> Nuestro enfoque se basa en la creación de
                         herramientas digitales que generan un impacto positivo en la sociedad y el medio ambiente.</p>
                 </div>
-            </div>
+            </div> 
             <div class="lg:col-span-7">
                 <div class="xl:ml-14">
-                    <img class="inline  rounded-lg" src="{{ asset('img/about-us.jpg') }}" alt="alternative" />
+                    <img class="inline" src="images/details-1.jpg" alt="alternative" />
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div> 
     </div>
 
 
@@ -129,23 +136,21 @@
         <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
             <div class="lg:col-span-7">
                 <div class="mb-12 lg:mb-0 xl:mr-14">
-                    <img class="inline rounded-lg" src="{{ asset('img/mission.jpg') }}" alt="alternative" />
+                    <img class="inline" src="images/details-2.jpg" alt="alternative" />
                 </div>
-            </div>
+            </div> 
             <div class="lg:col-span-5">
                 <div class="xl:mt-12">
-                    <h2 class="mb-6 text-4xl font-bold text-gray-800">Misión</h2>
-                    <p class="p-large mb-8">Facilitar la vida de las personas a través del uso de la tecnología
-                        aportando
-                        valor
+                    <h2 class="mb-6">Misión</h2>
+                    <p class="mb-4">Facilitar la vida de las personas a través del uso de la tecnología aportando valor
                         y generando un
                         impacto positivo en la vida cotidiana de la sociedad.</p>
-                    <p class="p-large mb-8">Desarrollamos soluciones innovadoras con
+                    <p class="mb-4">Desarrollamos soluciones innovadoras con
                         enfoque especial en la calidad.</p>
-
+                    
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div> 
     </div>
 
 
@@ -154,32 +159,31 @@
         <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
             <div class="lg:col-span-5">
                 <div class="mb-16 lg:mb-0 xl:mt-16">
-                    <h2 class="mb-6 text-4xl font-bold text-gray-800">Visión</h2>
-                    <p class="p-large mb-8">En JUSTCODE, buscamos para 2025 ser una empresa líder en el desarrollo de
-                        software,
+                    <h2 class="mb-6">Visión</h2>
+                    <p class="mb-4">En JUSTCODE, buscamos para 2025 ser una empresa líder en el desarrollo de software,
                         marcando la
                         pauta hacia un futuro sustentable, así como diseñar y desarrollar servicios y soluciones de
                         software
                         diferenciales.</p>
                 </div>
-            </div>
+            </div> 
             <div class="lg:col-span-7">
                 <div class="ml-14">
-                    <img class="inline" src="{{ asset('img/vision.jpg') }}" alt="alternative" />
+                    <img class="inline" src="images/details-3.jpg" alt="alternative" />
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div> 
     </div>
 
 
 
-    <div class="slider-1 py-16 bg-gray h-96">
-        <div class="container px-4 sm:px-8">
-            <h2 class="mb-12 text-3xl font-bold text-center lg:max-w-xl lg:mx-auto text-gray-800">Nuestro Equipo</h2>
 
+    <div class="slider-1 py-32 bg-gray">
+        <div class="container px-4 sm:px-8">
+            <h2 class="mb-12 text-center lg:max-w-xl lg:mx-auto">Nuestro Equipo</h2>
 
             <div class="slider-container">
-                <div class="swiper-container card-slider flex justify-center items-center">
+                <div class="swiper-container card-slider">
                     <div class="swiper-wrapper">
 
 
@@ -200,7 +204,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/diseñador-fabian.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">José Fabián Alcázar Ramírez - Designer</p>
+                                    <p class="testimonial-author">José Fabián Alcázar Ramírez - Desinger</p>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +215,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/documentador-luis.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">Luis Antonio Lopez Lara - Portfolio</p>
+                                    <p class="testimonial-author">Luis Antonio Lopez Lara - Portfile</p>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +237,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/desarrollador-rodiber.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">Rodiber Cruz Morales - Developer</p>
+                                    <p class="testimonial-author">Rodiber Cruz Morales - Develop</p>
                                 </div>
                             </div>
                         </div>
@@ -242,6 +246,7 @@
 
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
+
 
                 </div>
             </div>
@@ -257,8 +262,9 @@
         <div class="absolute bottom-0 h-40 w-full bg-white"></div>
 
         <div class="container px-4 pb-px sm:px-8">
-            <h2 class="mb-2.5 text-3xl font-bold text-white lg:max-w-xl lg:mx-auto py-">¡Apoya nuestra App de
-                Reciclaje!</h2>
+            <h2 class="mb-2.5 text-white lg:max-w-xl lg:mx-auto">¡Apoya nuestra App de Reciclaje!</h2>
+
+
 
 
             <div class="card">
@@ -268,8 +274,7 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Logo PayPal"
                             class="mx-auto mb-4 h-12">
 
-                        <p class="text-gray-600 p-large mb-8">Tu donación nos ayuda a seguir promoviendo la recolección
-                            de
+                        <p class="text-gray-600">Tu donación nos ayuda a seguir promoviendo la recolección de
                             materiales
                             reciclables y cuidar el medio ambiente.</p>
                     </div>
@@ -289,7 +294,7 @@
                     </div>
 
                     <div class="flex items-center justify-center">
-                        <p class="text-center text-gray-600 p-large mb-8">
+                        <p class="text-center">
                             Gracias por tu apoyo.
                         </p>
                     </div>
@@ -339,7 +344,7 @@
             </div>
         </form>
     </div>
-
+    
 
 
 
@@ -351,14 +356,12 @@
 
     <div class="footer">
         <div class="container px-4 sm:px-8">
-
-            <h4 class="mb-8 text-lg font-semibold lg:max-w-3xl lg:mx-auto">
-                Reciclapp es esencial para la sostenibilidad ambiental. Separa tus residuos y deposítalos en los
-                contenedores adecuados. Para más información, contacta a nuestro equipo en:
+            <h4 class="mb-8 lg:max-w-3xl lg:mx-auto">Reciclapp es esencial para la sostenibilidad ambiental. Separa tus
+                residuos y deposítalos en los contenedores adecuados. Para más información, contacta a nuestro equipo
+                en:
                 <a class="text-indigo-600 hover:text-gray-500"
-                    href="mailto:info.reciclapp@gmail.com">info.reciclapp@gmail.com</a>
+                    href="info.reciclapp@gmail.com">info.reciclapp@gmail.com</a>
             </h4>
-
             <div class="social-container">
                 <span class="fa-stack">
                     <a href="#your-link">
@@ -386,7 +389,7 @@
 
             <div>
                 <ul class="mb-4 list-unstyled p-small">
-                    <li class="mb-2"><a href="{{ route('terminos_condiciones') }}">Termimos & Condiciones</a></li>
+                    <li class="mb-2"><a href="terms.html">Termimos & Condiciones</a></li>
                 </ul>
             </div>
 
@@ -398,7 +401,7 @@
             <div class="flex items-center justify-end">
 
                 <ul class="mb-4 list-unstyled p-small">
-                    <li class="mb-2"><a href="{{ route('aviso_privacidad') }}">Política de Privacidad</a></li>
+                    <li class="mb-2"><a href="privacy.html">Política de Privacidad</a></li>
                 </ul>
 
             </div>
@@ -408,24 +411,14 @@
 
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const successMessage = document.getElementById('message');
-            if (successMessage) {
-                setTimeout(() => {
-                    successMessage.classList.add('fade-out');
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 1000);
-                }, 2000);
-            }
-        });
-    </script>
 
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('js/swiper.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
-    <script src="{{ asset('js/scripts.js') }}"></script>
 
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
+
+</html>

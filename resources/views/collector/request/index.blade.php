@@ -1,6 +1,10 @@
 <x-app-layout>
     <div class="container mx-auto p-2">
-
+        <div class="flex py-1">
+            <a href="{{ route('report.collector') }}" target="_blank" class="text-black inline-flex items-center">
+                <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
+            </a>
+        </div>
 
         <table class="min-w-full bg-white border border-gray-200">
             <thead>

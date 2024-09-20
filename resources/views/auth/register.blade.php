@@ -16,7 +16,15 @@
 
     <div class="flex items-center justify-center min-h-screen py-4 px-4">
         <div id="custom-bg" class="p-6 flex flex-col max-w-3xl w-full rounded-lg shadow-lg overflow-auto">
+            <div class=" p-4 flex items-center">
+                <a href="javascript:history.back()" class="text-white mr-2">
+                    <i class="fas fa-arrow-left"></i> 
+                </a>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 mb-1">
+
+                
                 <div class="bg-custom overflow-hidden flex justify-center items-center">
                     <div class="p-6 text-gray-900">
                         <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" class="mx-auto" width="150px"
@@ -36,7 +44,8 @@
                         <div class="mt-4">
                             <x-input-label for="phone" :value="__('Teléfono')" />
                             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone"
-                                :value="old('phone')" required autofocus autocomplete="phone" />
+                                :value="old('phone')" required autofocus autocomplete="phone"
+                                pattern="^\d{10}$" inputmode="numeric" title="Por favor, ingrese exactamente 10 dígitos (solo números)." maxlength="10" />
                             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                         </div>
                         <div class="mt-4">

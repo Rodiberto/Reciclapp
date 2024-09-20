@@ -185,7 +185,7 @@ return [
         ],
 
         'phone' => [
-            'regex' => 'El campo Teléfono no puede tener mas de 10 digitos.',
+            'regex' => 'Ingrese solo números y no debe tener mas de 10 digitos',
         ],
 
         'description' => [

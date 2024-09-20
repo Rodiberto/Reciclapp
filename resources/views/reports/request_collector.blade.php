@@ -68,29 +68,27 @@
 
     <div class="footer"></div>
 
-    <h1 style="text-align: center; margin-top: 70px;">Reporte de las solicitudes</h1>
+    <h1 style="text-align: center; margin-top: 70px;">Solicitudes de recolección</h1>
     <table>
         <thead>
             <tr>
                 <th>Código</th>
                 <th>Estado</th>
+                <th>Total aproximado (kg)</th>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Ubicacion</th>
-                <th>Fecha programada</th>
-                <th>Fecha de creacion</th>
+                <th>Ubicación</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($requests as $request)
                 <tr>
-                    <td>{{ $request->code }}</td>
-                    <td>{{ $request->status }}</td>
+                    <td>{{ $request['code'] }}</td>
+                    <td>{{ $request['status'] }}</td>
+                    <td>{{ $request['total_weight'] }} kg</td>
                     <td>{{ $request->date }}</td>
                     <td>{{ $request->hour }}</td>
                     <td>{{ $request->location }}</td>
-                    <td>{{ $request->scheduled_date }}</td>
-                    <td>{{ $request->created_at }}</td>
                 </tr>
             @endforeach
         </tbody>
