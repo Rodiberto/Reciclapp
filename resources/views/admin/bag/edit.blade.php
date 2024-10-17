@@ -22,28 +22,25 @@
                 <form action="{{ route('bags.update', $bag->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="mb-4">
                         <label for="name" class="w-full text-gray-700 font-semibold mb-2">Nombre</label>
-                        <input type="text" name="name" id="name" 
+                        <input type="text" name="name" id="name"
                             class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700"
                             value="{{ old('name', $bag->name) }}" required>
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <span id="name-error" class="text-red-500 text-xs"></span>
                     </div>
-                
+
                     <button type="submit"
                         class="w-full bg-green-800 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:bg-green-700">
                         Actualizar bolsa
                     </button>
-                </form>                
+                </form>
 
             </div>
         </div>
     </div>
 
-
+    <script src="{{ asset('js/t-bag.js') }}"></script>
 
 </x-app-layout>
-
-
-

@@ -139,7 +139,7 @@
 
             <h3 class="mt-8 mb-2 text-gray-800 font-bold text-2xl leading-tight tracking-tight">Contacto:</h3>
             <p class="mb-12">Si tienes preguntas sobre estos Términos y Condiciones, puedes contactarnos a través de <a
-                    href="mailto:info.reciclapp@gmail.com" class="text-blue-600 underline">info.reciclapp@gmail.com</a>.
+                    href="mailto:info.reciclapp@gmail.com" class="text-green-600 underline">info.reciclapp@gmail.com</a>.
             </p>
         </div>
     </div>
@@ -163,20 +163,20 @@
             <h4 class="mb-8 text-lg font-semibold lg:max-w-3xl lg:mx-auto">
                 Reciclapp es esencial para la sostenibilidad ambiental. Separa tus residuos y deposítalos en los
                 contenedores adecuados. Para más información, contacta a nuestro equipo en:
-                <a class="text-indigo-600 hover:text-gray-500"
+                <a class="text-green-700 hover:text-green-500"
                     href="mailto:info.reciclapp@gmail.com">info.reciclapp@gmail.com</a>
             </h4>
 
             <div class="social-container">
                 <span class="fa-stack">
-                    <a href="#your-link">
+                    <a href="https://github.com/Rodiberto/Reciclapp.git" target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-facebook-f fa-stack-1x"></i>
+                        <i class="fab fa-github fa-stack-1x"></i>
                     </a>
                 </span>
 
                 <span class="fa-stack">
-                    <a href="#your-link">
+                    <a href="https://instagram.com/reciclappnet" target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-instagram fa-stack-1x"></i>
                     </a>
@@ -194,19 +194,19 @@
 
             <div>
                 <ul class="mb-4 list-unstyled p-small">
-                    <li class="mb-2"><a href="{{route('terminos_condiciones')}}">Termimos & Condiciones</a></li>
+                    <li class="mb-2"><a href="{{route('terminos_condiciones')}}">Términos & Condiciones</a></li>
                 </ul>
             </div>
 
             <div>
-                <p class="pb-2 p-small statement">Reciclapp © <a href="#your-link" class="no-underline">Todos los
+                <p class="pb-2 p-small statement">Reciclapp © <a class="no-underline">Todos los
                         derechos reservados</a></p>
             </div>
 
             <div class="flex items-center justify-end">
 
                 <ul class="mb-4 list-unstyled p-small">
-                    <li class="mb-2"><a href="{{route('aviso_privacidad')}}">Política de Privacidad</a></li>
+                    <li class="mb-2"><a href="{{route('aviso_privacidad')}}">Aviso de Privacidad</a></li>
                 </ul>
 
             </div>

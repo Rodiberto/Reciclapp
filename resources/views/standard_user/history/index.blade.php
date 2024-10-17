@@ -1,11 +1,20 @@
 <x-app-layout>
+
     <head>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     </head>
 
     <div class="container mx-auto px-2">
+
         <table class="table-auto w-full mt-4 bg-white text-gray-900 border border-gray-200 rounded-lg shadow-md">
             <thead>
+                <tr class="border-b">
+                    <th colspan="3">
+                        <h1 class="text-2xl font-extrabold text-gray-900 text-center tracking-wide mb-2">
+                            Historial de materiales reciclados
+                        </h1>
+                    </th>
+                </tr>
                 <tr>
                     <th class="px-4 py-2 border-b">Material</th>
                     <th class="px-4 py-2 border-b">Fecha</th>
@@ -21,7 +30,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="px-4 py-2 text-center">No hay historial de transacciones disponibles.</td>
+                        <td colspan="3" class="px-4 py-2 text-center">No hay historial de transacciones disponibles.
+                        </td>
                     </tr>
                 @endforelse
             </tbody>

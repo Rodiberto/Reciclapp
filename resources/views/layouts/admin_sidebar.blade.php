@@ -23,7 +23,7 @@
     <!--Encabezado -->
     <div>
         <a href="{{ route('admin.dashboard') }}"
-            class="py-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+            class="py-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer">
 
             <img src="{{ asset('favicon.png') }}" width="40px" height="40px" alt="Favicon">
 
@@ -45,21 +45,16 @@
 
 
             <a id="collapse-btn" href="#"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center rounded transition duration-200 cursor-pointer">
 
-                <div class="p-2 rounded-full bg-gray-100">
-                    <i class="text-black fas fa-bars"></i>
+                <div class="p-2 rounded-full hover:bg-lime-300">
+                    <i id="collapse-icon" class="text-white fas fa-arrow-left"></i>
                 </div>
-
-                <div class="ml-3 text-white menu">
-                    Menú
-                </div>
-
             </a>
 
 
             <a href="{{ route('admin.dashboard') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer {{ Request::routeIs('admin.dashboard') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-tachometer-alt"></i>
@@ -73,7 +68,7 @@
 
 
             <a href="{{ route('users.index') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer {{ Request::routeIs('users.index') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-users"></i>
@@ -87,7 +82,7 @@
 
 
             <a href="{{ route('materials.index') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer {{ Request::routeIs('materials.index') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-box-open"></i>
@@ -101,7 +96,7 @@
 
 
             <a href="{{ route('material_categories.index') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer {{ Request::routeIs('material_categories.index') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-tags"></i>
@@ -115,7 +110,7 @@
 
 
             <a href="{{ route('bags.index') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer {{ Request::routeIs('bags.index') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-shopping-bag"></i>
@@ -139,7 +134,8 @@
 
     <!--Contenido Perfil y Log Out -->
     <div class="mt-auto">
-        <a href="{{ route('profile.edit') }}" class="p-1 flex items-center bg-gray-100 rounded-lg prof">
+        <a href="{{ route('profile.edit') }}"
+            class="p-1 flex items-center bg-gray-100 rounded-lg prof {{ Request::routeIs('profile.edit') ? 'bg-lime-300' : '' }}">
             <div class="flex justify-center items-center h-10 w-10 overflow-hidden">
                 <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" width="40px" height="40px"
                     class="rounded-full">
@@ -151,7 +147,7 @@
         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
             @csrf
             <button type="submit"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer">
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-sign-out-alt"></i>
                 </div>

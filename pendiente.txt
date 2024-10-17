@@ -1,0 +1,20 @@
+//////////////FINALIZADO//////////////
+*Integracion de softdeletes
+*Estado de Navegación
+*Desplazamiento del Sidebar
+*Modales para Mensajes
+
+## Para los botones grid y list "dejar solo un ícono" y que lo reconozca automaticamente cuando está en grid o lista
+## No sé debe eliminar los usuarios recolectores
+## Cambiar de cursor cuando se pasa encima de las tarjetas "Aprende".
+## Nombre para cada módulo. 
+## Ponerle titulo a las gráficas.
+# Mensaje de validación en tiempo real.
+
+
+
+
+
+
+
+

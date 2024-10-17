@@ -39,10 +39,12 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
+
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
-            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u',],
+            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u',],
             'material_category_id' => ['required', 'exists:material_categories,id'],
             'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
@@ -77,7 +79,7 @@ class MaterialController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
-            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u',],
+            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u',],
             'material_category_id' => ['required', 'exists:material_categories,id'],
             'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
@@ -116,7 +118,7 @@ class MaterialController extends Controller
             return redirect()->route('materials.index')
                 ->with('error', 'No se puede eliminar el material porque está asociado a elementos.');
         }
-        
+
         if ($material->image) {
             $imagePath = base_path('../material_image/' . basename($material->image));
             if (file_exists($imagePath)) {

@@ -45,7 +45,7 @@
 
                                  <x-input-error :messages="$errors->get('image')" class="mt-2" />
                              </div>
-                             <span id="file-name-image"></span>
+                             <span id="materials"></span>
 
 
 
@@ -54,11 +54,7 @@
                                  <input id="weight" type="number" step="0.01"
                                      class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700 @error('weight') border-red-500 @enderror"
                                      name="weight" value="{{ old('weight', $material->weight) }}" required>
-                                 @error('weight')
-                                     <span class="text-red-500 text-sm mt-1">
-                                         <strong>{{ $message }}</strong>
-                                     </span>
-                                 @enderror
+                                 <span id="weight-error" class="text-red-500 text-xs"></span>
                              </div>
 
                              <div class="mb-4">
@@ -66,11 +62,7 @@
                                  <input id="value" type="number" step="0.01"
                                      class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700 @error('value') border-red-500 @enderror"
                                      name="value" value="{{ old('value', $material->value) }}" required>
-                                 @error('value')
-                                     <span class="text-red-500 text-sm mt-1">
-                                         <strong>{{ $message }}</strong>
-                                     </span>
-                                 @enderror
+                                 <span id="value-error" class="text-red-500 text-xs"></span>
                              </div>
                          </div>
 
@@ -81,11 +73,7 @@
                                  <input id="name" type="text"
                                      class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700 @error('name') border-red-500 @enderror"
                                      name="name" value="{{ old('name', $material->name) }}" required>
-                                 @error('name')
-                                     <span class="text-red-500 text-sm mt-1">
-                                         <strong>{{ $message }}</strong>
-                                     </span>
-                                 @enderror
+                                 <span id="name-error" class="text-red-500 text-xs"></span>
                              </div>
 
                              <div class="mb-4">
@@ -102,11 +90,7 @@
                                          </option>
                                      @endforeach
                                  </select>
-                                 @error('material_category_id')
-                                     <span class="text-red-500 text-sm mt-1">
-                                         <strong>{{ $message }}</strong>
-                                     </span>
-                                 @enderror
+                                 <span id="category-error" class="text-red-500 text-xs"></span>
                              </div>
 
 
@@ -116,11 +100,7 @@
                                  <textarea id="description"
                                      class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700 @error('description') border-red-500 @enderror"
                                      name="description" required>{{ old('description', $material->description) }}</textarea>
-                                 @error('description')
-                                     <span class="text-red-500 text-sm mt-1">
-                                         <strong>{{ $message }}</strong>
-                                     </span>
-                                 @enderror
+                                 <span id="description-error" class="text-red-500 text-xs"></span>
                              </div>
                          </div>
                      </div>
@@ -140,6 +120,7 @@
 
 
      <script src="{{ asset('js/filename_image.js') }}"></script>
+     <script src="{{ asset('js/t-materials.js') }}"></script>
 
 
  </x-app-layout>

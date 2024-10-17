@@ -26,7 +26,7 @@ class CheckSessionActivity
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect()->route('login')->with('message', 'Sesión expirada por inactividad.');
+            return redirect()->route('login')->with('session_expired', 'Sesión expirada por inactividad.');
         }
 
         Session::put('lastActivity', time());

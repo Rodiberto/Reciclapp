@@ -29,23 +29,23 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
-            'phone' => ['required', 'numeric', 'regex:/^[0-9]{10}$/'],
+            'phone' => ['required', 'numeric', 'regex:/^[0-9]{10}$/', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
 
 
-        $profilePhotoUrl = '/default/profile.png'; 
+        $profilePhotoUrl = '/default/profile.png';
 
         if ($request->hasFile('photo')) {
             $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
-    
+
             $profilePhotoPath = $request->file('photo')->move(base_path('../profile_photos'), $fileName);
-    
+
             $profilePhotoUrl = '/profile_photos/' . $fileName;
         }
-        
+
 
 
 
@@ -60,9 +60,18 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user);
-
-        // return redirect()->route('standard_user.dashboard');
         return redirect()->route('login');
+    }
+
+    public function validatePhone(Request $request)
+    {
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+    public function validateEmail(Request $request)
+    {
+        $exists = User::where('email', $request->email)->exists();
+        return response()->json(['exists' => $exists]);
     }
 }

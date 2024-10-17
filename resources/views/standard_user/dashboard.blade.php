@@ -22,31 +22,36 @@
                             Aprende a reciclar
                         </h1>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-4">
-                            <div id="plasticCard" class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                            <div id="plasticCard"
+                                class="bg-gray-50 p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-gray-200">
                                 <img src="{{ asset('/img/learn/plastico.jpg') }}" alt="Plástico"
                                     class="w-20 h-20 mb-2 rounded-lg">
                                 <span class="text-sm font-semibold text-gray-800">Plástico</span>
                             </div>
 
-                            <div id="glassCard" class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                            <div id="glassCard"
+                                class="bg-gray-50 p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-gray-200">
                                 <img src="{{ asset('/img/learn/vidrio.jpg') }}" alt="Vidrio"
                                     class="w-20 h-20 mb-2 rounded-lg">
                                 <span class="text-sm font-semibold text-gray-800">Vidrio</span>
                             </div>
 
-                            <div id="aluminumCard" class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                            <div id="aluminumCard"
+                                class="bg-gray-50 p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-gray-200">
                                 <img src="{{ asset('/img/learn/aluminio.jpg') }}" alt="Aluminio"
                                     class="w-20 h-20 mb-2 rounded-lg">
                                 <span class="text-sm font-semibold text-gray-800">Aluminio</span>
                             </div>
 
-                            <div id="cardboardCard" class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                            <div id="cardboardCard"
+                                class="bg-gray-50 p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-gray-200">
                                 <img src="{{ asset('/img/learn/carton.jpg') }}" alt="Cartón"
                                     class="w-20 h-20 mb-2 rounded-lg">
                                 <span class="text-sm font-semibold text-gray-800">Cartón</span>
                             </div>
 
-                            <div id="paperCard" class="bg-gray-50 p-4 rounded-lg flex flex-col items-center">
+                            <div id="paperCard"
+                                class="bg-gray-50 p-4 rounded-lg flex flex-col items-center cursor-pointer hover:bg-gray-200">
                                 <img src="{{ asset('/img/learn/papel.jpg') }}" alt="Papel"
                                     class="w-20 h-20 mb-2 rounded-lg">
                                 <span class="text-sm font-semibold text-gray-800">Papel</span>
@@ -56,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6 mb-6">
+            {{-- <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6 mb-6">
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
@@ -64,30 +69,67 @@
                             reciclados</p>
 
                         <form id="intervalForm">
-                            
+
 
                             <div class="flex justify-center items-center">
-                                <label for="interval" class="space-x-2 flex text-sm font-semibold text-gray-800">Selecciona el intervalo:</label>
-                                <select id="interval" name="interval" class="px-2 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
+                                <label for="interval"
+                                    class="space-x-2 flex text-sm font-semibold text-gray-800">Selecciona el
+                                    intervalo:</label>
+                                <select id="interval" name="interval"
+                                    class="px-2 border border-transparent rounded focus:ring-green-700 focus:border-green-700">
                                     <option value="week" {{ $interval === 'week' ? 'selected' : '' }}>Semana</option>
                                     <option value="month" {{ $interval === 'month' ? 'selected' : '' }}>Mes</option>
                                 </select>
-                                <button type="submit" class="space-x-2 p-2 bg-gray-50 hover:text-white text-green-700 font-semibold rounded-lg border border-transparent shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out">
-                                    <i class="fas fa-sync-alt"></i> 
+                                <button type="submit"
+                                    class="space-x-2 p-2 bg-gray-50 hover:text-white text-green-700 font-semibold rounded-lg border border-transparent shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                                    <i class="fas fa-sync-alt"></i>
                                 </button>
-                                
+
                             </div>
 
                         </form>
 
                         <div>
-                            <canvas id="myChart" width="200" height="80"></canvas>
+                            <canvas id="myChart" class="w-full"></canvas>
                         </div>
 
 
                     </div>
                 </div>
+            </div> --}}
+
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6 mb-6">
+                <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
+                    <div class="p-6 text-gray-900">
+                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Cantidad de
+                            Material Reciclado</p>
+
+                        <form id="intervalForm" method="GET" action="{{ route('standard_user.dashboard') }}">
+                            <div class="flex justify-center items-center space-x-4">
+                                <label class="text-sm font-semibold text-gray-800">Intervalo:</label>
+
+                                <button type="submit" name="interval" value="week"
+                                    class="p-2 bg-gray-50 hover:text-white text-gray-800 font-semibold rounded-lg border border-transparent shadow-sm
+                                     hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out 
+                                    {{ $interval === 'week' ? 'bg-gray-50 text-white' : '' }}">
+                                    Semanal
+                                </button>
+
+                                <button type="submit" name="interval" value="month"
+                                    class="p-2 bg-gray-50 hover:text-white text-gray-800 font-semibold rounded-lg border border-transparent shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out
+                                    {{ $interval === 'month' ? 'bg-green-50 text-white' : '' }}">
+                                    Mensual
+                                </button>
+                            </div>
+                        </form>
+
+                        <div>
+                            <canvas id="myChart" class="w-full"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
+
 
 
 
@@ -589,20 +631,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    var materials = ['Plástico', 'Cartón', 'Vidrio', 'Aluminio', 'Papel']; 
+
+
+{{-- <script>
+    var materials = ['Plástico', 'Cartón', 'Vidrio', 'Aluminio', 'Papel'];
     var quantities = [120, 80, 45, 60, 90];
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar', // bar, line.
+        type: 'bar',
         data: {
-            labels: materials, 
+            labels: materials,
             datasets: [{
-                label: 'Cantidad reciclada (kg)',
-                data: quantities, 
+                label: 'Cantidad reciclada (kg)', // Esta línea se puede eliminar si no se quiere mostrar nada.
+                data: quantities,
                 backgroundColor: [
-                    'rgba(75, 192, 192, 1)', 
+                    'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -619,55 +663,91 @@
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true 
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false // Oculta la leyenda
                 }
-            }
-        }
-    });
-</script>
-
-
-{{-- <script>
-    document.getElementById('intervalForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var interval = document.getElementById('interval').value;
-        var url = `{{ route('standard_user.dashboard') }}?interval=${interval}`;
-        window.location.href = url;
-    });
-
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar', // bar, line.
-        data: {
-            labels: {!! json_encode($materials) !!}, // Etiquetas para cada barra (Materiales reciclados)
-            datasets: [{
-                label: 'Cantidad reciclada (kg)', // Etiqueta para el gráfico
-                data: {!! json_encode($quantities) !!}, // Cantidades recicladas para cada material
-                backgroundColor: [
-                    'rgba(75, 192, 192, 1)', 
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 99, 132, 1)',
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)', 
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 99, 132, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Cantidad reciclada (kg)', // Título del eje vertical
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                x: {
+                    type: 'category' // Asegura que se muestren las etiquetas de categoría en el eje X
                 }
             }
         }
     });
 </script> --}}
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        const labels = @json($materials);
+        const data = @json($quantities);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de Material Reciclado',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad reciclada en (kg)',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    x: {
+                        type: 'category'
+                    }
+                }
+            }
+        });
+    });
+</script>

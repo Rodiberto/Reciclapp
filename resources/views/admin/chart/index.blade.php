@@ -22,9 +22,9 @@
                     label: 'Usuarios por Rol',
                     data: @json($rolesData->pluck('total')),
                     backgroundColor: [
-                        '#FF5733', // Rojo intenso para el primer rol
-                        '#33FF57', // Verde intenso para el segundo rol
-                        '#3357FF' // Azul intenso para el tercer rol
+                        '#FF5733',
+                        '#33FF57',
+                        '#3357FF'
                     ],
                 }]
             };

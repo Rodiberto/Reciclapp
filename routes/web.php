@@ -32,26 +32,28 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::middleware(['auth', 'check.activity'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
-Route::middleware('admin', 'check.activity')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('users', UserController::class)->middleware('auth');
     Route::resource('materials', MaterialController::class);
     Route::resource('material_categories', MaterialCategoryController::class);
     Route::resource('bags', BagController::class);
+    Route::post('/validate-bag-name', 'BagController@validateName')->name('bags.validateName');
+
     Route::get('/generate-report', [PdfController::class, 'generateReport'])->name('generate.report');
     Route::get('/generate-report-users', [PdfController::class, 'UserReport'])->name('report.users');
     Route::get('/admin/chart', [ChartsController::class, 'index'])->name('admin.chart');
 });
 
 
-Route::middleware('collector', 'check.activity')->group(function () {
+Route::middleware(['auth', 'collector'])->group(function () {
     Route::get('/collector/dashboard', [CollectorController::class, 'index'])->name('collector.dashboard');
     Route::get('/request', [RequestsController::class, 'index'])->name('requests_collector.index');
     Route::get('/requests/{id}', [RequestsController::class, 'show'])->name('requests_collector.show');
@@ -60,7 +62,7 @@ Route::middleware('collector', 'check.activity')->group(function () {
 });
 
 
-Route::middleware('standard_user', 'check.activity')->group(function () {
+Route::middleware(['auth', 'standard_user'])->group(function () {
     Route::get('/standard_user/dashboard', [StandarUserController::class, 'index'])->name('standard_user.dashboard');
     Route::get('/requests', [RequestController::class, 'index'])->name('requests_user.index');
     Route::get('/history', [HistoryController::class, 'index'])->name('history_user.index');

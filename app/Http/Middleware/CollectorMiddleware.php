@@ -20,6 +20,6 @@ class CollectorMiddleware
         }
 
         auth()->logout();
-        return redirect()->route('home')->with('error', 'Tu sesión ha sido cerrada porque no tienes permiso para acceder a esta página.');
+        return redirect()->route('home')->with('permission_denied', 'Tu sesión ha sido cerrada porque no tienes permiso para acceder a esta página.');
     }
 }

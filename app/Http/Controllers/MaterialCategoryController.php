@@ -23,7 +23,7 @@ class MaterialCategoryController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
-            'description' => ['required','string','max:255','regex:/^[\p{L}\s]+$/u',],
+            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u',],
         ]);
 
         MaterialCategory::create($request->all());
@@ -40,7 +40,7 @@ class MaterialCategoryController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
-            'description' => ['required','string','max:255','regex:/^[\p{L}\s]+$/u',],
+            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u',],
         ]);
 
         $material_category->update($request->all());

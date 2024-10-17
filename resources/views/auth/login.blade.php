@@ -11,10 +11,16 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-@if (session()->has('message'))
-    <div id="message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4"
-        role="alert">
-        <span class="block sm:inline">{{ session()->get('message') }}</span>
+@if (session('session_expired'))
+    <div id="messageModal" class="fixed inset-0 flex items-center justify-center z-50">
+        <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-6 text-center max-w-sm w-full">
+            @if (session('session_expired'))
+                <div class="text-green-700 bg-white border-l-4 border-green-500 p-3 rounded-lg">
+                    <strong>Estado:</strong> {{ session()->get('session_expired') }}
+                </div>
+            @endif
+
+        </div>
     </div>
 @endif
 
@@ -29,7 +35,7 @@
 
             <div class=" p-4 flex items-center">
                 <a href="javascript:history.back()" class="text-white mr-2">
-                    <i class="fas fa-arrow-left"></i> 
+                    <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
 
@@ -147,6 +153,16 @@
         </div>
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('messageModal');
+            if (modal) {
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
 
 </body>
 <script src="{{ asset('js/password-login.js') }}"></script>

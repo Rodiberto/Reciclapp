@@ -23,7 +23,7 @@
     <!--Encabezado -->
     <div>
         <a href="{{ route('collector.dashboard') }}"
-            class="py-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+            class="py-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer">
 
             <img src="{{ asset('favicon.png') }}" width="40px" height="40px" alt="Favicon">
 
@@ -44,21 +44,17 @@
         <nav>
 
             <a id="collapse-btn" href="#"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center rounded transition duration-200 cursor-pointer">
 
-                <div class="p-2 rounded-full bg-gray-100">
-                    <i class="text-black fas fa-bars fa-sm"></i>
+                <div class="p-2 rounded-full hover:bg-lime-300">
+                    <i id="collapse-icon" class="text-white fas fa-arrow-left"></i>
                 </div>
-
-                <div class="ml-3 text-white menu">
-                    Menú
-                </div>
-
             </a>
 
 
             <a href="{{ route('collector.dashboard') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer
+                 {{ Request::routeIs('collector.dashboard') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-tachometer-alt"></i>
@@ -73,7 +69,8 @@
 
 
             <a href="{{ route('requests_collector.index') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer
+                {{ Request::routeIs('requests_collector.index') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-file-alt"></i>
@@ -86,8 +83,9 @@
             </a>
 
 
-            <a href="{{ route ('history_controller.index') }}"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+            <a href="{{ route('history_controller.index') }}"
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer
+                {{ Request::routeIs('history_controller.index') ? 'bg-lime-300' : '' }}">
 
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-history"></i>
@@ -113,7 +111,9 @@
 
     <!--Contenido Perfil y Log Out -->
     <div class="mt-auto">
-        <a href="{{ route('profile.edit') }}" class="p-1 flex items-center bg-gray-100 rounded-lg prof">
+        <a href="{{ route('profile.edit') }}"
+            class="p-1 flex items-center bg-gray-100 rounded-lg prof
+        {{ Request::routeIs('profile.edit') ? 'bg-lime-300' : '' }}">
             <div class="flex justify-center items-center h-10 w-10 overflow-hidden">
                 <img src="{{ asset(Auth::user()->photo) }}" alt="Foto de perfil" width="40px" height="40px"
                     class="rounded-full">
@@ -125,7 +125,7 @@
         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
             @csrf
             <button type="submit"
-                class="p-2 flex items-center hover:bg-green-600 rounded transition duration-200 cursor-pointer">
+                class="p-2 flex items-center hover:bg-lime-300 rounded transition duration-200 cursor-pointer">
                 <div class="p-2 rounded-full bg-gray-100">
                     <i class="text-black fas fa-sign-out-alt"></i>
                 </div>

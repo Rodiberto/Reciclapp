@@ -1,13 +1,23 @@
 <x-app-layout>
     <div class="container mx-auto p-2">
-        <div class="flex py-1">
-            <a href="{{ route('report.collector') }}" target="_blank" class="text-black inline-flex items-center">
-                <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
-            </a>
-        </div>
 
         <table class="min-w-full bg-white border border-gray-200">
+
             <thead>
+                <tr>
+
+                    <th class="py-2 px-4 border-b text-lg" colspan="1">
+                        <a href="{{ route('report.collector') }}" target="_blank"
+                            class="text-black inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
+                        </a>
+
+                    </th>
+                    <th class="justify-start py-2 px-4 border-b text-lg" colspan="5">
+                        MIS SOLICITUDES
+                    </th>
+                </tr>
+
                 <tr>
                     <th class="py-2 px-4 border-b">Código</th>
                     <th class="py-2 px-4 border-b">Estado</th>
@@ -34,7 +44,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="py-2 px-4 text-center">No hay solicitudes de recolección disponibles.</td>
+                        <td colspan="7" class="py-2 px-4 text-center">No hay solicitudes de recolección disponibles.
+                        </td>
                     </tr>
                 @endforelse
             </tbody>

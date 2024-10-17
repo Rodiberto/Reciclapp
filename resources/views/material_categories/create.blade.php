@@ -21,37 +21,38 @@
 
                 <form action="{{ route('material_categories.store') }}" method="POST">
                     @csrf
-                    
+
                     <div class="mb-4">
                         <label for="name" class="w-full text-gray-700 font-medium mb-2">Nombre</label>
-                        <input type="text" name="name" id="name" 
+                        <input type="text" name="name" id="name"
                             class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700"
                             value="{{ old('name') }}" required>
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
+                        <span id="name-error" class="text-red-500 text-xs"></span>
                     </div>
-                
+
                     <div class="mb-4">
                         <label for="description" class="w-full text-gray-700 font-medium mb-2">Descripción</label>
                         <textarea name="description" id="description" required
                             class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700">{{ old('description') }}</textarea>
-                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        <span id="description-error" class="text-red-500 text-xs"></span>
                     </div>
-                
+
                     <button type="submit"
                         class="w-full bg-green-800 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none 
                         focus:ring-2 focus:bg-green-700">
                         Guardar
                     </button>
-                
+
                 </form>
-                
+
 
 
             </div>
         </div>
     </div>
 
+    <script src="{{ asset('js/t-material-categories.js') }}"></script>
 
 
 </x-app-layout>
-

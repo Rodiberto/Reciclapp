@@ -63,7 +63,6 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('standard_user.dashboard');
         } else {
             return redirect('/');
-            
         }
     }
 }

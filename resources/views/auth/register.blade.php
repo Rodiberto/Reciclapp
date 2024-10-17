@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/bg_custom.css') }}">
 
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -18,13 +20,13 @@
         <div id="custom-bg" class="p-6 flex flex-col max-w-3xl w-full rounded-lg shadow-lg overflow-auto">
             <div class=" p-4 flex items-center">
                 <a href="javascript:history.back()" class="text-white mr-2">
-                    <i class="fas fa-arrow-left"></i> 
+                    <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 mb-1">
 
-                
+
                 <div class="bg-custom overflow-hidden flex justify-center items-center">
                     <div class="p-6 text-gray-900">
                         <img src="{{ asset('/img/logo.png') }}" alt="Logo Reciclapp" class="mx-auto" width="150px"
@@ -39,20 +41,20 @@
                             <x-input-label for="name" :value="__('Nombre completo')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
                                 :value="old('name')" required autofocus autocomplete="name" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            <span id="name-error" class="text-red-500 text-xs"></span>
                         </div>
                         <div class="mt-4">
                             <x-input-label for="phone" :value="__('Teléfono')" />
                             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone"
-                                :value="old('phone')" required autofocus autocomplete="phone"
-                                pattern="^\d{10}$" inputmode="numeric" title="Por favor, ingrese exactamente 10 dígitos (solo números)." maxlength="10" />
-                            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                                :value="old('phone')" required autofocus autocomplete="phone" inputmode="numeric"
+                                maxlength="10" />
+                            <span id="phone-error" class="text-red-500 text-xs"></span>
                         </div>
                         <div class="mt-4">
                             <x-input-label for="email" :value="__('Correo electrónico')" />
                             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
                                 :value="old('email')" required autocomplete="username" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            <span id="email-error" class="text-red-500 text-xs"></span>
                         </div>
 
                         <div class="mt-4 relative">
@@ -64,7 +66,7 @@
                                 <i class="fa fa-eye" id="eye-icon-password"></i>
                                 <i class="fa fa-eye-slash hidden" id="eye-slash-icon-password"></i>
                             </button>
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <span id="password-error" class="text-red-500 text-xs"></span>
                         </div>
 
                         <div class="mt-4 relative">
@@ -76,22 +78,9 @@
                                 <i class="fa fa-eye" id="eye-icon-confirmation"></i>
                                 <i class="fa fa-eye-slash hidden" id="eye-slash-icon-confirmation"></i>
                             </button>
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                            <span id="password_confirmation-error" class="text-red-500 text-xs"></span>
                         </div>
 
-
-                        {{-- <div class="mt-4">
-                            <x-input-label for="photo" :value="__('Foto de perfil')" />
-                            <div class="mt-1 flex items-center">
-                                <label for="photo"
-                                    class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 w-full sm:text-sm">
-                                    <span class="block truncate">Seleccionar archivo (opcional)</span>
-                                    <input id="photo" type="file" name="photo" class="hidden">
-                                </label>
-                            </div>
-                            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
-                        </div>
-                        <span id="file-name"></span> --}}
                         <div class="flex items-center justify-end mt-4">
                             <a class="px-2 flex-start text-sm text-gray-600 hover:text-gray-900"
                                 href="{{ route('login') }}">
@@ -106,11 +95,8 @@
             </div>
         </div>
     </div>
-
-    <script src="{{ asset('js/filename.js') }}"></script>
     <script src="{{ asset('js/password-register.js') }}"></script>
+    <script src="{{ asset('js/t-register.js') }}"></script>
+
 
 </body>
-
-
-

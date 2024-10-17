@@ -8,14 +8,22 @@
 
     <div class="container mx-auto px-2 shadow-lg">
 
-        <div class="flex py-1">
-            <a href="{{ route('report.request') }}" target="_blank" class="text-black inline-flex items-center">
-                <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
-            </a>
-        </div>
-
         <table class="table-auto w-full mt-4 bg-white text-gray-900 border border-gray-200 rounded-lg shadow-md">
             <thead>
+                <tr class="border-b">
+                    <th colspan="1">
+                        <a href="{{ route('report.request') }}" target="_blank"
+                            class="text-black inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-2 text-red-700 "></i>
+                        </a>
+                    </th>
+                    <th colspan="6">
+                        <h1 class="text-2xl font-extrabold text-gray-900 text-center tracking-wide mb-2">
+                            Mis solicitudes
+
+                        </h1>
+                    </th>
+                </tr>
                 <tr>
                     <th class="px-4 py-2 border-b">Código</th>
                     <th class="px-4 py-2 border-b">Estado</th>

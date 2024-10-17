@@ -74,7 +74,8 @@
 
                 <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Usuarios</p>
+                        <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Usuarios
+                            registrados</p>
                         <div class="chart-container">
                             <canvas id="userRolesChart"></canvas>
                         </div>
@@ -86,8 +87,8 @@
                     <div class="p-6 text-gray-900">
                         <p class="flex justify-start items-center text-sm font-semibold text-gray-800">Materiales
                             reciclados</p>
-                        <div class="chart-container flex justify-center items-center w-full">
-                            <canvas id="totalMaterialsChart" height="300px"></canvas>
+                        <div class="chart-container">
+                            <canvas id="totalMaterialsChart" height="270px"></canvas>
                         </div>
                     </div>
 
@@ -105,8 +106,8 @@
                                 <option value="{{ $userData->first()->user_id }}">{{ $userName }}</option>
                             @endforeach
                         </select>
-                        <div class="chart-container flex justify-center items-center w-full">
-                            <canvas id="userMaterialsChart" height="300px"></canvas>
+                        <div class="chart-container ">
+                            <canvas id="userMaterialsChart" height="270px"></canvas>
                         </div>
                     </div>
                 </div>
@@ -158,8 +159,7 @@
     </script>
 
 
-
-    {{-- <script>
+    <script>
         var totalMaterialsCtx = document.getElementById('totalMaterialsChart').getContext('2d');
         var totalMaterialsChart = new Chart(totalMaterialsCtx, {
             type: 'bar',
@@ -174,7 +174,6 @@
                         '#3357FF',
                         '#F1C40F',
                         '#E74C3C',
-
                         '#FF5733',
                         '#33FF57',
                         '#3357FF'
@@ -186,13 +185,21 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad reciclada (kg)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
                     }
                 }
             }
         });
     </script>
-
 
     <script>
         document.getElementById('userSelect').addEventListener('change', function() {
@@ -207,70 +214,58 @@
                 data: {
                     labels: selectedUserData.map(item => 'Bolsa ' + item.bag_id),
                     datasets: [{
-                        label: 'Cantidad recolectada (kg)',
+
                         data: selectedUserData.map(item => item.total_amount),
-                        backgroundColor: [ 
-                            '#33FF57', 
+                        backgroundColor: [
+                            '#33FF57',
                             '#FF5733',
                             '#3357FF',
                             '#F1C40F',
                             '#E74C3C',
-
-                            '#FF5733', 
-                            '#33FF57', 
+                            '#FF5733',
+                            '#33FF57',
                             '#3357FF'
-
-
-                        ].slice(0, selectedUserData
-                        .length), 
-                        borderColor: '#000000', 
+                        ].slice(0, selectedUserData.length),
+                        borderColor: '#000000',
                         borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Cantidad recolectada (kg) por recolector'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
                         }
                     }
                 }
             });
         });
         document.getElementById('userSelect').dispatchEvent(new Event('change'));
-    </script> --}}
-
-    <script>
-        var totalMaterialsCtx = document.getElementById('totalMaterialsChart').getContext('2d');
-        var totalMaterialsChart = new Chart(totalMaterialsCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Plástico', 'Cartón', 'Vidrio', 'Metal', 'Papel'], 
-                datasets: [{
-                    label: 'Cantidad total reciclada (kg)',
-                    data: [40, 50, 20, 30, 15], 
-                    backgroundColor: [
-                        '#33FF57', 
-                        '#FF5733',
-                        '#3357FF', 
-                        '#F1C40F',
-                        '#E74C3C', 
-                    ],
-                    borderColor: '#000000',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
     </script>
 
 
-    <script>
+
+
+
+
+
+
+
+
+
+
+
+    {{-- estaticos --}}
+
+    {{-- <script>
         document.getElementById('userSelect').addEventListener('change', function() {
             var ctx = document.getElementById('userMaterialsChart').getContext('2d');
 
@@ -322,6 +317,39 @@
 
         document.getElementById('userSelect').dispatchEvent(new Event('change'));
     </script>
+
+    <script>
+        var totalMaterialsCtx = document.getElementById('totalMaterialsChart').getContext('2d');
+        var totalMaterialsChart = new Chart(totalMaterialsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Plástico', 'Cartón', 'Vidrio', 'Metal', 'Papel'],
+                datasets: [{
+                    label: 'Cantidad total reciclada (kg)',
+                    data: [40, 50, 20, 30, 15],
+                    backgroundColor: [
+                        '#33FF57',
+                        '#FF5733',
+                        '#3357FF',
+                        '#F1C40F',
+                        '#E74C3C',
+                    ],
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script> --}}
+
+
+
 
 
 </x-app-layout>

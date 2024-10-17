@@ -4,6 +4,12 @@
         <table class="table-auto w-full mt-4 bg-white text-gray-900 border border-gray-200 rounded-lg shadow-md">
             <thead>
                 <tr>
+                    <th class="py-2 px-4 border-b text-lg" colspan="3">
+                        HISTORIAL
+                    </th>
+                </tr>
+
+                <tr>
                     <th class="px-4 py-2 border-b">Código de solicitud</th>
                     <th class="px-4 py-2 border-b">Fecha</th>
                     <th class="px-4 py-2 border-b">Peso (kg)</th>
@@ -18,7 +24,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="px-4 py-2 text-center">No hay historial de recolección disponible.</td>
+                        <td colspan="3" class="px-4 py-2 text-center">No hay historial de recolección disponible.
+                        </td>
                     </tr>
                 @endforelse
             </tbody>

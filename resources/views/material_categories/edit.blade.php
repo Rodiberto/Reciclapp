@@ -22,36 +22,35 @@
                 <form action="{{ route('material_categories.update', $material_category->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="mb-4">
                         <label for="name" class="w-full text-gray-700 text-sm font-medium mb-2">Nombre</label>
-                        <input type="text" id="name" name="name" 
+                        <input type="text" id="name" name="name"
                             class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700"
                             value="{{ old('name', $material_category->name) }}" required>
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <span id="name-error" class="text-red-500 text-xs"></span>
                     </div>
-                
+
                     <div class="mb-4">
-                        <label for="description" class="w-full text-gray-700 text-sm font-medium mb-2">Descripción</label>
-                        <textarea id="description" required name="description" 
+                        <label for="description"
+                            class="w-full text-gray-700 text-sm font-medium mb-2">Descripción</label>
+                        <textarea id="description" required name="description"
                             class="border border-gray-300 rounded-lg shadow-sm px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-700">{{ old('description', $material_category->description) }}</textarea>
-                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        <span id="description-error" class="text-red-500 text-xs"></span>
                     </div>
-                
+
                     <button type="submit"
                         class="w-full bg-green-800 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:bg-green-700">
                         Actualizar
                     </button>
                 </form>
-                
+
 
 
             </div>
         </div>
     </div>
 
-
+    <script src="{{ asset('js/t-material-categories.js') }}"></script>
 
 </x-app-layout>
-
-

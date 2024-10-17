@@ -32,7 +32,7 @@
     <nav class="navbar fixed-top">
         <div class="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
             <a class="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline"
-                href="index.html">
+                href="{{ route('home') }}">
                 <img src="{{ asset('img/logo2.png') }}" alt="alternative" class="h-8" />
             </a>
             <a class="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll"
@@ -72,13 +72,30 @@
 
     <header id="header" class="header py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32">
 
-        @if (session()->has('error'))
-            <div id="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
-                role="alert">
-                <span class="block sm:inline">{{ session()->get('error') }}</span>
+
+        @if (session()->has('message') || session()->has('session_expired') || session()->has('permission_denied'))
+            <div id="messageModal" class="fixed inset-0 flex items-center justify-center z-50">
+                <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-6 text-center max-w-sm w-full">
+                    @if (session()->has('message'))
+                        <div class="text-green-700 bg-white border-l-4 border-green-500 p-3 rounded-lg">
+                            <strong>Éxito:</strong> {{ session()->get('message') }}
+                        </div>
+                    @endif
+                    @if (session()->has('session_expired'))
+                        <div class="text-green-700 bg-white border-l-4 border-green-500 p-3 rounded-lg">
+                            <strong>Estado:</strong> {{ session()->get('session_expired') }}
+                        </div>
+                    @endif
+                    @if (session()->has('permission_denied'))
+                        <div class="text-red-700 bg-white border-l-4 border-red-500 p-3 rounded-lg">
+                            <strong>Error:</strong> {{ session()->get('permission_denied') }}
+                        </div>
+                    @endif
+                </div>
             </div>
         @endif
-        
+
+
         <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
             <div class="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
                 <h1 class="h1-large mb-5">Aplicación móvil de Reciclapp</h1>
@@ -189,7 +206,7 @@
                                 <img class="card-image " src="img/team/scrum-master-leiber.png" alt="alternative" />
 
                                 <div class="card-body">
-                                    <p class="testimonial-author">Leiber Mauricio Gomez Trejo - Scrum Master</p>
+                                    <p class="testimonial-author">Leiber Trejo - Scrum Master</p>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +217,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/diseñador-fabian.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">José Fabián Alcázar Ramírez - Designer</p>
+                                    <p class="testimonial-author">Fabián Alcázar - Scrum Team</p>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +228,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/documentador-luis.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">Luis Antonio Lopez Lara - Portfolio</p>
+                                    <p class="testimonial-author">Luis Lara - Scrum Team</p>
                                 </div>
                             </div>
                         </div>
@@ -222,7 +239,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/tester-fernando.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">Luis Fernando Guillen Gonzales - Tester</p>
+                                    <p class="testimonial-author">Luis Guillén - Scrum Team</p>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +250,7 @@
                             <div class="card">
                                 <img class="card-image" src="img/team/desarrollador-rodiber.png" alt="alternative" />
                                 <div class="card-body">
-                                    <p class="testimonial-author">Rodiber Cruz Morales - Developer</p>
+                                    <p class="testimonial-author">Rodiber Cruz - Scrum Team</p>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +293,7 @@
 
 
                     <div class="flex justify-center items-center">
-                        <a href="#"
+                        <a href="https://www.paypal.com/donate/?hosted_button_id=M59RS3JBBTRUG"
                             class="px-6 py-3 bg-yellow-400 text-blue-700 font-semibold rounded-md hover:bg-yellow-500 transition flex items-center space-x-2">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png"
                                 alt="PayPal" class="h-5">
@@ -333,7 +350,8 @@
                     cols="30" rows="3" placeholder="Mensaje"></textarea>
             </div>
             <div class="text-center md:text-left">
-                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg">
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg"
+                    id="send-mail">
                     Enviar
                 </button>
             </div>
@@ -355,20 +373,20 @@
             <h4 class="mb-8 text-lg font-semibold lg:max-w-3xl lg:mx-auto">
                 Reciclapp es esencial para la sostenibilidad ambiental. Separa tus residuos y deposítalos en los
                 contenedores adecuados. Para más información, contacta a nuestro equipo en:
-                <a class="text-indigo-600 hover:text-gray-500"
+                <a class="text-green-700 hover:text-green-500"
                     href="mailto:info.reciclapp@gmail.com">info.reciclapp@gmail.com</a>
             </h4>
 
             <div class="social-container">
                 <span class="fa-stack">
-                    <a href="#your-link">
+                    <a href="https://github.com/Rodiberto/Reciclapp.git" target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-facebook-f fa-stack-1x"></i>
+                        <i class="fab fa-github fa-stack-1x"></i>
                     </a>
                 </span>
 
                 <span class="fa-stack">
-                    <a href="#your-link">
+                    <a href="https://instagram.com/reciclappnet" target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-instagram fa-stack-1x"></i>
                     </a>
@@ -386,19 +404,23 @@
 
             <div>
                 <ul class="mb-4 list-unstyled p-small">
-                    <li class="mb-2"><a href="{{ route('terminos_condiciones') }}">Termimos & Condiciones</a></li>
+                    <li class="mb-2 text-gray-500 hover:text-white"><a
+                            href="{{ route('terminos_condiciones') }}">Términos &
+                            Condiciones</a></li>
                 </ul>
             </div>
 
             <div>
-                <p class="pb-2 p-small statement">Reciclapp © <a href="#your-link" class="no-underline">Todos los
+                <p class="pb-2 p-small statement text-gray-500">Reciclapp © <a class="no-underline">Todos los
                         derechos reservados</a></p>
             </div>
 
             <div class="flex items-center justify-end">
 
                 <ul class="mb-4 list-unstyled p-small">
-                    <li class="mb-2"><a href="{{ route('aviso_privacidad') }}">Política de Privacidad</a></li>
+                    <li class="mb-2 text-gray-500 hover:text-white"><a href="{{ route('aviso_privacidad') }}">Aviso
+                            de Privacidad</a>
+                    </li>
                 </ul>
 
             </div>
@@ -410,14 +432,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const successMessage = document.getElementById('message');
-            if (successMessage) {
-                setTimeout(() => {
-                    successMessage.classList.add('fade-out');
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 1000);
-                }, 2000);
+            const modal = document.getElementById('messageModal');
+            if (modal) {
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                }, 3000);
             }
         });
     </script>
