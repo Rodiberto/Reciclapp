@@ -48,11 +48,11 @@ class MaterialController extends Controller
             'material_category_id' => ['required', 'exists:material_categories,id'],
             'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'code' => ['required'],
         ]);
 
 
         $data = $request->all();
-
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
@@ -83,6 +83,7 @@ class MaterialController extends Controller
             'material_category_id' => ['required', 'exists:material_categories,id'],
             'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'code' => ['required', 'string', 'max:20', 'unique:materials', 'regex:/^[a-zA-Z0-9]+$/',],
         ]);
 
         $data = $request->all();

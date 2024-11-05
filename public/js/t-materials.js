@@ -100,6 +100,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function validateCode() {
+        const varCodeInput = document.getElementById("code");
+        const varCodeError = document.getElementById("code-error");
+
+        if (!varCodeInput.value.trim()) {
+            varCodeError.textContent = "El código es requerido.";
+            return false;
+        }
+
+        const varCodeRegex = /^[a-zA-Z0-9]+$/;
+        if (!varCodeRegex.test(varCodeInput.value)) {
+            varCodeError.textContent =
+                "El código solo puede contener letras y números.";
+            return false;
+        }
+
+        if (varCodeInput.value.length > 20) {
+            varCodeError.textContent =
+                "El código no debe exceder los 20 caracteres.";
+            return false;
+        }
+
+        varCodeError.textContent = "";
+        return true;
+    }
+
     document.getElementById("name").addEventListener("input", validateName);
     document
         .getElementById("description")
@@ -110,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("weight").addEventListener("input", validateWeight);
     document.getElementById("value").addEventListener("input", validateValue);
     document.getElementById("image").addEventListener("change", validateImage);
+    document.getElementById("code").addEventListener("input", validateCode);
 
     form.addEventListener("submit", function (event) {
         if (
@@ -118,7 +145,8 @@ document.addEventListener("DOMContentLoaded", function () {
             !validateCategory() ||
             !validateWeight() ||
             !validateValue() ||
-            !validateImage()
+            !validateImage() ||
+            !validateCode()
         ) {
             event.preventDefault();
         }

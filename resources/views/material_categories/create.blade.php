@@ -19,7 +19,7 @@
 
             <div class="flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
 
-                <form action="{{ route('material_categories.store') }}" method="POST">
+                <form action="{{ route('material_categories.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-4">
@@ -38,6 +38,18 @@
                         <span id="description-error" class="text-red-500 text-xs"></span>
                     </div>
 
+                    <div class="mb-4">
+                        <label for="image" class="block text-gray-700 font-medium">Imagen</label>
+                        <input type="file" id="image" name="image" class="hidden" accept="image/*"
+                            onchange="updateFileName()">
+                        <label for="image"
+                            class="block cursor-pointer p-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 w-full sm:text-sm">
+                            <span class="truncate py-4">Seleccionar archivo</span>
+                        </label>
+                        <span id="materials"></span>
+                        <span id="image-error" class="text-red-500 text-xs"></span>
+                    </div>
+
                     <button type="submit"
                         class="w-full bg-green-800 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none 
                         focus:ring-2 focus:bg-green-700">
@@ -53,6 +65,7 @@
     </div>
 
     <script src="{{ asset('js/t-material-categories.js') }}"></script>
+    <script src="{{ asset('js/filename_image.js') }}"></script>
 
 
 </x-app-layout>

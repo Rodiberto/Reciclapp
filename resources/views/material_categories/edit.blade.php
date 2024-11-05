@@ -19,9 +19,30 @@
 
             <div class="flex justify-center items-center bg-white p-6 rounded-lg shadow-lg relative">
 
-                <form action="{{ route('material_categories.update', $material_category->id) }}" method="POST">
+                <form action="{{ route('material_categories.update', $material_category->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+
+                    <div class="mb-4">
+
+                        <div class="mb-4 flex items-center justify-center">
+                            <img src="{{ $material_category->image }}" alt="Imagen del material" class="w-30 h-20 mb-2">
+                        </div>
+
+                        <label for="image" class="block text-gray-700 font-medium mb-2">Nueva
+                            imagen</label>
+                        <input type="file" id="image" name="image" class="hidden" accept="image/*"
+                            onchange="updateFileName()">
+
+                        <label for="image"
+                            class="block cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-green-700 w-full sm:text-sm">
+                            <span class="truncate py-4">Seleccionar archivo</span>
+                        </label>
+
+                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                    </div>
+                    <span id="materials"></span>
 
                     <div class="mb-4">
                         <label for="name" class="w-full text-gray-700 text-sm font-medium mb-2">Nombre</label>
@@ -52,5 +73,6 @@
     </div>
 
     <script src="{{ asset('js/t-material-categories.js') }}"></script>
+    <script src="{{ asset('js/filename_image.js') }}"></script>
 
 </x-app-layout>

@@ -82,6 +82,7 @@
                             </p>
                             <p class="text-sm text-center"><strong>Peso:</strong> {{ $material->weight }}</p>
                             <p class="text-sm text-center"><strong>Valor:</strong> {{ $material->value }}</p>
+                            <p class="text-sm text-center"><strong>Código:</strong> {{ $material->var_code }}</p>
                         </div>
                         <div class="text-center p-2">
                             <a href="{{ route('materials.edit', $material->id) }}" class="mr-2 text-sm">
@@ -115,6 +116,7 @@
                             <th class="px-4 py-2">Categoría</th>
                             <th class="px-4 py-2">Peso</th>
                             <th class="px-4 py-2">Valor</th>
+                            <th class="px-4 py-2">Código</th>
                             <th class="px-4 py-2">Acciones</th>
                         </tr>
                     </thead>
@@ -128,6 +130,7 @@
                                 <td class="border px-4 py-2">{{ $material->category->name }}</td>
                                 <td class="border px-4 py-2">{{ $material->weight }}</td>
                                 <td class="border px-4 py-2">{{ $material->value }}</td>
+                                <td class="border px-4 py-2">{{ $material->var_code }}</td>
                                 <td class="border px-4 py-2">
                                     <a href="{{ route('materials.edit', $material->id) }}" class="mr-2">
                                         <i class="fas fa-edit"></i>

@@ -64,6 +64,14 @@
                                      name="value" value="{{ old('value', $material->value) }}" required>
                                  <span id="value-error" class="text-red-500 text-xs"></span>
                              </div>
+
+                             <div class="mb-4">
+                                 <label for="code" class="block text-gray-700 font-medium mb-2">Código</label>
+                                 <input id="code" type="number" step="0.01"
+                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700 @error('value') border-red-500 @enderror"
+                                     name="code" value="{{ old('code', $material->code) }}" required>
+                                 <span id="code-error" class="text-red-500 text-xs"></span>
+                             </div>
                          </div>
 
                          <!-- Primera columna -->

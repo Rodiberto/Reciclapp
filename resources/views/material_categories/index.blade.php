@@ -41,6 +41,9 @@
             <div id="categoryContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 @forelse ($categories as $category)
                     <div class="bg-white overflow-hidden shadow-lg rounded-lg p-6 text-gray-900">
+                        <div class="flex justify-center mb-3">
+                            <img src="{{ $category->image }}" alt="Imagen del material" class="w-20 h-20 rounded-full">
+                        </div>
                         <p class="font-bold text-center">{{ $category->name }}</p>
                         <p class="text-center">{{ $category->description }}</p>
                         <div class="mt-4 space-x-2">

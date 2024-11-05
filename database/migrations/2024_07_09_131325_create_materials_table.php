@@ -16,6 +16,7 @@ class CreateMaterialsTable extends Migration
             $table->foreignId('material_category_id')->constrained('material_categories')->onDelete('cascade');
             $table->decimal('weight', 10, 2);
             $table->decimal('value', 10, 2);
+            $table->string('code');
             $table->timestamps();
         });
     }

@@ -35,14 +35,27 @@ document.addEventListener("DOMContentLoaded", function () {
             return true;
         }
     }
+    function validateImage() {
+        const imageInput = document.getElementById("image");
+        const imageError = document.getElementById("image-error");
+
+        if (!imageInput.value.trim()) {
+            imageError.textContent = "La imagen es requerida.";
+            return false;
+        } else {
+            imageError.textContent = "";
+            return true;
+        }
+    }
 
     document.getElementById("name").addEventListener("input", validateName);
     document
         .getElementById("description")
         .addEventListener("input", validateDescription);
+    document.getElementById("image").addEventListener("change", validateImage);
 
     form.addEventListener("submit", function (event) {
-        if (!validateName() || !validateDescription()) {
+        if (!validateName() || !validateDescription() || !validateImage()) {
             event.preventDefault();
         }
     });

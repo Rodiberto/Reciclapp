@@ -16,5 +16,6 @@
 
 
 
-
+#Añadir campo image a la tabla material_categories
+#Añadir un campo var_code a la tabla materials
 

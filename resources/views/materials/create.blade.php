@@ -87,6 +87,14 @@
                         <span id="image-error" class="text-red-500 text-xs"></span>
                     </div>
 
+                    <div class="mb-2">
+                        <label for="code" class="block text-gray-700">Código</label>
+                        <input id="code" type="text"
+                            class="block w-full text-gray-700 border rounded-lg py-2 px-4 leading-tight focus:ring-green-700 focus:border-green-700"
+                            name="code" value="{{ old('code') }}" required>
+                        <span id="code-error" class="text-red-500 text-xs"></span>
+                    </div>
+
                     <!-- Botón Guardar -->
                     <div class="mb-2 sm:col-span-2">
                         <button type="submit"

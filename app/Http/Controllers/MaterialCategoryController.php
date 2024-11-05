@@ -24,9 +24,19 @@ class MaterialCategoryController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u',],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
 
-        MaterialCategory::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(base_path('../material_image'), $imageName);
+            $data['image'] = '/material_image/' . $imageName;
+        }
+
+        MaterialCategory::create($data);
 
         return redirect()->route('material_categories.index')->with('success', 'Categoría creada exitosamente.');
     }
@@ -40,8 +50,27 @@ class MaterialCategoryController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
-            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u',],
+            'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            if ($material_category->image) {
+                $oldImagePath = base_path('../material_image/' . basename($material_category->image));
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(base_path('../material_image'), $imageName);
+
+            $data['image'] = '/material_image/' . $imageName;
+        } else {
+            $data['image'] = $material_category->image;
+        }
 
         $material_category->update($request->all());
 
