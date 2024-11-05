@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "El código solo puede contener letras y números.";
             return false;
         }
-
+        //
         if (varCodeInput.value.length > 20) {
             varCodeError.textContent =
                 "El código no debe exceder los 20 caracteres.";
