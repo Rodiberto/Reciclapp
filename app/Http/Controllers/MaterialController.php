@@ -39,8 +39,6 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
-
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
@@ -48,7 +46,7 @@ class MaterialController extends Controller
             'material_category_id' => ['required', 'exists:material_categories,id'],
             'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'code' => ['required'],
+            'code' => ['required', 'string', 'regex:/^\d{20}$/'],
         ]);
 
 
@@ -83,11 +81,10 @@ class MaterialController extends Controller
             'material_category_id' => ['required', 'exists:material_categories,id'],
             'weight' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-            'code' => ['required', 'string', 'max:20', 'unique:materials', 'regex:/^[a-zA-Z0-9]+$/',],
+            'code' => ['required', 'string', 'regex:/^\d{20}$/'],
         ]);
 
         $data = $request->all();
-
         if ($request->hasFile('image')) {
             if ($material->image) {
                 $oldImagePath = base_path('../material_image/' . basename($material->image));
@@ -102,7 +99,8 @@ class MaterialController extends Controller
 
             $data['image'] = '/material_image/' . $imageName;
         } else {
-            $data['image'] = $material->image;
+
+            unset($data['image']);
         }
 
         $material->update($data);

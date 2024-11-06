@@ -46,14 +46,46 @@ class MaterialCategoryController extends Controller
         return view('material_categories.edit', compact('material_category'));
     }
 
+    // public function update(Request $request, MaterialCategory $material_category)
+    // {
+    //     $request->validate([
+    //         'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+    //         'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u'],
+    //         'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+    //     ]);
+    //     $data = $request->all();
+
+    //     if ($request->hasFile('image')) {
+    //         if ($material_category->image) {
+    //             $oldImagePath = base_path('../material_image/' . basename($material_category->image));
+    //             if (file_exists($oldImagePath)) {
+    //                 unlink($oldImagePath);
+    //             }
+    //         }
+
+    //         $image = $request->file('image');
+    //         $imageName = time() . '_' . $image->getClientOriginalName();
+    //         $image->move(base_path('../material_image'), $imageName);
+
+    //         $data['image'] = '/material_image/' . $imageName;
+    //     } else {
+    //         $data['image'] = $material_category->image;
+    //     }
+
+    //     $material_category->update($request->all());
+
+    //     return redirect()->route('material_categories.index')->with('success', 'Categoría actualizada exitosamente.');
+    // }
+
     public function update(Request $request, MaterialCategory $material_category)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
             'description' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s.,\-]+$/u'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5120'],
         ]);
-        $data = $request->all();
+
+        $data = $request->only(['name', 'description']); // Solo tomamos los campos 'name' y 'description'
 
         if ($request->hasFile('image')) {
             if ($material_category->image) {
@@ -72,10 +104,11 @@ class MaterialCategoryController extends Controller
             $data['image'] = $material_category->image;
         }
 
-        $material_category->update($request->all());
+        $material_category->update($data);
 
         return redirect()->route('material_categories.index')->with('success', 'Categoría actualizada exitosamente.');
     }
+
 
     public function destroy(MaterialCategory $material_category)
     {
