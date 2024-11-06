@@ -83,6 +83,7 @@ class MaterialController extends Controller
             'value' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'code' => ['required', 'string', 'regex:/^\d{20}$/'],
         ]);
+        //
 
         $data = $request->all();
         if ($request->hasFile('image')) {
